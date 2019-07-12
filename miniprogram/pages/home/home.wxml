@@ -1,0 +1,11 @@
+<view class="home">
+  <scroll-view scroll-y>
+    <swiper indicator-dots="{{indicatorDots}}" indicator-active-color="#F6B319" circular="true" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{imgUrls}}" wx:key="*this">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </scroll-view>
+</view>
