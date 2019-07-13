@@ -1,8 +1,9 @@
 <view class="my">
   <!-- <scroll-view scroll-y> -->
-    <button bindtap='add'>新增</button>
-    <button bindtap='delete'>删除</button>
-    <button bindtap='update'>修改</button>
-    <button bindtap='query'>查询</button>
+  <button bindtap='add'>新增</button>
+  <button bindtap='delete'>删除</button>
+  <button bindtap='update'>修改</button>
+  <button bindtap='query'>查询</button>
+  <button bindtap='getUserOpenId'>获取当前用户的openId</button>
   <!-- </scroll-view> -->
 </view>
