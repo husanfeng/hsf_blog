@@ -1,10 +1,9 @@
 //index.js
 const app = getApp()
-
+const db = wx.cloud.database()
 Page({
   data: {
-    imgUrls: ['https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/product_image/cs.jpg?sign=1f3f78d2e75b93939f6b82f2a5c9457f&t=1562917056',
-    'https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/product_image/cs.jpg?sign=1f3f78d2e75b93939f6b82f2a5c9457f&t=1562917056',],
+    imgUrls: [],
     indicatorDots: true,
     autoplay: true,
     interval: 4000,
@@ -12,6 +11,27 @@ Page({
   },
 
   onLoad: function() {
-   
+   this.init();
   },
+  init(){
+    var _this = this;
+    wx.showLoading({
+      title: '正在加载...',
+    })
+    db.collection('top_images').get({
+      success: function (res) {
+        // res.data 包含该记录的数据
+        console.log(res.data)
+        _this.setData({
+          imgUrls: res.data
+        })
+      },
+      fail: function (res) {
+        console.log(res)
+      },
+      complete: function (res) {
+        wx.hideLoading()
+      }
+    })
+  }
 })

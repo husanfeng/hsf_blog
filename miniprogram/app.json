@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/my/my",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
@@ -14,7 +15,7 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTitleText": "云开发",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -33,10 +34,10 @@
         "pagePath": "pages/index/index",
         "iconPath": "images/need.png",
         "selectedIconPath": "images/need_hl.png",
-        "text": "技术"
+        "text": "专题"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/my/my",
         "iconPath": "images/me.png",
         "selectedIconPath": "images/me_hl.png",
         "text": "我的"
