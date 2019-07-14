@@ -15,7 +15,7 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发",
+    "navigationBarTitleText": "我的博客",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

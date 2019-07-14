@@ -7,5 +7,46 @@
         </swiper-item>
       </block>
     </swiper>
+    <view class='classfication'>
+      <block wx:for="{{classficationList}}" wx:key="*this">
+        <view class='classfication-view' wx:if="{{item.id<5}}">
+          <view class='image' style='background:{{item.style}}'>
+            <image src="{{item.url}}" />
+          </view>
+          <view class='name'>{{item.name}}</view>
+        </view>
+      </block>
+    </view>
+    <view>
+      <block wx:for="{{articleList}}" wx:key="*this">
+        <view class='article'>
+          <view class='article-img'>
+            <image src='{{item.image_url}}'></image>
+          </view>
+          <view class='article-text'>
+            <view class='title'>{{item.title}}</view>
+            <view class='summary'>{{item.summary}}</view>
+            <view class='article-bottom'>
+              <view class='time'>
+                <image src='../../images/creat_time.png'></image>
+                <text class=''>{{item.create_time}}</text>
+              </view>
+              <view class='comment-count'>
+                <image src='../../images/comment.png'></image>
+                <text class=''>{{item.comment_count}}</text>
+              </view>
+              <view class='read-count'>
+                <image src='../../images/read_count.png'></image>
+                <text class=''>{{item.read_count}}</text>
+              </view>
+              <view class='poll-count'>
+                <image src='../../images/poll.png'></image>
+                <text class=''>{{item.poll_count}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
   </scroll-view>
 </view>

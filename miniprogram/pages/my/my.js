@@ -55,7 +55,7 @@ Page({
     wx.showLoading({
       title: '正在更新...',
     })
-    db.collection('top_images').doc('20190713').update({
+    db.collection('top_images').doc('20190714').update({
       data:{
         url:'https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/top_images/swiper1.jpg?sign=dfb00701eb1db066c56baab8773f9b98&t=1562993174'
       },
