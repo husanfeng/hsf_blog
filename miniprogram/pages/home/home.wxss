@@ -77,8 +77,13 @@
 }
 
 .home .article .article-text .summary {
-  font-size: 26rpx;
-  height: 60rpx;
+  font-size: 24rpx;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .home .article .article-text .article-bottom {
