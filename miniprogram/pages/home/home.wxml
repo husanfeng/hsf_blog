@@ -17,7 +17,7 @@
         </view>
       </block>
     </view>
-    <view>
+    <view style='border-top:1rpx solid #f5f5f5;'>
       <block wx:for="{{articleList}}" wx:key="*this">
         <view class='article'>
           <view class='article-img'>

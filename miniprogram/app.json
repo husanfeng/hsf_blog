@@ -12,34 +12,40 @@
     "pages/openapi/openapi"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
+    "backgroundColor": "#f6f6f6",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarBackgroundColor": "#1296db",
     "navigationBarTitleText": "我的博客",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
-    "color": "#7A7E83",
-    "selectedColor": "#cc0033",
+    "color": "#cdcdcd",
+    "selectedColor": "#1296db",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/home/home",
         "iconPath": "images/home.png",
-        "selectedIconPath": "images/home_hl.png",
+        "selectedIconPath": "images/home-select.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/index/index",
-        "iconPath": "images/need.png",
-        "selectedIconPath": "images/need_hl.png",
+        "iconPath": "images/special.png",
+        "selectedIconPath": "images/special-select.png",
         "text": "专题"
       },
       {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/ranking.png",
+        "selectedIconPath": "images/ranking-select.png",
+        "text": "排行榜"
+      },
+      {
         "pagePath": "pages/my/my",
-        "iconPath": "images/me.png",
-        "selectedIconPath": "images/me_hl.png",
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/my-select.png",
         "text": "我的"
       }
     ]
