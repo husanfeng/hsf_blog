@@ -2,6 +2,8 @@
   "pages": [
     "pages/home/home",
     "pages/my/my",
+    "pages/special/special",
+    "pages/ranking/ranking",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
@@ -31,13 +33,13 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/special/special",
         "iconPath": "images/special.png",
         "selectedIconPath": "images/special-select.png",
         "text": "专题"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/ranking/ranking",
         "iconPath": "images/ranking.png",
         "selectedIconPath": "images/ranking-select.png",
         "text": "排行榜"
