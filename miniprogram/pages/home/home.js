@@ -10,6 +10,12 @@ Page({
     autoplay: true,
     interval: 4000,
     duration: 1000,
+
+    loading: false, // 正在加载
+    loadingHasData: true, //是否还有有数据
+    size: 10,
+    page: 0,
+    dataList: [],
   },
 
   onLoad: function() {
@@ -79,5 +85,33 @@ Page({
         wx.hideLoading()
       }
     })
-  }
+  },
+  /**
+  * 页面相关事件处理函数--监听用户下拉动作
+  */
+  onPullDownRefresh: function () {
+    wx.stopPullDownRefresh() //停止下拉刷新
+    this.setData({
+      page: 0,
+      dataList: [],
+    });
+    // this.fetchSearchList();
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    if (this.data.loading)
+      return;
+
+    if (!this.data.loadingHasData)
+      return;
+
+    this.setData({
+      loading: true,
+      loadingHasData: true,
+    });
+    // this.fetchSearchList();
+  },
 })
