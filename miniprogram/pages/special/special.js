@@ -28,6 +28,7 @@ Page({
         _this.setData({
           classficationList: res.data
         })
+        wx.stopPullDownRefresh() //停止下拉刷新
       },
       fail: function (res) {
         console.log(res)
@@ -36,6 +37,14 @@ Page({
         wx.hideLoading()
       }
     })
+  },
+  /**
+* 页面相关事件处理函数--监听用户下拉动作
+*/
+  onPullDownRefresh: function () {
+   
+    this.initClassfication();
+    // this.fetchSearchList();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
