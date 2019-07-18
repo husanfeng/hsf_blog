@@ -2,6 +2,7 @@
   "pages": [
     "pages/home/home",
     "pages/my/my",
+    "pages/me/me",
     "pages/special/special",
     "pages/ranking/ranking",
     "pages/index/index",
@@ -15,7 +16,7 @@
   ],
   "window": {
     "backgroundColor": "#f6f6f6",
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#1296db",
     "navigationBarTitleText": "我的博客",
     "navigationBarTextStyle": "white"
@@ -45,7 +46,7 @@
         "text": "排行榜"
       },
       {
-        "pagePath": "pages/my/my",
+        "pagePath": "pages/me/me",
         "iconPath": "images/my.png",
         "selectedIconPath": "images/my-select.png",
         "text": "我的"
