@@ -1,2 +1,14 @@
 <!--pages/special/special.wxml-->
-<text>专题页</text>
+<view>
+  <view class='special'>
+    <block wx:for="{{classficationList}}" wx:key="*this">
+      <view class='item'>
+        <image class='left' src="{{item.url}}"></image>
+        <view class='right'>
+          <view class='title'>{{item.name}} </view>
+          <view class='article-num'>推荐：78 </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

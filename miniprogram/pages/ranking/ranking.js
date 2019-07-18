@@ -104,6 +104,42 @@ Page({
     }
   },
   /**
+ * 页面上拉触底事件的处理函数
+ */
+  searchScrollLower: function () {
+    var that = this;
+    if (that.data.loading)
+      return;
+    if (!that.data.loadingHasData)
+      return;
+    that.setData({
+      loading: true,
+      loadingHasData: true,
+    });
+    var tapId = that.data.currentTab;
+    if (tapId == 0) {
+      that.setData({
+        tapUrl: '/wxapp/buyers/pageBuyersForAdmin'
+      })
+    //  that.fetchSearchList();
+    } else if (tapId == 1) {
+      that.setData({
+        tapUrl: '/wxapp/member/pageBuyersOrExhibitoMember'
+      })
+   //   that.fetchSearchList("BUYERS");
+    } else if (tapId == 2) {
+      that.setData({
+        tapUrl: '/wxapp/exhibitor/pageExhibitoForAdmin'
+      })
+    //  that.fetchSearchList();
+    } else if (tapId == 3) {
+      that.setData({
+        tapUrl: '/wxapp/member/pageBuyersOrExhibitoMember'
+      })
+     // that.fetchSearchList("EXHIBITOR");
+    }
+  },
+  /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
