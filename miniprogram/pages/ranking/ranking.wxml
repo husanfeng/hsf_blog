@@ -1,2 +1,43 @@
 <!--pages/ranking/ranking.wxml-->
-<text>排行榜</text>
+<view style='height:100%'>
+  <view class="swiper-tab">
+    <view class="{{currentTab==0 ? 'select swiper-select-tab-list' : 'swiper-unselect-tab-list'}}" data-current="0" bindtap="swichNav">
+      浏览量
+    </view>
+    <view class="{{currentTab==1 ? 'select swiper-select-tab-list' : 'swiper-unselect-tab-list'}}" data-current="1" bindtap="swichNav">
+      评论数
+    </view>
+    <view class="{{currentTab==2 ? 'select swiper-select-tab-list' : 'swiper-unselect-tab-list'}}" data-current="2" bindtap="swichNav">
+      点赞数
+    </view>
+    <view class="{{currentTab==3 ? 'select swiper-select-tab-list' : 'swiper-unselect-tab-list'}}" data-current="3" bindtap="swichNav">
+      最新
+    </view>
+  </view>
+  <swiper current="{{currentTab}}" bindchange="swiperChange" class="swiper-box" duration="300" style="height:{{winHeight-topTapHeight}}px">
+    <swiper-item style='height:100%'>
+      <scroll-view scroll-x="false" scroll-y="true" style='height:100%' bindscrolltolower="searchScrollLower">
+        <view class='org-list' style='height:100%'>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item style='height:100%'>
+      <scroll-view scroll-x="false" scroll-y="true" style='height:100%' bindscrolltolower="searchScrollLower">
+        <view class='person-list' style='height:100%'>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item style='height:100%'>
+      <scroll-view scroll-x="false" scroll-y="true" style='height:100%' bindscrolltolower="searchScrollLower">
+        <view class='org-list' style='height:100%'> 
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item style='height:100%'>
+      <scroll-view scroll-x="false" scroll-y="true" style='height:100%' bindscrolltolower="searchScrollLower">
+        <view class='person-list' style='height:100%'>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+</view>
