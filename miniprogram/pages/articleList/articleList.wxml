@@ -1,4 +1,4 @@
 <!--pages/specialArticle/specialArticle.wxml-->
 <view>
-  <article-list-component></article-list-component>
+     <article-list-component articleList='{{articleList}}'></article-list-component>
 </view>

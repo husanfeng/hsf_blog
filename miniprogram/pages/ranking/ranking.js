@@ -22,6 +22,8 @@ Page({
     currentTab: 0, // tab切换
     topTapHeight: '',
     topSearchHeight: '',
+
+    articleList: []
   },
 
   /**
@@ -29,12 +31,13 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
- //   that.fetchSearchList("", true);
+    this.initArticleList()
+    //   that.fetchSearchList("", true);
     /**
      * 获取系统信息
      */
     wx.getSystemInfo({
-      success: function (res) {
+      success: function(res) {
         that.setData({
           winWidth: res.windowWidth,
           winHeight: res.windowHeight
@@ -42,18 +45,48 @@ Page({
       }
     });
     const query = wx.createSelectorQuery().in(this);
-    query.select('.swiper-tab').boundingClientRect(function (res) {
+    query.select('.swiper-tab').boundingClientRect(function(res) {
       that.setData({
         topTapHeight: res.height,
       });
     })
-    
+
     query.exec()
   },
+
+  initArticleList() {
+    var _this = this;
+    wx.showLoading({
+      title: '正在加载...',
+    })
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'getArticleListData',
+      data: {
+        dbName: 'article',
+        pageIndex: 1,
+        pageSize: 5,
+        // filter: {},
+      },
+      success: res => {
+        // res.data 包含该记录的数据
+        console.log(res.result.data)
+        _this.setData({
+          articleList: res.result.data
+        })
+      },
+      fail: err => {
+        console.error('[云函数]调用失败', err)
+      },
+      complete: res => {
+        wx.hideLoading()
+      }
+    })
+  },
   /**
-    * 点击tab切换
-    */
-  swichNav: function (e) {
+   * 点击tab切换
+   */
+  swichNav: function(e) {
     // 0 ,1 , 2, 3
     var that = this;
     var tapId = e.target.dataset.current;
@@ -68,8 +101,8 @@ Page({
     }
   },
   /**
-  * 滑动切换tab
-  */
+   * 滑动切换tab
+   */
   swiperChange(e) {
     var that = this;
     var tapId = e.detail.current;
@@ -85,17 +118,17 @@ Page({
         that.setData({
           tapUrl: '/wxapp/buyers/pageBuyersForAdmin'
         })
-      //  this.fetchSearchList("", true);
+        //  this.fetchSearchList("", true);
       } else if (tapId == 1) {
         that.setData({
           tapUrl: '/wxapp/member/pageBuyersOrExhibitoMember'
         })
-     //   this.fetchSearchList("BUYERS", true);
+        //   this.fetchSearchList("BUYERS", true);
       } else if (tapId == 2) {
         that.setData({
           tapUrl: '/wxapp/exhibitor/pageExhibitoForAdmin'
         })
-       // this.fetchSearchList();
+        // this.fetchSearchList();
       } else if (tapId == 3) {
         that.setData({
           tapUrl: '/wxapp/member/pageBuyersOrExhibitoMember'
@@ -104,9 +137,9 @@ Page({
     }
   },
   /**
- * 页面上拉触底事件的处理函数
- */
-  searchScrollLower: function () {
+   * 页面上拉触底事件的处理函数
+   */
+  searchScrollLower: function() {
     var that = this;
     if (that.data.loading)
       return;
@@ -121,22 +154,22 @@ Page({
       that.setData({
         tapUrl: '/wxapp/buyers/pageBuyersForAdmin'
       })
-    //  that.fetchSearchList();
+      //  that.fetchSearchList();
     } else if (tapId == 1) {
       that.setData({
         tapUrl: '/wxapp/member/pageBuyersOrExhibitoMember'
       })
-   //   that.fetchSearchList("BUYERS");
+      //   that.fetchSearchList("BUYERS");
     } else if (tapId == 2) {
       that.setData({
         tapUrl: '/wxapp/exhibitor/pageExhibitoForAdmin'
       })
-    //  that.fetchSearchList();
+      //  that.fetchSearchList();
     } else if (tapId == 3) {
       that.setData({
         tapUrl: '/wxapp/member/pageBuyersOrExhibitoMember'
       })
-     // that.fetchSearchList("EXHIBITOR");
+      // that.fetchSearchList("EXHIBITOR");
     }
   },
   /**

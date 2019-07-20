@@ -8,8 +8,8 @@
       </block>
     </swiper>
     <view class='classfication'>
-      <block wx:for="{{classficationList}}" wx:key="*this">
-        <view class='classfication-view' wx:if="{{item.id<5}}">
+      <block wx:for="{{classficationList}}" wx:key="*this" >
+        <view class='classfication-view' wx:if="{{item.id<5}}" data-id='{{item.id}}' data-name='{{item.name}}' bindtap='click'>
           <view class='image' style='background:{{item.style}}'>
             <image src="{{item.url}}" />
           </view>
@@ -17,6 +17,6 @@
         </view>
       </block>
     </view>
-    <article-list-component></article-list-component>
+    <article-list-component articleList='{{articleList}}'></article-list-component>
   </scroll-view>
 </view>

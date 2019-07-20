@@ -38,9 +38,12 @@ Page({
       }
     })
   },
-  click(){
+  click(e){
+    var id = e.currentTarget.dataset.id;
+    var name = e.currentTarget.dataset.name;
+
     wx.navigateTo({
-      url: '../articleList/articleList',
+      url: '../articleList/articleList?id='+id+'&name='+name,
     })
   },
   /**
