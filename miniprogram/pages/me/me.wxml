@@ -1,7 +1,18 @@
 <!--pages/me/me.wxml-->
-<view class="container">
-  <!-- 用户 openid -->
-  <view class="userinfo">
-    <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{avatarUrl}})"></button>
+<view>
+  <view class="me">
+    <!-- 用户 openid -->
+    <view class="user-info">
+      <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{avatarUrl}})"></button>
+      <view class='nickname'>{{userInfo?userInfo.nickName:"点击头像登录"}}</view>
+    </view>
+    <view class='function'>
+      <block wx:for="{{functionList}}" wx:key="*this">
+        <view class='function-item'>
+          <view class='name'>{{item}}</view>
+          <image class='img' src="../../images/right-arrow.png" />
+        </view>
+      </block>
+    </view>
   </view>
 </view>

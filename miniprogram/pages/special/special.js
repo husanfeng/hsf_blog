@@ -22,7 +22,7 @@ Page({
       title: '正在加载...',
     })
     db.collection('classfication').get({
-      success: function (res) {
+      success: function(res) {
         // res.data 包含该记录的数据
         console.log(res.data)
         _this.setData({
@@ -30,22 +30,15 @@ Page({
         })
         wx.stopPullDownRefresh() //停止下拉刷新
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log(res)
       },
-      complete: function (res) {
+      complete: function(res) {
         wx.hideLoading()
       }
     })
   },
   /**
-* 页面相关事件处理函数--监听用户下拉动作
-*/
-  onPullDownRefresh: function () {
-   
-    this.initClassfication();
-    // this.fetchSearchList();
-  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
