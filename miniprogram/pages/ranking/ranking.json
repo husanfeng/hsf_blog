@@ -1,4 +1,5 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "article-list-component": "../components/article-list-component"},
   "navigationBarTitleText": "排行榜"
 }

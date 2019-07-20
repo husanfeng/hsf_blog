@@ -1,0 +1,4 @@
+<!--pages/specialArticle/specialArticle.wxml-->
+<view>
+  <article-list-component></article-list-component>
+</view>

@@ -5,6 +5,8 @@
     "pages/me/me",
     "pages/special/special",
     "pages/ranking/ranking",
+    "pages/articleDetail/articleDetail",
+    "pages/articleList/articleList",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",

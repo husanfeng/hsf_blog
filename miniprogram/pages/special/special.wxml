@@ -2,7 +2,7 @@
 <view>
   <view class='special'>
     <block wx:for="{{classficationList}}" wx:key="*this">
-      <view class='item' style='background:{{item.style}}'>
+      <view class='item' style='background:{{item.style}}' bindtap='click'>
         <image class='left' src="{{item.url}}"></image>
         <view class='right'>
           <view class='title'>{{item.name}} </view>

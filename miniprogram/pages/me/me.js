@@ -34,7 +34,11 @@ Page({
       }
     })
   },
-
+  click() {
+    wx.navigateTo({
+      url: '../articleList/articleList',
+    })
+  },
   onGetUserInfo: function (e) {
     if (!this.logged && e.detail.userInfo) {
       this.setData({

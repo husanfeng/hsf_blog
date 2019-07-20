@@ -14,10 +14,9 @@ page {
 .me .user-info {
   display: flex;
   flex-direction: column;
-  background-color: #f1f1f1;
-  height: 350rpx;
+  background-color: #1296db;
+  height: 300rpx;
   align-items: center;
-  justify-content: center;
 }
 
 .me .user-info .userinfo-avatar {
@@ -28,26 +27,32 @@ page {
   background-size: cover;
   background-color: white;
   border: 2rpx solid #fff;
+  margin-top: 8rpx;
 }
 
 .me .user-info .nickname {
   font-size: 32rpx;
-  color: #007aff;
+  color: #fff;
 }
 
 .me .function {
-  /* margin-top: 15rpx; */
+  border-top-left-radius: 20rpx;
+  background: #fff;
+  height: 400rpx;
+  position: absolute;
+  top: 270rpx;
+  right: 3%;
+  width: 94%;
+  border-top-right-radius: 20rpx;
 }
 
 .me .function .function-item {
   height: 90rpx;
-  background: #fff;
   display: flex;
   margin: 5rpx 0;
   align-items: center;
   width: 100%;
   justify-content: space-between;
-  /* padding: 0 5px; */
 }
 
 .me .function .function-item .name {

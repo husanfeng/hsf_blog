@@ -18,24 +18,28 @@
     <swiper-item style='height:100%'>
       <scroll-view scroll-x="false" scroll-y="true" style='height:100%' bindscrolltolower="searchScrollLower">
         <view class='org-list' style='height:100%'>
+          <article-list-component></article-list-component>
         </view>
       </scroll-view>
     </swiper-item>
     <swiper-item style='height:100%'>
       <scroll-view scroll-x="false" scroll-y="true" style='height:100%' bindscrolltolower="searchScrollLower">
         <view class='person-list' style='height:100%'>
+          <article-list-component></article-list-component>
         </view>
       </scroll-view>
     </swiper-item>
     <swiper-item style='height:100%'>
       <scroll-view scroll-x="false" scroll-y="true" style='height:100%' bindscrolltolower="searchScrollLower">
-        <view class='org-list' style='height:100%'> 
+        <view class='org-list' style='height:100%'>
+          <article-list-component></article-list-component>
         </view>
       </scroll-view>
     </swiper-item>
     <swiper-item style='height:100%'>
       <scroll-view scroll-x="false" scroll-y="true" style='height:100%' bindscrolltolower="searchScrollLower">
         <view class='person-list' style='height:100%'>
+          <article-list-component></article-list-component>
         </view>
       </scroll-view>
     </swiper-item>

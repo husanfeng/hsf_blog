@@ -21,30 +21,6 @@ Page({
   onLoad: function() {
     this.initSwiper();
     this.initClassfication();
-    this.initArticleList();
-  },
-  initArticleList(){
-    var _this = this;
-    wx.showLoading({
-      title: '正在加载...',
-    })
-    db.collection('article').get({
-      success: function (res) {
-        // res.data 包含该记录的数据
-        console.log(res.data)
-        _this.setData({
-          articleList: res.data
-        })
-
-        wx.stopPullDownRefresh() //停止下拉刷新
-      },
-      fail: function (res) {
-        console.log(res)
-      },
-      complete: function (res) {
-        wx.hideLoading()
-      }
-    })
   },
   initClassfication() {
     var _this = this;
