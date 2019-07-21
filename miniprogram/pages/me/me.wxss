@@ -36,14 +36,13 @@ page {
 }
 
 .me .function {
-  border-top-left-radius: 20rpx;
+  border-radius: 20rpx;
   background: #fff;
   height: 400rpx;
   position: absolute;
   top: 270rpx;
   right: 3%;
   width: 94%;
-  border-top-right-radius: 20rpx;
 }
 
 .me .function .function-item {

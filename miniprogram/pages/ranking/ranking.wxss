@@ -1,6 +1,6 @@
 /* pages/ranking/ranking.wxss */
 page {
-  background-color: #f7f7f7;
+  /* background-color: #f7f7f7; */
 }
 
 .swiper-tab {
