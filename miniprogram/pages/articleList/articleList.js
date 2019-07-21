@@ -1,4 +1,6 @@
 // pages/specialArticle/specialArticle.js
+const app = getApp()
+const db = wx.cloud.database()
 Page({
 
   /**
@@ -6,7 +8,7 @@ Page({
    */
   data: {
     articleList: [],
-    id: '',
+    class_id: '',
     name: '',
     filter: {}
   },
@@ -15,18 +17,62 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    var class_id = options.id ? options.id : '' // 分类id
+    var name = options.name ? options.name : '设置标题' // 分类名称
+    var type = options.type ? options.type : '' // 分辨参数（我的浏览，我的点赞...）
     this.setData({
-      filter: {
-        class_id: parseInt(options.id)
-      },
+      class_id: class_id
     })
     wx.setNavigationBarTitle({
-      title: options.name
+      title: options.name ? options.name : options.type
     })
-    this.initArticleList()
+    if (type != '') {
+      this.queryVisit()
+    } else {
+      this.initArticleList(class_id)
+    }
+
   },
-  initArticleList() {
+  queryVisit() {
     var _this = this;
+    wx.showLoading({
+      title: '正在查询...',
+    })
+    db.collection('browsing_volume').where({
+      openid: app.globalData.openid
+    }).get({
+      success: function(res) {
+        // res.data 包含该记录的数据
+        console.log(res.data)
+        var dataList = res.data;
+        dataList.map((data) => {
+          _this.initArticleList(data.article_id)
+        })
+      },
+      fail: function(res) {
+        console.log(res)
+      },
+      complete: function(res) {
+        //console.log(res)
+        wx.hideLoading()
+      }
+    })
+  },
+  initArticleList(id) {
+    var _this = this;
+    if (_this.data.class_id != '') { // 根据分类查询文章
+      this.setData({
+        filter: {
+          class_id: parseInt(_this.data.class_id)
+        }
+      })
+    } else { // 根据我的浏览查询文章
+      _this.setData({
+        filter: {
+          id: id
+        }
+      })
+    }
     wx.showLoading({
       title: '正在加载...',
     })
@@ -36,14 +82,14 @@ Page({
       data: {
         dbName: 'article',
         pageIndex: 1,
-        pageSize: 5,
+        pageSize: 10,
         filter: _this.data.filter,
       },
       success: res => {
         // res.data 包含该记录的数据
         console.log(res.result.data)
         _this.setData({
-          articleList: res.result.data
+          articleList: _this.data.articleList.concat(res.result.data)
         })
       },
       fail: err => {
