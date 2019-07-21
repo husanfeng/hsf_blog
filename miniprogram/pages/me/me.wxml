@@ -8,7 +8,7 @@
     </view>
     <view class='function'>
       <block wx:for="{{functionList}}" wx:key="*this">
-        <view class='function-item' bindtap='click'>
+        <view class='function-item' data-name='{{item}}' bindtap='click'>
           <view class='name'>{{item}}</view>
           <image class='img' src="../../images/right-arrow.png" />
         </view>

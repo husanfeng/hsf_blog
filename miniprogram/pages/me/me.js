@@ -8,13 +8,10 @@ Page({
     logged: false,
     takeSession: false,
     requestResult: '',
-    functionList:["我的浏览","我的点赞","我的评论","关于我"]
+    functionList: ["我的浏览", "我的点赞", "我的评论", "关于我"]
   },
-  onLoad: function () {
+  onLoad: function() {
     if (!wx.cloud) {
-      wx.redirectTo({
-        url: '../chooseLib/chooseLib',
-      })
       return
     }
     // 获取用户信息
@@ -34,12 +31,13 @@ Page({
       }
     })
   },
-  click() {
+  click(e) {
+    var type = e.currentTarget.dataset.name;
     wx.navigateTo({
-      url: '../articleList/articleList',
+      url: '../articleList/articleList?type=' + type
     })
   },
-  onGetUserInfo: function (e) {
+  onGetUserInfo: function(e) {
     if (!this.logged && e.detail.userInfo) {
       this.setData({
         logged: true,
