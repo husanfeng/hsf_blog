@@ -16,13 +16,34 @@ Page({
     size: 10,
     page: 0,
     dataList: [],
-
   },
 
   onLoad: function() {
+    this.getUserOpenId()
     this.initSwiper();
     this.initClassfication();
-    this.initArticleList();
+
+  },
+  getUserOpenId() {
+    var _this = this;
+    wx.showLoading({
+      title: '正在加载...',
+    })
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'getUserOpenId',
+      data: {},
+      success: res => {
+        console.log("用户的openID=" + res.result.openid)
+        app.globalData.openid = res.result.openid
+      },
+      fail: err => {
+        console.error('[云函数]调用失败', err)
+      },
+      complete: res => {
+        wx.hideLoading()
+      }
+    })
   },
   initArticleList() {
     var _this = this;
@@ -35,7 +56,7 @@ Page({
       data: {
         dbName: 'article',
         pageIndex: 1,
-        pageSize: 5,
+        pageSize: 10,
         // filter: {},
       },
       success: res => {
@@ -101,6 +122,10 @@ Page({
     wx.navigateTo({
       url: '../articleList/articleList?id=' + id + '&name=' + name,
     })
+  },
+  onShow() {
+    this.setData({ articleList:[]})
+    this.initArticleList();
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
