@@ -8,20 +8,47 @@ Page({
   data: {
     id: 0,
     className: '',
-    readCount: ''
+    readCount: '',
+
+    classImgUrl: '', // 分类图片
+    createTime: '', // 创建时间
+    pollCount: '', // 点赞数
+    commentCount: '', // 评论
+    title:'',
+    contentList: [{
+      title: '标题',
+      img: 'https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/product_image/cs.jpg?sign=a106633b516bfeb67d964bd2246aff14&t=1563786220',
+      content: '1234'
+    }, {
+      title: '标题',
+        img: 'https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/product_image/cs.jpg?sign=a106633b516bfeb67d964bd2246aff14&t=1563786220',
+      content: '56789'
+    }]
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var id = options.id;
-    var className = options.className;
-    var readCount = parseInt(options.readCount);
+    var articleDetail = app.globalData.articleDetail;
+    var id = articleDetail.id;
+    var className = articleDetail.class_name;
+    var readCount = parseInt(articleDetail.read_count); // 浏览量
+    var classImgUrl = articleDetail.class_img_url // 分类图片
+    var createTime = articleDetail.create_time // 创建时间
+    var pollCount = articleDetail.poll_count // 点赞数
+    var commentCount = articleDetail.comment_count
+    var title = articleDetail.title
     this.setData({
       id: id,
       className: className,
-      readCount: readCount
+      readCount: readCount,
+      pollCount: pollCount,
+      classImgUrl: classImgUrl,
+      createTime: createTime,
+      commentCount: commentCount,
+      title:title
     })
     this.recordBrowsingVolume(); //记录访问次数
     this.updateRecordBrowsingVolume(); // 更新浏览次数

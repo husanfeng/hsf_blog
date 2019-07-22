@@ -1,1 +1,43 @@
 /* pages/articleDetail/articleDetail.wxss */
+
+.article-bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 90%;
+  margin-top: 20rpx;
+  justify-content: space-between;
+  margin-left: 20rpx
+}
+
+.article-bottom view {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.article-bottom image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.article-bottom view text {
+  font-size: 22rpx;
+  margin-bottom: 7rpx;
+}
+
+.article-bottom .time {
+  flex: 1.5;
+}
+
+.article-bottom .comment-count {
+  flex: 1;
+}
+
+.article-bottom .read-count {
+  flex: 1;
+}
+
+.article-bottom .poll-count {
+  flex: 1;
+}

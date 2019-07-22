@@ -2,7 +2,7 @@
   <scroll-view scroll-y bindscrolltolower="bindscrolltolower">
     <view style='border-top:1rpx solid #f5f5f5;'>
       <block wx:for="{{articleList}}" wx:key="*this">
-        <view class='article' data-read-count='{{item.read_count}}' data-id='{{item.id}}' data-class-name='{{item.class_name}}' bindtap='click'>
+        <view class='article' data-item='{{item}}'  bindtap='click'>
           <view class='article-img'>
             <image src='{{item.image_url}}'></image>
           </view>

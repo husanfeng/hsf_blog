@@ -37,11 +37,10 @@ Component({
    */
   methods: {
     click(e) {
-      var id = e.currentTarget.dataset.id; // 文章的唯一标识
-      var className = e.currentTarget.dataset.className;  // 文章的分类名称
-      var readCount = e.currentTarget.dataset.readCount
+      var item = e.currentTarget.dataset.item
+      app.globalData.articleDetail = item;
       wx.navigateTo({
-        url: '../articleDetail/articleDetail?id=' + id + '&className=' + className + '&readCount=' + readCount,
+        url: '../articleDetail/articleDetail',
       })
     },
   },

@@ -1,2 +1,38 @@
 <!--pages/articleDetail/articleDetail.wxml-->
-<text>文章详情页面</text>
+<view class="article">
+  <view class="top-title">{{title}}</view>
+  <view class='article-bottom'>
+    <view class='time'>
+      <image src='../../images/creat_time.png'></image>
+      <text class=''>{{createTime}}</text>
+    </view>
+    <view class='comment-count'>
+      <image src='../../images/comment.png'></image>
+      <text class=''>{{commentCount}}</text>
+    </view>
+    <view class='read-count'>
+      <image src='../../images/read_count.png'></image>
+      <text class=''>{{readCount}}</text>
+    </view>
+    <view class='poll-count'>
+      <image src='../../images/poll.png'></image>
+      <text class=''>{{pollCount}}</text>
+    </view>
+  </view>
+  <view class="content">
+    <block wx:for='{{contentList}}' wx:key='*this'>
+      <view>
+        <view class='title'>
+          {{item.title}}
+        </view>
+        <view class="img">
+          <image class='class-img' src='{{item.img}}'></image>
+        </view>
+        <view class="content">
+          {{item.content}}
+        </view>
+      </view>
+
+    </block>
+  </view>
+</view>
