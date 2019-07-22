@@ -14,16 +14,34 @@ Page({
     createTime: '', // 创建时间
     pollCount: '', // 点赞数
     commentCount: '', // 评论
-    title:'',
+    title: '',
     contentList: [{
-      title: '标题',
-      img: 'https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/product_image/cs.jpg?sign=a106633b516bfeb67d964bd2246aff14&t=1563786220',
-      content: '1234'
-    }, {
-      title: '标题',
+        title: '语义类标签是什么，使用它有什么好处',
         img: 'https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/product_image/cs.jpg?sign=a106633b516bfeb67d964bd2246aff14&t=1563786220',
-      content: '56789'
-    }]
+        content: '对于前端开发来说，我们平时与浏览器打交道的时间是最多的。可浏览器对前端同学来说更多像一个神秘黑盒子的存在。我们仅仅知道它能做什么，而不知道它是如何做到的'
+      },
+      {
+        title: '',
+        img: '',
+        content: '在我面试和接触过的前端开发者中，70% 的前端同学对这部分的知识内容只能达到“一知半解”的程度。甚至还有一部分同学会质疑这部分知识是否重要：这与我们的工作相关吗，学多了会不会偏移前端工作的方向？'
+      },
+      {
+        title: '',
+        img: '',
+        content: '事实上，我们这里所需要了解的浏览器工作原理只是它的大致过程，这部分浏览器工作原理不但是前端面试的常考知识点，它还会辅助你的实际工作，学习浏览器的内部工作原理和个中缘由，对于我们做性能优化、排查错误都有很大的好处'
+      },
+      {
+        title: '',
+        img: '',
+        content: '在我们的课程中，我也会控制浏览器相关知识的粒度，把它保持在“给前端工程师了解浏览器”的水准，而不是详细到“给浏览器开发工程师实现浏览器”的水准。'
+      },
+      {
+        title: '',
+        img: '',
+        content: '那么，我们今天开始，来共同思考一下。一个浏览器到底是如何工作的。'
+      }
+
+    ]
 
   },
 
@@ -48,7 +66,7 @@ Page({
       classImgUrl: classImgUrl,
       createTime: createTime,
       commentCount: commentCount,
-      title:title
+      title: title
     })
     this.recordBrowsingVolume(); //记录访问次数
     this.updateRecordBrowsingVolume(); // 更新浏览次数

@@ -1,43 +1,86 @@
 /* pages/articleDetail/articleDetail.wxss */
 
-.article-bottom {
+.article .top-title {
+  margin: 10rpx 0 10rpx 30rpx;
+}
+
+.article .content {
+}
+
+.article .content .article-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.article .content .article-item .title {
+  display: flex;
+  justify-content: center;
+}
+
+.article .content .article-item .title label {
+  margin: 10rpx;
+  font-size: 32rpx;
+}
+
+.article .content .article-item .img {
+  display: flex;
+  justify-content: center;
+}
+
+.article .content .article-item .img .class-img {
+  height: 300rpx;
+  width: 640rpx;
+  border-radius: 20rpx;
+}
+
+.article .content .article-item .img .class-no-img {
+  width: 0rpx;
+  height: 0rpx;
+}
+
+.article .content .article-item .content-text {
+  margin: 10rpx 20rpx;
+  font-size: 30rpx;
+}
+
+.article .article-bottom {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 90%;
   margin-top: 20rpx;
   justify-content: space-between;
-  margin-left: 20rpx
+  margin-left: 20rpx;
 }
 
-.article-bottom view {
+.article .article-bottom view {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.article-bottom image {
+.article .article-bottom image {
   width: 40rpx;
   height: 40rpx;
 }
 
-.article-bottom view text {
+.article .article-bottom view text {
   font-size: 22rpx;
   margin-bottom: 7rpx;
 }
 
-.article-bottom .time {
+.article .article-bottom .time {
   flex: 1.5;
 }
 
-.article-bottom .comment-count {
+.article .article-bottom .comment-count {
   flex: 1;
 }
 
-.article-bottom .read-count {
+.article .article-bottom .read-count {
   flex: 1;
 }
 
-.article-bottom .poll-count {
+.article .article-bottom .poll-count {
   flex: 1;
 }

@@ -21,18 +21,15 @@
   </view>
   <view class="content">
     <block wx:for='{{contentList}}' wx:key='*this'>
-      <view>
-        <view class='title'>
-          {{item.title}}
+      <view class='article-item'>
+        <view style="{{item.title==''?'height:0px':''}}" class='title'>
+          <label> {{item.title}} </label>
         </view>
         <view class="img">
-          <image class='class-img' src='{{item.img}}'></image>
+          <image class="{{item.img!=''?'class-img':'class-no-img'}}" src='{{item.img}}'></image>
         </view>
-        <view class="content">
-          {{item.content}}
-        </view>
+        <view class="content-text">{{item.content}}</view>
       </view>
-
     </block>
   </view>
 </view>
