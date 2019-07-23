@@ -22,7 +22,6 @@ Page({
     this.getUserOpenId()
     this.initSwiper();
     this.initClassfication();
-
   },
   getUserOpenId() {
     var _this = this;

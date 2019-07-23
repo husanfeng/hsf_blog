@@ -5,6 +5,7 @@
 }
 
 .article .content {
+  margin-bottom: 110rpx;
 }
 
 .article .content .article-item {
@@ -83,4 +84,39 @@
 
 .article .article-bottom .poll-count {
   flex: 1;
+}
+
+.article .fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  height: 85rpx;
+  background: #f6f6f6;
+  width: 100%;
+}
+
+.article .fixed-bottom .flex {
+  display:flex;
+flex-direction:row;
+justify-content:center;
+align-items:center;
+height:100%;
+
+}
+
+.article .fixed-bottom .flex view {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  justify-content: center;
+  align-items: center;
+}
+
+.article .fixed-bottom .flex image {
+width:45rpx;
+height:45rpx;
+
+}
+
+.article .fixed-bottom .flex label {
+  font-size: 25rpx;
 }

@@ -25,6 +25,7 @@ Page({
                 avatarUrl: res.userInfo.avatarUrl,
                 userInfo: res.userInfo
               })
+              app.globalData.userInfo = res.userInfo
             }
           })
         }
@@ -44,6 +45,7 @@ Page({
         avatarUrl: e.detail.userInfo.avatarUrl,
         userInfo: e.detail.userInfo
       })
+      app.globalData.userInfo = e.detail.userInfo
     }
   },
 })

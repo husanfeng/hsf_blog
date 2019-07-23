@@ -31,29 +31,37 @@ Page({
     } else {
       this.initArticleList(class_id)
     }
-
   },
   queryVisit() {
     var _this = this;
-    wx.showLoading({
-      title: '正在查询...',
+    _this.setData({ // 根据我的浏览查询文章
+      filter: {
+        openid: app.globalData.openid
+      }
     })
-    db.collection('browsing_volume').where({
-      openid: app.globalData.openid
-    }).get({
-      success: function(res) {
+    wx.showLoading({
+      title: '正在加载...',
+    })
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'getArticleListData',
+      data: {
+        dbName: 'browsing_volume',
+        pageIndex: 1,
+        pageSize: 10,
+        filter: _this.data.filter,
+      },
+      success: res => {
         // res.data 包含该记录的数据
-        console.log(res.data)
-        var dataList = res.data;
-        dataList.map((data) => {
-          _this.initArticleList(data.article_id)
+        console.log(res.result.data)
+        _this.setData({
+          articleList: res.result.data
         })
       },
-      fail: function(res) {
-        console.log(res)
+      fail: err => {
+        console.error('[云函数]调用失败', err)
       },
-      complete: function(res) {
-        //console.log(res)
+      complete: res => {
         wx.hideLoading()
       }
     })
@@ -64,12 +72,6 @@ Page({
       this.setData({
         filter: {
           class_id: parseInt(_this.data.class_id)
-        }
-      })
-    } else { // 根据我的浏览查询文章
-      _this.setData({
-        filter: {
-          id: id
         }
       })
     }

@@ -6,15 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    id: 0,
+    _id: 0,
     className: '',
     readCount: '',
-
     classImgUrl: '', // 分类图片
     createTime: '', // 创建时间
     pollCount: '', // 点赞数
     commentCount: '', // 评论
     title: '',
+    articleDetail: {},
     contentList: [{
         title: '语义类标签是什么，使用它有什么好处',
         img: 'https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/product_image/cs.jpg?sign=a106633b516bfeb67d964bd2246aff14&t=1563786220',
@@ -50,7 +50,7 @@ Page({
    */
   onLoad: function(options) {
     var articleDetail = app.globalData.articleDetail;
-    var id = articleDetail.id;
+    var _id = articleDetail._id;
     var className = articleDetail.class_name;
     var readCount = parseInt(articleDetail.read_count); // 浏览量
     var classImgUrl = articleDetail.class_img_url // 分类图片
@@ -59,14 +59,15 @@ Page({
     var commentCount = articleDetail.comment_count
     var title = articleDetail.title
     this.setData({
-      id: id,
+      _id: _id,
       className: className,
       readCount: readCount,
       pollCount: pollCount,
       classImgUrl: classImgUrl,
       createTime: createTime,
       commentCount: commentCount,
-      title: title
+      title: title,
+      articleDetail: articleDetail
     })
     this.recordBrowsingVolume(); //记录访问次数
     this.updateRecordBrowsingVolume(); // 更新浏览次数
@@ -77,7 +78,7 @@ Page({
   recordBrowsingVolume() {
     var _this = this;
     db.collection('browsing_volume').where({
-        article_id: _this.data.id,
+        _id: _this.data._id,
         openid: app.globalData.openid
       })
       .get({
@@ -100,13 +101,12 @@ Page({
    */
   addUserVisitActicle() {
     var _this = this;
+    var articleDetail = _this.data.articleDetail
+    articleDetail.openid = app.globalData.openid
     // 调用云函数
     wx.cloud.callFunction({
       name: 'addUserVisitActicle',
-      data: {
-        id: _this.data.id,
-        openid: app.globalData.openid
-      },
+      data: articleDetail,
       success: res => {
         // res.data 包含该记录的数据
         console.log("新增用户访问文章列表记录---")
@@ -129,7 +129,7 @@ Page({
     wx.cloud.callFunction({
       name: 'updateArticleListVisit',
       data: {
-        id: _this.data.id,
+        _id: _this.data._id,
         readCount: a,
       },
       success: res => {

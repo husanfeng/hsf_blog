@@ -1,35 +1,53 @@
 <!--pages/articleDetail/articleDetail.wxml-->
 <view class="article">
-  <view class="top-title">{{title}}</view>
-  <view class='article-bottom'>
-    <view class='time'>
-      <image src='../../images/creat_time.png'></image>
-      <text class=''>{{createTime}}</text>
-    </view>
-    <view class='comment-count'>
-      <image src='../../images/comment.png'></image>
-      <text class=''>{{commentCount}}</text>
-    </view>
-    <view class='read-count'>
-      <image src='../../images/read_count.png'></image>
-      <text class=''>{{readCount}}</text>
-    </view>
-    <view class='poll-count'>
-      <image src='../../images/poll.png'></image>
-      <text class=''>{{pollCount}}</text>
-    </view>
-  </view>
-  <view class="content">
-    <block wx:for='{{contentList}}' wx:key='*this'>
-      <view class='article-item'>
-        <view style="{{item.title==''?'height:0px':''}}" class='title'>
-          <label> {{item.title}} </label>
-        </view>
-        <view class="img">
-          <image class="{{item.img!=''?'class-img':'class-no-img'}}" src='{{item.img}}'></image>
-        </view>
-        <view class="content-text">{{item.content}}</view>
+  <scroll-view scroll-y>
+    <view class="top-title">{{title}}</view>
+    <view class='article-bottom'>
+      <view class='time'>
+        <image src='../../images/creat_time.png'></image>
+        <text class=''>{{createTime}}</text>
       </view>
-    </block>
+      <view class='comment-count'>
+        <image src='../../images/comment.png'></image>
+        <text class=''>{{commentCount}}</text>
+      </view>
+      <view class='read-count'>
+        <image src='../../images/read_count.png'></image>
+        <text class=''>{{readCount}}</text>
+      </view>
+      <view class='poll-count'>
+        <image src='../../images/poll.png'></image>
+        <text class=''>{{pollCount}}</text>
+      </view>
+    </view>
+    <view class="content">
+      <block wx:for='{{contentList}}' wx:key='*this'>
+        <view class='article-item'>
+          <view style="{{item.title==''?'height:0px':''}}" class='title'>
+            <label> {{item.title}} </label>
+          </view>
+          <view class="img">
+            <image class="{{item.img!=''?'class-img':'class-no-img'}}" src='{{item.img}}'></image>
+          </view>
+          <view class="content-text">{{item.content}}</view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <view class='fixed-bottom'>
+    <view class='flex'>
+      <view class='poll'>
+        <image src='../../images/poll.png'></image>
+        <label>点赞</label>
+      </view>
+      <view class='comment'>
+        <image src='../../images/comment.png'></image>
+        <label>评论</label>
+      </view>
+      <view class='share'>
+        <image src='../../images/poll.png'></image>
+        <label>分享</label>
+      </view>
+    </view>
   </view>
 </view>
