@@ -10,26 +10,32 @@ page {
 
 .special .item {
   display: flex;
-  flex-direction: row;
-  width: 40%;
-  height: 140rpx;
+  flex-direction: column;
   align-items: center;
   border-radius: 20rpx;
-  margin: 5%;
+  width: 33%;
+  margin: 60rpx 0;
 }
 
-.special .item .left {
+.special .item .image-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.special .item .image-background .left {
   height: 70rpx;
   width: 70rpx;
-  margin-left: 20rpx;
 }
 
 .special .item .right {
   display: flex;
   flex-direction: column;
-  font-size: 25rpx;
-  color: #fff;
-  margin-left: 30rpx;
+  font-size: 18rpx;
+  margin-top: 20rpx;
 }
 
 .special .item .right .title {
