@@ -119,32 +119,84 @@
 .article .fixed-bottom .flex label {
   font-size: 25rpx;
 }
-.article .comment{
 
-}
-.article .comment .top-info{
-  
-}
-.article .comment .top-info image{
-  
-}
-.article .comment .top-info label{
-  
-}
-.article .comment .top-info text{
-  
+.article .comment {
+  /* margin-bottom: 130rpx; */
 }
 
-.article .comment .father-content{
-
+.article .comment .commentList {
+  display: flex;
+  flex-direction: column;
+  margin: 5rpx 15rpx;
+  background: #f1f1f1;
+  padding: 10rpx;
 }
-.article .comment .father-content text{
 
+.article .comment .commentList .top-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28rpx;
+  margin-right: 15rpx;
 }
 
-.article .comment .children-content{
-
+.article .comment .commentList .top-info .img-name {
+  display: flex;
+  align-items: center;
 }
-.article .comment .children-content text{
 
+.article .comment .commentList .top-info .img-name  image {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+}
+
+.article .comment .commentList .top-info .img-name label {
+  font-size: 28rpx;
+  margin-left: 20rpx;
+}
+
+.article .comment .commentList .top-info .img-name text {
+  margin-left: 60%;
+  font-size: 28rpx;
+  justify-self: right;
+}
+
+.article .comment .commentList .father-content {
+  font-size: 30rpx;
+  margin: 15rpx 10rpx;
+}
+
+.article .comment .commentList .father-content text {
+}
+
+.article .comment .commentList .children-content {
+  padding: 5rpx;
+}
+
+.article .comment .commentList .children-content .childComment {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.article .comment .commentList .children-content .childComment .nickName {
+  font-size: 23rpx;
+  color: #1296db;
+}
+
+.article .comment .commentList .children-content .childComment .opposite-nickName {
+  font-size: 23rpx;
+  color: #1296db;
+}
+
+.article .comment .commentList .children-content .childComment .huifu {
+  font-size: 23rpx;
+  margin: 0 10rpx;
+}
+
+.article .comment .commentList .children-content .childComment .comment-text {
+  font-size: 28rpx;
+  margin-left: 15rpx;
 }

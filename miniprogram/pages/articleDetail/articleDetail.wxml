@@ -1,7 +1,7 @@
 <!--pages/articleDetail/articleDetail.wxml-->
 <view class="article">
   <scroll-view scroll-y>
-    <view class="top-title">{{title}}</view>
+    <view class="top-title">{{articleDetail.title}}</view>
     <view class='article-bottom'>
       <view class='time'>
         <image src='../../images/creat_time.png'></image>
@@ -34,21 +34,35 @@
       </block>
     </view>
     <view class="comment">
-     <block wx:for='{{commentList}}' wx:key='*this'>
-      <view>
-       <view class="top-info">
-        <image src="{{item.avatarUrl}}"></image>
-        <label>{{item.nickName}}</label>
-        <text>2019-01-01</text>
+      <block wx:for='{{commentList}}' wx:key='*this'>
+        <view class='commentList'>
+          <view class="top-info">
+            <view class='img-name'>
+              <image src="{{item.avatarUrl}}"></image>
+              <label>{{item.nickName}}</label>
+            </view>
+            <text>2019-01-01</text>
+          </view>
+          <view class="father-content" bindtap='clickFatherConter'>
+            <text>{{item.comment}}</text>
+          </view>
+          <view class="children-content" bindtap='clickChildrenConter'>
+            <block wx:for='{{item.childComment}}' wx:key='*this'>
+              <view class='childComment'>
+                <text class='nickName'>{{item.nickName}}</text>
+                <text class='huifu'>回复</text>
+                <text class='opposite-nickName'>{{item.opposite_nickName}}</text>
+                <text class='comment-text'>{{item.comment}}</text>
+              </view>
+            </block>
+          </view>
         </view>
-       <view class="father-content">
-        <text>{{item.comment}}</text>
-       </view>
-       <view class="children-content">
-        <text>晓东 回复 小明 ：今天要加班---</text>
-       </view>
-      </view>
-     </block>
+      </block>
+    </view>
+    <view class='load-done'>
+      <view class='left-line'></view>
+     <text class='text'> 我也是有底線的</text>
+      <view class='right-line'></view>
     </view>
   </scroll-view>
   <view class='fixed-bottom'>
@@ -57,7 +71,7 @@
         <image src='../../images/poll.png'></image>
         <label>点赞</label>
       </view>
-      <view class='comment' bindtap="toCommentPage">
+      <view class='' bindtap="toCommentPage">
         <image src='../../images/comment.png'></image>
         <label>评论</label>
       </view>

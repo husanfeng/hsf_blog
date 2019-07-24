@@ -1,19 +1,28 @@
 /**app.wxss**/
-.container {
+
+.load-done {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  width: 100%;
+  margin: 35rpx 0 120rpx 0;
+  justify-content: center;
   align-items: center;
-  box-sizing: border-box;
-} 
-
-button {
-  background: initial;
 }
 
-button:focus{
-  outline: 0;
+.load-done .left-line {
+  height: 3rpx;
+  background: #f1f1f1;
+  width: 200rpx;
 }
 
-button::after{
-  border: none;
+.load-done .text {
+  font-size: 25rpx;
+  color: #8a8a8a;
+  margin: 0 20rpx;
+}
+
+.load-done .right-line {
+  height: 3rpx;
+  background: #f1f1f1;
+  width: 200rpx;
 }

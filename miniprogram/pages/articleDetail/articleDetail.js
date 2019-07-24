@@ -16,7 +16,7 @@ Page({
     // title: '',
     articleDetail: {},
     userInfo: {},
-    commentList:[],
+    commentList: [],
     contentList: [{
         title: '语义类标签是什么，使用它有什么好处',
         img: 'https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/product_image/cs.jpg?sign=a106633b516bfeb67d964bd2246aff14&t=1563786220',
@@ -74,7 +74,7 @@ Page({
     })
     this.recordBrowsingVolume(); //记录访问次数
     this.updateRecordBrowsingVolume(); // 更新浏览次数
-    this.queryComment();// 查询评论列表
+   
   },
   /**
    * 查询记录访问次数
@@ -82,7 +82,7 @@ Page({
   recordBrowsingVolume() {
     var _this = this;
     db.collection('browsing_volume').where({
-      _id: _this.data.articleDetail._id,
+        _id: _this.data.articleDetail._id,
         openid: app.globalData.openid
       })
       .get({
@@ -183,6 +183,13 @@ Page({
       url: '../comment/comment',
     })
   },
+
+  clickFatherConter() {
+    this.toCommentPage()
+  },
+  clickChildrenConter() {
+    this.toCommentPage()
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -194,7 +201,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.queryComment(); // 查询评论列表
   },
 
   /**
