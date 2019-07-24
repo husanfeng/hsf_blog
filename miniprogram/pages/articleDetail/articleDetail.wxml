@@ -34,17 +34,21 @@
       </block>
     </view>
     <view class="comment">
-      <view class="top-info">
-        <image src="{{userInfo.avatarUrl}}"></image>
-        <label>{{userInfo.nickName}}</label>
+     <block wx:for='{{commentList}}' wx:key='*this'>
+      <view>
+       <view class="top-info">
+        <image src="{{item.avatarUrl}}"></image>
+        <label>{{item.nickName}}</label>
         <text>2019-01-01</text>
-      </view>
-      <view class="father-content">
-        <text>我的评论-----</text>
-      </view>
-      <view class="children-content">
+        </view>
+       <view class="father-content">
+        <text>{{item.comment}}</text>
+       </view>
+       <view class="children-content">
         <text>晓东 回复 小明 ：今天要加班---</text>
+       </view>
       </view>
+     </block>
     </view>
   </scroll-view>
   <view class='fixed-bottom'>
