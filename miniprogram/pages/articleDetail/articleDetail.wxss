@@ -42,6 +42,7 @@
 .article .content .article-item .content-text {
   margin: 10rpx 20rpx;
   font-size: 30rpx;
+  line-height: 60rpx;
 }
 
 .article .article-bottom {
@@ -95,12 +96,11 @@
 }
 
 .article .fixed-bottom .flex {
-  display:flex;
-flex-direction:row;
-justify-content:center;
-align-items:center;
-height:100%;
-
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .article .fixed-bottom .flex view {
@@ -112,11 +112,39 @@ height:100%;
 }
 
 .article .fixed-bottom .flex image {
-width:45rpx;
-height:45rpx;
-
+  width: 45rpx;
+  height: 45rpx;
 }
 
 .article .fixed-bottom .flex label {
   font-size: 25rpx;
+}
+.article .comment{
+
+}
+.article .comment .top-info{
+  
+}
+.article .comment .top-info image{
+  
+}
+.article .comment .top-info label{
+  
+}
+.article .comment .top-info text{
+  
+}
+
+.article .comment .father-content{
+
+}
+.article .comment .father-content text{
+
+}
+
+.article .comment .children-content{
+
+}
+.article .comment .children-content text{
+
 }

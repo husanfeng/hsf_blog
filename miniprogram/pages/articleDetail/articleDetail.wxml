@@ -5,19 +5,19 @@
     <view class='article-bottom'>
       <view class='time'>
         <image src='../../images/creat_time.png'></image>
-        <text class=''>{{createTime}}</text>
+        <text class=''>{{articleDetail.create_time}}</text>
       </view>
       <view class='comment-count'>
         <image src='../../images/comment.png'></image>
-        <text class=''>{{commentCount}}</text>
+        <text class=''>{{articleDetail.comment_count}}</text>
       </view>
       <view class='read-count'>
         <image src='../../images/read_count.png'></image>
-        <text class=''>{{readCount}}</text>
+        <text class=''>{{articleDetail.read_count}}</text>
       </view>
       <view class='poll-count'>
         <image src='../../images/poll.png'></image>
-        <text class=''>{{pollCount}}</text>
+        <text class=''>{{articleDetail.poll_count}}</text>
       </view>
     </view>
     <view class="content">
@@ -33,6 +33,19 @@
         </view>
       </block>
     </view>
+    <view class="comment">
+      <view class="top-info">
+        <image src="{{userInfo.avatarUrl}}"></image>
+        <label>{{userInfo.nickName}}</label>
+        <text>2019-01-01</text>
+      </view>
+      <view class="father-content">
+        <text>我的评论-----</text>
+      </view>
+      <view class="children-content">
+        <text>晓东 回复 小明 ：今天要加班---</text>
+      </view>
+    </view>
   </scroll-view>
   <view class='fixed-bottom'>
     <view class='flex'>
@@ -40,12 +53,12 @@
         <image src='../../images/poll.png'></image>
         <label>点赞</label>
       </view>
-      <view class='comment'>
+      <view class='comment' bindtap="toCommentPage">
         <image src='../../images/comment.png'></image>
         <label>评论</label>
       </view>
       <view class='share'>
-        <image src='../../images/poll.png'></image>
+        <image src='../../images/share.png'></image>
         <label>分享</label>
       </view>
     </view>
