@@ -1,0 +1,17 @@
+<!--pages/comment/comment.wxml-->
+<view class="comment">
+  <view class="comment-content">
+    <textarea 
+    placeholder-class="comment-place-holder" 
+    bindinput='input'   
+    maxlength="200" 
+    placeholder="回复 风的颜色" 
+    focus="true"
+    show-confirm-bar="true">
+    </textarea>
+    <label>剩余 {{surplus}}</label>
+  </view>
+  <view class="submit">
+    <view class="submit-button" bindtap="submit">提交</view>
+  </view>
+</view>
