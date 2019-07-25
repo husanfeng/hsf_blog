@@ -1,0 +1,61 @@
+.get-userinfo-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.userinfo-modal {
+  font-size: 30rpx;
+  border: 1rpx solid #e6e6e1;
+  position: fixed;
+  top: 30%;
+  width: 80%;
+  left: 10%;
+  background-color: #fff;
+  border-radius: 15rpx;
+  height: 300rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userinfo-modal .text {
+  margin-top: 80rpx;
+  font-size: 35rpx;
+}
+
+.userinfo-modal .userinfo-modal-button {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.userinfo-modal .userinfo-modal-button .sure {
+  color: #fff;
+  background-color: #1296db;
+  border-radius: 15rpx;
+  width: 170rpx;
+  font-size: 25rpx;
+  height: 65rpx;
+  line-height: 65rpx;
+  text-align: center;
+  margin-bottom: 25rpx;
+  margin-top: 20rpx;
+}
+
+.userinfo-modal .userinfo-modal-button .cancel {
+  color: #fff;
+  background-color: #1296db;
+  border-radius: 15rpx;
+  width: 171rpx;
+  font-size: 25rpx;
+  height: 65rpx;
+  line-height: 65rpx;
+  text-align: center;
+  margin-bottom: 25rpx;
+  margin-top: 20rpx;
+}

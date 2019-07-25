@@ -1,0 +1,9 @@
+<view class='get-userinfo-modal'>
+  <view class='userinfo-modal'>
+    <text class="text">{{showText}} </text>
+    <view class='userinfo-modal-button'>
+      <button open-type="getUserInfo" bindgetuserinfo="confirm" class="sure">确定</button>
+      <button class="cancel" bindtap='cancel'>取消</button>
+    </view>
+  </view>
+</view>
