@@ -34,21 +34,21 @@
       </block>
     </view>
     <view class="comment">
-      <block wx:for='{{commentList}}' wx:key='*this'>
+      <block wx:for='{{commentList}}' wx:key='*this' wx:for-item="itemfather">
         <view class='commentList'>
           <view class="top-info">
             <view class='img-name'>
-              <image src="{{item.avatarUrl}}"></image>
-              <label>{{item.nickName}}</label>
+              <image src="{{itemfather.avatarUrl}}"></image>
+              <label>{{itemfather.nickName}}</label>
             </view>
-            <text>2019-01-01</text>
+            <text>{{itemfather.create_date}}</text>
           </view>
-          <view class="father-content" bindtap='clickFatherConter'>
-            <text>{{item.comment}}</text>
+          <view class="father-content" data-item="{{itemfather}}"  bindtap='clickFatherConter'>
+            <text>{{itemfather.comment}}</text>
           </view>
-          <view class="children-content" bindtap='clickChildrenConter'>
-            <block wx:for='{{item.childComment}}' wx:key='*this'>
-              <view class='childComment'>
+          <view class="children-content" >
+            <block wx:for='{{itemfather.childComment}}' wx:key='*this'>
+              <view class='childComment' data-item="{{item}}" data-id="{{itemfather._id}}" bindtap='clickChildrenConter'>
                 <text class='nickName'>{{item.nickName}}</text>
                 <text class='huifu'>回复</text>
                 <text class='opposite-nickName'>{{item.opposite_nickName}}</text>
@@ -61,7 +61,7 @@
     </view>
     <view class='load-done'>
       <view class='left-line'></view>
-     <text class='text'> 我也是有底線的</text>
+      <text class='text'> 我也是有底線的</text>
       <view class='right-line'></view>
     </view>
   </scroll-view>
@@ -71,7 +71,7 @@
         <image src='../../images/poll.png'></image>
         <label>点赞</label>
       </view>
-      <view class='' bindtap="toCommentPage">
+      <view class='' bindtap="clickComment">
         <image src='../../images/comment.png'></image>
         <label>评论</label>
       </view>
@@ -80,5 +80,8 @@
         <label>分享</label>
       </view>
     </view>
+  </view>
+  <view wx:if="{{isShowAddPersonView}}">
+    <add-person showText="{{showText}}"  bind:confirm='confirm' bind:cancel='cancel' />
   </view>
 </view>

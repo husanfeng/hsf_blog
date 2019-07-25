@@ -6,14 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    //_id: 0,
-    // className: '',
-    // readCount: '',
-    // classImgUrl: '', // 分类图片
-    // createTime: '', // 创建时间
-    // pollCount: '', // 点赞数
-    // commentCount: '', // 评论
-    // title: '',
+    isShowAddPersonView:false,
+    showText:'发表评论需要先登录哦',
     articleDetail: {},
     userInfo: {},
     commentList: [],
@@ -51,30 +45,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    // 获取用户信息
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+          wx.getUserInfo({
+            success: res => {
+              this.setData({
+                userInfo: res.userInfo
+              })
+              app.globalData.userInfo = res.userInfo
+            }
+          })
+        }
+      }
+    })
     var articleDetail = app.globalData.articleDetail;
-    // var _id = articleDetail._id;
-    // var className = articleDetail.class_name;
-    // var readCount = parseInt(articleDetail.read_count); // 浏览量
-    // var classImgUrl = articleDetail.class_img_url // 分类图片
-    // var createTime = articleDetail.create_time // 创建时间
-    // var pollCount = articleDetail.poll_count // 点赞数
-    // var commentCount = articleDetail.comment_count
-    // var title = articleDetail.title
     this.setData({
-      // _id: _id,
-      // className: className,
-      // readCount: readCount,
-      // pollCount: pollCount,
-      // classImgUrl: classImgUrl,
-      // createTime: createTime,
-      // commentCount: commentCount,
-      // title: title,
       articleDetail: articleDetail,
-      userInfo: getApp().globalData.userInfo ? getApp().globalData.userInfo : {}
     })
     this.recordBrowsingVolume(); //记录访问次数
     this.updateRecordBrowsingVolume(); // 更新浏览次数
-   
   },
   /**
    * 查询记录访问次数
@@ -160,7 +152,7 @@ Page({
       data: {
         dbName: 'comment',
         pageIndex: 1,
-        pageSize: 10,
+        pageSize: 100,
         // filter: {},
       },
       success: res => {
@@ -178,17 +170,43 @@ Page({
       }
     })
   },
-  toCommentPage() {
+  clickComment(){
+    this.toCommentPage(2)
+  },
+  toCommentPage(type) {
     wx.navigateTo({
-      url: '../comment/comment',
+      url: '../comment/comment?type='+type,
     })
   },
 
-  clickFatherConter() {
-    this.toCommentPage()
+  clickFatherConter(e) {
+    if (this.data.userInfo.nickName == null || this.data.userInfo.nickName == undefined ){
+      this.setData({ isShowAddPersonView:true});
+      return;
+    }
+    var item = e.currentTarget.dataset.item
+    app.globalData.otherInfo = item
+    this.toCommentPage(1)
   },
-  clickChildrenConter() {
-    this.toCommentPage()
+  clickChildrenConter(e) {
+    if (this.data.userInfo.nickName == null || this.data.userInfo.nickName == undefined) {
+      this.setData({ isShowAddPersonView: true })
+      return
+    }
+    var item = e.currentTarget.dataset.item;
+    var _id = e.currentTarget.dataset.id;
+    item._id = _id;
+    app.globalData.otherInfo = item;
+    this.toCommentPage(1)
+  },
+  confirm(e){
+    console.log(e.detail.userInfo)
+    this.setData({ isShowAddPersonView: false })
+    app.globalData.userInfo = e.detail.userInfo
+  },
+  cancel(e){
+    console.log(e)
+    this.setData({ isShowAddPersonView: false })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
