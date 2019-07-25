@@ -15,19 +15,19 @@
             <view class='summary'>{{item.summary}}</view>
             <view class='article-bottom'>
               <view class='time'>
-                <image src='../../images/creat_time.png'></image>
+                <image src='../../../images/creat_time.png'></image>
                 <text class=''>{{item.create_time}}</text>
               </view>
               <view class='comment-count'>
-                <image src='../../images/comment.png'></image>
+                <image src='../../../images/comment.png'></image>
                 <text class=''>{{item.comment_count}}</text>
               </view>
               <view class='read-count'>
-                <image src='../../images/read_count.png'></image>
+                <image src='../../../images/read_count.png'></image>
                 <text class=''>{{item.read_count}}</text>
               </view>
               <view class='poll-count'>
-                <image src='../../images/poll.png'></image>
+                <image src='../../../images/poll.png'></image>
                 <text class=''>{{item.poll_count}}</text>
               </view>
             </view>
