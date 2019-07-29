@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "add-person": "/pages/components/modal/add-person"
+  },
   "navigationBarTitleText": "我的",
-    "navigationBarBackgroundColor": "#1296db"
+  "navigationBarBackgroundColor": "#1296db"
 }

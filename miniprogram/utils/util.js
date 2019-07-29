@@ -1,3 +1,42 @@
+function getDiffTime(recordTime) {
+  if (recordTime) {
+    recordTime = new Date(parseFloat(recordTime) * 1000);
+    var minute = 1000 * 60,
+      hour = minute * 60,
+      day = hour * 24,
+      now = new Date(),
+      diff = now - recordTime;
+    var result = '';
+    if (diff < 0) {
+      return result;
+    }
+    var weekR = diff / (7 * day);
+    var dayC = diff / day;
+    var hourC = diff / hour;
+    var minC = diff / minute;
+    if (weekR >= 1) {
+      var formate = 'MM-dd hh:mm';
+      return formatTime(recordTime);
+    } else if (dayC == 1 || (hourC < 24 && recordTime.getDate() != now.getDate())) {
+      var time = formatTime(recordTime);
+      var timeArray = time.split(" ")
+      result = '昨天' + timeArray[1];
+      return result;
+    } else if (dayC > 1) {
+      return formatTime(recordTime);
+    } else if (hourC >= 1) {
+      result = parseInt(hourC) + '小时前';
+      return result;
+    } else if (minC >= 1) {
+      result = parseInt(minC) + '分钟前';
+      return result;
+    } else {
+      result = '刚刚';
+      return result;
+    }
+  }
+  return '';
+}
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -109,4 +148,5 @@ module.exports = {
   doRequest: doRequest,
   formatTime: formatTime,
   showToast: showToast,
+  getDiffTime: getDiffTime
 }

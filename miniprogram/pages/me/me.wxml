@@ -3,7 +3,7 @@
   <view class="me">
     <!-- 用户 openid -->
     <view class="user-info">
-      <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{avatarUrl}})"></button>
+      <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{userInfo.avatarUrl}})"></button>
       <view class='nickname'>{{userInfo?userInfo.nickName:"点击头像登录"}}</view>
     </view>
     <view class='function'>
@@ -14,5 +14,8 @@
         </view>
       </block>
     </view>
+  </view>
+  <view wx:if="{{isShowAddPersonView}}">
+    <add-person showText="{{showText}}" bind:confirm='confirm' bind:cancel='cancel' />
   </view>
 </view>

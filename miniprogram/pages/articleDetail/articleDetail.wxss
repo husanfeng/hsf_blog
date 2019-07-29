@@ -127,8 +127,8 @@
 .article .comment .commentList {
   display: flex;
   flex-direction: column;
-  margin: 5rpx 15rpx;
-  background: #f1f1f1;
+  margin: 15rpx 15rpx;
+  background: #f9f9f9;
   padding: 10rpx;
 }
 
@@ -146,9 +146,13 @@
   align-items: center;
 }
 
+.article .comment .commentList .top-info .create-time {
+  font-size: 20rpx;
+}
+
 .article .comment .commentList .top-info .img-name  image {
-  width: 50rpx;
-  height: 50rpx;
+  width: 60rpx;
+  height: 60rpx;
   border-radius: 50%;
 }
 
@@ -165,10 +169,11 @@
 
 .article .comment .commentList .father-content {
   font-size: 30rpx;
-  margin: 15rpx 10rpx;
+  margin-left: 77rpx;
 }
 
-.article .comment .commentList .father-content text {
+.article .comment .commentList .father-content .text {
+  font-size: 26rpx;
 }
 
 .article .comment .commentList .children-content {
@@ -177,26 +182,167 @@
 
 .article .comment .commentList .children-content .childComment {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  margin: 15rpx 0;
+}
+
+.article .comment .commentList .children-content .childComment .avatar-name {
+  display: flex;
   align-items: center;
+  margin-left: 20rpx;
 }
 
-.article .comment .commentList .children-content .childComment .nickName {
+.article .comment .commentList .children-content .childComment .avatar-name image {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+}
+
+.article .comment .commentList .children-content .childComment .avatar-name .nickName {
   font-size: 23rpx;
   color: #1296db;
+  margin-left: 15rpx;
 }
 
-.article .comment .commentList .children-content .childComment .opposite-nickName {
-  font-size: 23rpx;
-  color: #1296db;
+.article .comment .commentList .children-content .childComment .child-comment {
+  margin-left: 30px;
+  display: flex;
+  align-items: center;
+  margin-top: 10rpx;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 10rpx;
 }
 
-.article .comment .commentList .children-content .childComment .huifu {
+.article .comment .commentList .children-content .childComment .child-img-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 12rpx;
+}
+
+.article .comment .commentList .children-content .childComment .child-comment .huifu {
   font-size: 23rpx;
   margin: 0 10rpx;
 }
 
-.article .comment .commentList .children-content .childComment .comment-text {
-  font-size: 28rpx;
+.article .comment .commentList .children-content .childComment .child-comment .opposite-nickName {
+  font-size: 23rpx;
+  color: #1296db;
+}
+
+.article .comment .commentList .children-content .childComment .child-comment .comment-text {
+  font-size: 26rpx;
   margin-left: 15rpx;
+}
+
+.father-reply-time {
+  color: #bfbfbf;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.father-reply-time .create-time {
+  font-size: 20rpx;
+}
+
+.father-reply-time .reply {
+  margin-left: 30rpx;
+  font-size: 26rpx;
+}
+
+.child-reply-time {
+  margin-left: 77rpx;
+  font-size: 26rpx;
+  color: #bfbfbf;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.child-reply-time .child-create-time {
+  font-size: 20rpx;
+}
+
+.child-reply-time .reply {
+  margin-left: 30rpx;
+}
+
+.comment-line {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30rpx;
+}
+
+.comment-line .comment-text {
+  font-size: 30rpx;
+}
+
+.comment-line .bottom-line {
+  height: 5rpx;
+  background: #1296db;
+  width: 120rpx;
+  margin-top: 5rpx;
+}
+
+.poll {
+  margin: 20rpx 0;
+}
+
+.poll .poll-line {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30rpx;
+}
+
+.poll .poll-line .poll-text {
+  font-size: 30rpx;
+}
+
+.poll .poll-line .bottom-line {
+  height: 5rpx;
+  background: #1296db;
+  width: 61rpx;
+  margin-top: 5rpx;
+}
+
+.poll .poll-list {
+  margin-left: 23rpx;
+  margin-top: 15rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.poll .poll-list .poll-list-item {
+  margin: 0 10rpx;
+}
+
+.poll .poll-list .poll-list-item image {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+
+.share-user {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  justify-content: center;
+  align-items: center;
+}
+
+button-hover {
+}
+
+button-hover {
+}
+
+button {
+  line-height: normal;
+}
+
+button::after {
+  border: none;
 }

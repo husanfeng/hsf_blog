@@ -38,7 +38,8 @@ Component({
   methods: {
     click(e) {
       var item = e.currentTarget.dataset.item
-      app.globalData.articleDetail = item;
+      wx.setStorageSync("articleDetail", item)
+    //  app.globalData.articleDetail = item;
       wx.navigateTo({
         url: '../articleDetail/articleDetail',
       })

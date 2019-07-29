@@ -48,9 +48,9 @@ async function sendTemplateMessage(event) {
     }
   })
 
-  await cloud.openapi.templateMessage.deleteTemplate({
-    templateId,
-  })
+  // await cloud.openapi.templateMessage.deleteTemplate({
+  //   templateId,
+  // })
 
   return sendResult
 }

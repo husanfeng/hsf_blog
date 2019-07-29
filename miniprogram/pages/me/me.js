@@ -1,4 +1,5 @@
 //index.js
+const util = require("../../utils/util.js")
 const app = getApp()
 const db = wx.cloud.database()
 Page({
@@ -8,7 +9,9 @@ Page({
     logged: false,
     takeSession: false,
     requestResult: '',
-    functionList: ["我的浏览", "我的点赞", "我的评论", "关于我"]
+    functionList: ["我的浏览", "我的点赞", "意见反馈", "更新日志", "关于我"],
+    isShowAddPersonView:false,
+    showText: '登录后可使用更多功能',
   },
   onLoad: function() {
     if (!wx.cloud) {
@@ -25,18 +28,34 @@ Page({
                 avatarUrl: res.userInfo.avatarUrl,
                 userInfo: res.userInfo
               })
-              app.globalData.userInfo = res.userInfo
+              wx.setStorageSync("userInfo", res.userInfo)
+              //  app.globalData.userInfo = res.userInfo
             }
           })
+        }else{
+          this.setData({
+            isShowAddPersonView: true
+          });
         }
       }
     })
   },
   click(e) {
     var type = e.currentTarget.dataset.name;
-    wx.navigateTo({
-      url: '../articleList/articleList?type=' + type
-    })
+    if (type == "我的浏览" || type == "我的点赞") {
+      wx.navigateTo({
+        url: '../articleList/articleList?type=' + type
+      })
+    } else if (type == "关于我") {
+      wx.navigateTo({
+        url: '../about-me/about-me'
+      })
+    } else {
+      wx.showToast({
+        title: '正在开发中...',
+        icon: 'none'
+      })
+    }
   },
   onGetUserInfo: function(e) {
     if (!this.logged && e.detail.userInfo) {
@@ -45,7 +64,22 @@ Page({
         avatarUrl: e.detail.userInfo.avatarUrl,
         userInfo: e.detail.userInfo
       })
-      app.globalData.userInfo = e.detail.userInfo
+      wx.setStorageSync("userInfo", e.detail.userInfo)
     }
+  },
+  confirm(e) {
+    // console.log(e.detail.userInfo)
+    this.setData({
+      isShowAddPersonView: false,
+      userInfo: e.detail.userInfo
+    })
+    wx.setStorageSync("userInfo", e.detail.userInfo)
+    //app.globalData.userInfo = e.detail.userInfo
+  },
+  cancel(e) {
+    //console.log(e)
+    this.setData({
+      isShowAddPersonView: false
+    })
   },
 })

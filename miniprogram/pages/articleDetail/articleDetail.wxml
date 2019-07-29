@@ -33,7 +33,24 @@
         </view>
       </block>
     </view>
-    <view class="comment">
+    <view class="poll" wx:if="{{pollList.length>0}}">
+      <view class="poll-line">
+        <text class="poll-text">点赞</text>
+        <view class="bottom-line"></view>
+      </view>
+      <view class="poll-list">
+        <block wx:for='{{pollList}}' wx:key='*this'>
+          <view class="poll-list-item">
+            <image src="{{item.avatarUrl}}"></image>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="comment" wx:if="{{commentList.length>0}}">
+      <view class="comment-line">
+        <text class="comment-text">评论交流</text>
+        <view class="bottom-line"></view>
+      </view>
       <block wx:for='{{commentList}}' wx:key='*this' wx:for-item="itemfather">
         <view class='commentList'>
           <view class="top-info">
@@ -41,18 +58,39 @@
               <image src="{{itemfather.avatarUrl}}"></image>
               <label>{{itemfather.nickName}}</label>
             </view>
-            <text>{{itemfather.create_date}}</text>
+            <!-- <text class="create-time">{{itemfather.create_date}}</text> -->
           </view>
-          <view class="father-content" data-item="{{itemfather}}"  bindtap='clickFatherConter'>
-            <text>{{itemfather.comment}}</text>
+          <view class="father-content">
+            <text class="text">{{itemfather.comment}}</text>
+            <view class="father-reply-time">
+              <text class="create-time">{{itemfather.create_date}}</text>
+              <text class="reply" data-item="{{itemfather}}" bindtap='clickFatherConter' wx:if="{{openid != itemfather._openid}}">回复</text>
+            </view>
           </view>
-          <view class="children-content" >
+          <view class="children-content">
             <block wx:for='{{itemfather.childComment}}' wx:key='*this'>
-              <view class='childComment' data-item="{{item}}" data-id="{{itemfather._id}}" bindtap='clickChildrenConter'>
-                <text class='nickName'>{{item.nickName}}</text>
-                <text class='huifu'>回复</text>
-                <text class='opposite-nickName'>{{item.opposite_nickName}}</text>
-                <text class='comment-text'>{{item.comment}}</text>
+              <view class='childComment'>
+
+                <view class="child-img-name">
+                  <view class="avatar-name">
+                    <image src="{{item.avatarUrl}}"></image>
+                    <text class='nickName'>{{item.nickName}}</text>
+                  </view>
+                  <!-- <text class="child-create-time">{{item.createDate}}</text> -->
+                </view>
+
+                <view class="child-comment" wx:if="{{item.flag==2 }}">
+                  <text class='huifu'>回复</text>
+                  <text class='opposite-nickName'>{{item.opposite_nickName}}</text>
+                  <text class='comment-text'>{{item.comment}}</text>
+                </view>
+                <view class="child-comment" wx:if="{{item.flag==1}}">
+                  <text class='comment-text'>{{item.comment}}</text>
+                </view>
+                <view class="child-reply-time">
+                  <text class="child-create-time">{{item.createDate}}</text>
+                  <text class="reply" data-item="{{item}}" data-id="{{itemfather._id}}" bindtap='clickChildrenConter' wx:if="{{openid != item.openId}}">回复</text>
+                </view>
               </view>
             </block>
           </view>
@@ -67,21 +105,25 @@
   </scroll-view>
   <view class='fixed-bottom'>
     <view class='flex'>
-      <view class='poll'>
-        <image src='../../images/poll.png'></image>
+      <view class='poll' bindtap="clickPoll">
+        <image src="{{isPollDone?'../../images/poll-done.png':'../../images/poll.png'}}"></image>
         <label>点赞</label>
       </view>
       <view class='' bindtap="clickComment">
         <image src='../../images/comment.png'></image>
         <label>评论</label>
       </view>
-      <view class='share'>
+      <!-- <view class='share'>
         <image src='../../images/share.png'></image>
         <label>分享</label>
-      </view>
+      </view> -->
+      <button open-type="share" bindgetuserinfo="shareArticle" class="share-user">
+        <image src='../../images/share.png'></image>
+        <label>分享</label>
+      </button>
     </view>
   </view>
   <view wx:if="{{isShowAddPersonView}}">
-    <add-person showText="{{showText}}"  bind:confirm='confirm' bind:cancel='cancel' />
+    <add-person showText="{{showText}}" bind:confirm='confirm' bind:cancel='cancel' />
   </view>
 </view>

@@ -1,0 +1,4 @@
+<!--pages/about-me/about-me.wxml-->
+<view class="about-me">
+  <image src="{{imgUrl}}"></image>
+</view>

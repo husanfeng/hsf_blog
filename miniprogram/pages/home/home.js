@@ -1,4 +1,5 @@
 //index.js
+const util = require("../../utils/util.js")
 const app = getApp()
 const db = wx.cloud.database()
 Page({
@@ -22,6 +23,17 @@ Page({
     this.getUserOpenId()
     this.initSwiper();
     this.initClassfication();
+    var date = new Date('2019-07-27 08:25:40');
+    // 有三种方式获取
+    var time1 = date.getTime();
+    var time2 = date.valueOf();
+    var time3 = Date.parse(date);
+    time3 = time3/1000;
+    // console.log(time1);//1398250549123
+    // console.log(time2);//1398250549123
+    // console.log(time3);//1398250549000
+    var timedes = util.getDiffTime(time3);
+    console.log("时间=" + timedes);
   },
   getUserOpenId() {
     var _this = this;
@@ -34,7 +46,8 @@ Page({
       data: {},
       success: res => {
         console.log("用户的openID=" + res.result.openid)
-        app.globalData.openid = res.result.openid
+        wx.setStorageSync("openid", res.result.openid)
+        // app.globalData.openid = res.result.openid
       },
       fail: err => {
         console.error('[云函数]调用失败', err)
@@ -123,7 +136,9 @@ Page({
     })
   },
   onShow() {
-    this.setData({ articleList:[]})
+    this.setData({
+      articleList: []
+    })
     this.initArticleList();
   },
   /**
