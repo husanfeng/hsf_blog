@@ -26,3 +26,24 @@
   background: #f1f1f1;
   width: 200rpx;
 }
+.loading {
+  font-size: 14px;
+  padding: 10rpx;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.loading:before {
+  display: inline-block;
+  margin-right: 5rpx;
+  vertical-align: middle;
+  content: '';
+  width: 40rpx;
+  height: 40rpx;
+  background-size: contain;
+  animation: rotate 1s linear infinite;
+}
+
+.loading.complete:before {
+  display: none;
+}
