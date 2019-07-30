@@ -2,5 +2,8 @@
 <view>
   <article-list-component articleList='{{dataList}}'></article-list-component>
   <view class="loading" hidden="{{!loading}}">正在加载...</view>
-  <view class="loading complete" hidden="{{loadingHasData}}">没有更多了</view>
+  <view class="loading complete" hidden="{{loadingHasData}}" wx:if="{{dataList.length>0}}">没有更多了</view>
+  <view class="no-data" wx:if="{{isShowNoData}}">
+    <text>空空如也~</text>
+  </view>
 </view>

@@ -26,6 +26,7 @@
   background: #f1f1f1;
   width: 200rpx;
 }
+
 .loading {
   font-size: 14px;
   padding: 10rpx;
@@ -46,4 +47,15 @@
 
 .loading.complete:before {
   display: none;
+}
+
+.no-data {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 65%;
+  font-size: 28rpx;
+  color: #666;
 }

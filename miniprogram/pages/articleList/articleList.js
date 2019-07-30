@@ -13,6 +13,7 @@ Page({
     filter: {},
     userInfo: {},
     dbName: '',
+    isShowNoData: false,
 
 
     loading: false, // 正在加载
@@ -30,9 +31,6 @@ Page({
     var name = options.name ? options.name : '设置标题' // 分类名称
     var type = options.type ? options.type : '' // 分辨参数（我的浏览，我的点赞...）
     var userInfo = wx.getStorageSync("userInfo");
-    this.setData({
-
-    })
     wx.setNavigationBarTitle({
       title: options.name ? options.name : options.type
     })
@@ -91,6 +89,16 @@ Page({
         that.setData({
           loading: false,
           loadingHasData: false
+        });
+      }
+
+      if (that.data.dataList.length == 0) {
+        that.setData({
+          isShowNoData: true,
+        });
+      } else {
+        that.setData({
+          isShowNoData: false,
         });
       }
     })
@@ -196,7 +204,7 @@ Page({
     this.setData({
       loading: false, // 正在加载
       loadingHasData: true, //是否还有有数据
-      page: 0,
+      page: 1,
       dataList: [],
     });
     this.fetchSearchList(true);
