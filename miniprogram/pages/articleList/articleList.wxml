@@ -1,4 +1,6 @@
 <!--pages/specialArticle/specialArticle.wxml-->
 <view>
-     <article-list-component articleList='{{articleList}}'></article-list-component>
+  <article-list-component articleList='{{dataList}}'></article-list-component>
+  <view class="loading" hidden="{{!loading}}">正在加载...</view>
+  <view class="loading complete" hidden="{{loadingHasData}}">没有更多了</view>
 </view>
