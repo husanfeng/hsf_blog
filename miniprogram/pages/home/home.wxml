@@ -18,7 +18,10 @@
       </block>
     </view>
     <article-list-component articleList='{{dataList}}'></article-list-component>
-    <view class="loading" hidden="{{!loading}}">正在加载...</view>
-    <view class="loading complete" hidden="{{loadingHasData}}" wx:if="{{dataList.length>0}}">没有更多了</view>
+    <view class="loading" hidden="{{!loading}}">
+      <image src="../../images/load-more.gif"></image>
+    </view>
+    <view class="loading complete" hidden="{{loadingHasData}}" wx:if="{{dataList.length>0}}">
+      没有更多了</view>
   </scroll-view>
 </view>

@@ -34,6 +34,11 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
+.loading image {
+  width: 120rpx;
+  height: 70rpx;
+}
+
 .loading:before {
   display: inline-block;
   margin-right: 5rpx;

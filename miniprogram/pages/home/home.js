@@ -144,7 +144,7 @@ Page({
     this.setData({
       loading: false, // 正在加载
       loadingHasData: true, //是否还有有数据
-      page: 0,
+      page: 1,
       dataList: [],
     });
     this.fetchSearchList(true);
