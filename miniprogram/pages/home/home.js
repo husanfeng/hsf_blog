@@ -66,7 +66,7 @@ Page({
         dbName: 'article',
         pageIndex: _this.data.page,
         pageSize: _this.data.size,
-        // filter: {},
+        orderBy: 'read_count'
       },
       success: res => {
         // res.data 包含该记录的数据

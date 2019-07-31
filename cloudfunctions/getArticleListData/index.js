@@ -5,6 +5,7 @@ const db = cloud.database()
 // 云函数入口函数
 exports.main = async(event, context) => {
   //const wxContext = cloud.getWXContext()
+  var orderBy = event.orderBy ? event.orderBy:"";
   var dbName = event.dbName; //集合
   var filter = event.filter ? event.filter : null;
   var pageIndex = event.pageIndex ? event.pageIndex : 1;
@@ -18,7 +19,7 @@ exports.main = async(event, context) => {
   } else {
     hasMore = true;
   }
-  return db.collection(dbName).where(filter).skip((pageIndex - 1) * pageSize).limit(pageSize).get().then(res => {
+  return db.collection(dbName).orderBy(orderBy, 'desc').where(filter).skip((pageIndex - 1) * pageSize).limit(pageSize).get().then(res => {
     res.hasMore = hasMore;
     return res;
   });

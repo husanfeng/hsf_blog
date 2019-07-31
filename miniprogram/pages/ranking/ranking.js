@@ -31,7 +31,7 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
-    this.initArticleList()
+    this.initArticleList("read_count")
     //   that.fetchSearchList("", true);
     /**
      * 获取系统信息
@@ -50,11 +50,10 @@ Page({
         topTapHeight: res.height,
       });
     })
-
     query.exec()
   },
 
-  initArticleList() {
+  initArticleList(type) {
     var _this = this;
     wx.showLoading({
       title: '正在加载...',
@@ -65,7 +64,8 @@ Page({
       data: {
         dbName: 'article',
         pageIndex: 1,
-        pageSize: 5,
+        pageSize: 10,
+        orderBy: type
         // filter: {},
       },
       success: res => {
@@ -115,24 +115,13 @@ Page({
         dataList: [],
       });
       if (tapId == 0) {
-        that.setData({
-          tapUrl: '/wxapp/buyers/pageBuyersForAdmin'
-        })
-        //  this.fetchSearchList("", true);
+        that.initArticleList("read_count")
       } else if (tapId == 1) {
-        that.setData({
-          tapUrl: '/wxapp/member/pageBuyersOrExhibitoMember'
-        })
-        //   this.fetchSearchList("BUYERS", true);
+        that.initArticleList("comment_count")
       } else if (tapId == 2) {
-        that.setData({
-          tapUrl: '/wxapp/exhibitor/pageExhibitoForAdmin'
-        })
-        // this.fetchSearchList();
+        that.initArticleList("poll_count")
       } else if (tapId == 3) {
-        that.setData({
-          tapUrl: '/wxapp/member/pageBuyersOrExhibitoMember'
-        })
+        that.initArticleList("create_time")
       }
     }
   },

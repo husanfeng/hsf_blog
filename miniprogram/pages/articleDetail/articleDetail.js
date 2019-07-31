@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isShowPollAnimation: false,
     isPollDone: false,
     isShowAddPersonView: false,
     pollId: '',
@@ -182,8 +183,9 @@ Page({
       db.collection('poll').doc(_this.data.pollId).remove({
         success: function(res) {
           _this.setData({
-            isPollDone: false
+            isPollDone: false,
           })
+          _this.updateArticleListPoll(false);
           console.log("取消点赞--")
           _this.getPollList();
         },
@@ -208,7 +210,7 @@ Page({
           avatarUrl: _this.data.userInfo.avatarUrl,
           nickName: _this.data.userInfo.nickName,
           article_id: _this.data.articleDetail._id,
-         
+
           class_img_url: event.class_img_url,
           title: event.title,
           create_time: event.create_time,
@@ -226,10 +228,18 @@ Page({
           // res.data 包含该记录的数据
           _this.setData({
             isPollDone: true,
-            pollId: res.result._id
+            pollId: res.result._id,
+            isShowPollAnimation: true
           })
+          _this.updateArticleListPoll(true);
           console.log("新增点赞成功---")
           _this.getPollList();
+          setTimeout(() => {
+            _this.setData({
+              isShowPollAnimation: false
+            })
+          }, 2000);
+
         },
         fail: err => {
           console.error('[云函数]调用失败', err)
@@ -316,6 +326,36 @@ Page({
     })
   },
   /**
+   * 更新点赞数
+   */
+  updateArticleListPoll(type) {
+    var _this = this;
+    var poll_count = _this.data.articleDetail.poll_count;
+    if (type) {
+      var a = poll_count + 1
+    } else {
+      var a = poll_count - 1
+    }
+
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'updateArticleListPoll',
+      data: {
+        _id: _this.data.articleDetail._id,
+        poll_count: a,
+      },
+      success: res => {
+        // res.data 包含该记录的数据
+        console.log("更新点赞数---")
+      },
+      fail: err => {
+        console.error('[云函数]调用失败', err)
+      },
+      complete: res => {}
+    })
+  },
+
+  /**
    * 查询评论列表
    */
   queryComment() {
@@ -375,7 +415,7 @@ Page({
       url: '../comment/comment?type=' + type,
     })
   },
-  
+
   clickFatherConter(e) {
     if (this.data.userInfo.nickName == null || this.data.userInfo.nickName == undefined) {
       this.setData({

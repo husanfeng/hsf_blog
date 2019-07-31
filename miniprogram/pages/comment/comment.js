@@ -61,6 +61,31 @@ Page({
     }
   },
   /**
+  * 更新评论数
+  */
+  updateArticleListComment() {
+    var _this = this;
+    var comment_count = _this.data.articleDetail.comment_count;
+    var a = comment_count + 1
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'updateArticleListComment',
+      data: {
+        _id: _this.data.articleDetail._id,
+        comment_count: a,
+      },
+      success: res => {
+        // res.data 包含该记录的数据
+        console.log("更新评论数---")
+      },
+      fail: err => {
+        console.error('[云函数]调用失败', err)
+      },
+      complete: res => { }
+    })
+  },
+
+  /**
    * 回复评论
    */
   replyComment(commentType) {
@@ -90,6 +115,7 @@ Page({
       success: res => {
         // res.data 包含该记录的数据
         console.log("回复评论成功---")
+        _this.updateArticleListComment();
         wx.navigateBack({
           delta: 1
         })
@@ -134,6 +160,7 @@ Page({
       success: res => {
         // res.data 包含该记录的数据
         console.log("新增评论成功---")
+        _this.updateArticleListComment();
         wx.navigateBack({
           delta: 1
         })

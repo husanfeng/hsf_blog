@@ -106,7 +106,7 @@
   <view class='fixed-bottom'>
     <view class='flex'>
       <view class='poll' bindtap="clickPoll">
-        <image src="{{isPollDone?'../../images/poll-done.png':'../../images/poll.png'}}"></image>
+        <image src="{{isPollDone?'../../images/poll-dones.png':'../../images/poll.png'}}"></image>
         <label>点赞</label>
       </view>
       <view class='' bindtap="clickComment">
@@ -125,5 +125,8 @@
   </view>
   <view wx:if="{{isShowAddPersonView}}">
     <add-person showText="{{showText}}" bind:confirm='confirm' bind:cancel='cancel' />
+  </view>
+  <view class='poll-animation' wx:if="{{isShowPollAnimation}}">
+    <image src='../../images/poll-animations.gif'></image>
   </view>
 </view>

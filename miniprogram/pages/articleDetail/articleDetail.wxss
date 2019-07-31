@@ -346,3 +346,20 @@ button {
 button::after {
   border: none;
 }
+
+.poll-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  background: #fff;
+}
+
+.poll-animation image {
+  width: 658rpx;
+  height: 494rpx;
+}
