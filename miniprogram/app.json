@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/towxmltest/towxmltest",
     "pages/home/home",
     "pages/my/my",
     "pages/me/me",
@@ -32,7 +33,7 @@
     "backgroundColor": "#ffffff",
     "list": [
       {
-        "pagePath": "pages/home/home",
+        "pagePath": "pages/towxmltest/towxmltest",
         "iconPath": "images/home.png",
         "selectedIconPath": "images/home-select.png",
         "text": "首页"

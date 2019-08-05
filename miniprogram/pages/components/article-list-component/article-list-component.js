@@ -1,6 +1,5 @@
 // components/component-tag-name.js
 const app = getApp()
-const db = wx.cloud.database()
 Component({
   /**
    * 组件的属性列表

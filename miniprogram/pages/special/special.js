@@ -1,6 +1,8 @@
 // pages/special/special.js
 const app = getApp()
-const db = wx.cloud.database()
+const db = wx.cloud.database({
+  env: app.env
+})
 Page({
 
   /**
@@ -28,7 +30,6 @@ Page({
         _this.setData({
           classficationList: res.data
         })
-        wx.stopPullDownRefresh() //停止下拉刷新
       },
       fail: function(res) {
         console.log(res)

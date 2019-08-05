@@ -1,11 +1,22 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
-cloud.init()
+cloud.init({
+  env: 'hsf-blog-product-jqt54'
+})
 const db = cloud.database()
 // 云函数入口函数
 exports.main = async(event, context) => {
   //const wxContext = cloud.getWXContext()
-  var orderBy = event.orderBy ? event.orderBy:"";
+  // const {
+  //   ENV,
+  //   OPENID,
+  //   APPID
+  // } = cloud.getWXContext()
+  // // 更新默认配置，将默认访问环境设为当前云函数所在环境
+  // cloud.updateConfig({
+  //   env: ENV
+  // })
+  var orderBy = event.orderBy ? event.orderBy : "";
   var dbName = event.dbName; //集合
   var filter = event.filter ? event.filter : null;
   var pageIndex = event.pageIndex ? event.pageIndex : 1;

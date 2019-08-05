@@ -1,7 +1,9 @@
 // pages/articleDetail/articleDetail.js
 const util = require("../../utils/util.js")
 const app = getApp()
-const db = wx.cloud.database()
+const db = wx.cloud.database({
+  env: app.env
+})
 Page({
   /**
    * 页面的初始数据
@@ -91,8 +93,9 @@ Page({
         dbName: 'poll',
         pageIndex: 1,
         pageSize: 200,
+        orderBy: 'read_count',
         filter: {
-          article_id: _this.data.articleDetail._id
+          article_id: _this.data.articleDetail.article_id
         },
       },
       success: res => {
@@ -114,8 +117,8 @@ Page({
     var _this = this;
     _this.setData({ //
       filter: {
-        _openid: _this.data.openid,
-        article_id: _this.data.articleDetail._id
+        openid: _this.data.openid,
+        article_id: _this.data.articleDetail.article_id
       }
     })
     // wx.showLoading({
@@ -128,6 +131,7 @@ Page({
         dbName: 'poll',
         pageIndex: 1,
         pageSize: 200,
+        orderBy: 'read_count',
         filter: _this.data.filter,
       },
       success: res => {
@@ -180,8 +184,13 @@ Page({
     timestamp = timestamp / 1000;
     var ispoll = _this.data.isPollDone;
     if (ispoll) {
-      db.collection('poll').doc(_this.data.pollId).remove({
-        success: function(res) {
+      wx.cloud.callFunction({
+        name: 'deletePoll',
+        data: {
+          openid: openid,
+          article_id: _this.data.articleDetail.article_id,
+        },
+        success: res => {
           _this.setData({
             isPollDone: false,
           })
@@ -190,8 +199,7 @@ Page({
           _this.getPollList();
         },
         fail: err => {
-          console.error(err)
-
+          console.error('[云函数]调用失败', err)
         },
         complete: res => {
           _this.setData({
@@ -200,16 +208,36 @@ Page({
           wx.hideLoading()
         }
       })
+      // db.collection('poll').doc(_this.data.pollId).remove({
+      //   success: function(res) {
+      //     _this.setData({
+      //       isPollDone: false,
+      //     })
+      //     _this.updateArticleListPoll(false);
+      //     console.log("取消点赞--")
+      //     _this.getPollList();
+      //   },
+      //   fail: err => {
+      //     console.error(err)
+
+      //   },
+      //   complete: res => {
+      //     _this.setData({
+      //       isLoadingAddPoll: true
+      //     })
+      //     wx.hideLoading()
+      //   }
+      // })
     } else {
       var event = _this.data.articleDetail
       wx.cloud.callFunction({
         name: 'addPoll',
         data: {
-          _id: event._id,
-          _openid: openid,
+          _id: timestamp,
+          openid: openid,
           avatarUrl: _this.data.userInfo.avatarUrl,
           nickName: _this.data.userInfo.nickName,
-          article_id: _this.data.articleDetail._id,
+          article_id: _this.data.articleDetail.article_id,
 
           class_img_url: event.class_img_url,
           title: event.title,
@@ -260,7 +288,7 @@ Page({
     var _this = this;
     var openid = wx.getStorageSync("openid")
     db.collection('browsing_volume').where({
-        _id: _this.data.articleDetail._id,
+        article_id: _this.data.articleDetail.article_id,
         openid: openid
       })
       .get({
@@ -285,6 +313,7 @@ Page({
     var _this = this;
     var openid = wx.getStorageSync("openid")
     var articleDetail = _this.data.articleDetail
+    articleDetail.nickName = _this.data.userInfo.nickName
     articleDetail.openid = openid
     // 调用云函数
     wx.cloud.callFunction({
@@ -312,12 +341,45 @@ Page({
     wx.cloud.callFunction({
       name: 'updateArticleListVisit',
       data: {
-        _id: _this.data.articleDetail._id,
+        article_id: _this.data.articleDetail.article_id,
         readCount: a,
+        dbName: 'article'
       },
       success: res => {
         // res.data 包含该记录的数据
         console.log("更新文章列表访问记录---")
+      },
+      fail: err => {
+        console.error('[云函数]调用失败', err)
+      },
+      complete: res => {}
+    })
+    wx.cloud.callFunction({
+      name: 'updateArticleListVisit',
+      data: {
+        article_id: _this.data.articleDetail.article_id,
+        readCount: a,
+        dbName: 'poll'
+      },
+      success: res => {
+        // res.data 包含该记录的数据
+        console.log("更新点赞文章列表访问记录---")
+      },
+      fail: err => {
+        console.error('[云函数]调用失败', err)
+      },
+      complete: res => {}
+    })
+    wx.cloud.callFunction({
+      name: 'updateArticleListVisit',
+      data: {
+        article_id: _this.data.articleDetail.article_id,
+        readCount: a,
+        dbName: 'browsing_volume'
+      },
+      success: res => {
+        // res.data 包含该记录的数据
+        console.log("更新评论文章列表访问记录---")
       },
       fail: err => {
         console.error('[云函数]调用失败', err)
@@ -341,12 +403,45 @@ Page({
     wx.cloud.callFunction({
       name: 'updateArticleListPoll',
       data: {
-        _id: _this.data.articleDetail._id,
+        article_id: _this.data.articleDetail.article_id,
         poll_count: a,
+        dbName: 'article'
       },
       success: res => {
         // res.data 包含该记录的数据
         console.log("更新点赞数---")
+      },
+      fail: err => {
+        console.error('[云函数]调用失败', err)
+      },
+      complete: res => {}
+    })
+    wx.cloud.callFunction({
+      name: 'updateArticleListPoll',
+      data: {
+        article_id: _this.data.articleDetail.article_id,
+        poll_count: a,
+        dbName: 'poll'
+      },
+      success: res => {
+        // res.data 包含该记录的数据
+        console.log("更新点赞文章列表点赞数---")
+      },
+      fail: err => {
+        console.error('[云函数]调用失败', err)
+      },
+      complete: res => {}
+    })
+    wx.cloud.callFunction({
+      name: 'updateArticleListPoll',
+      data: {
+        article_id: _this.data.articleDetail.article_id,
+        poll_count: a,
+        dbName: 'browsing_volume'
+      },
+      success: res => {
+        // res.data 包含该记录的数据
+        console.log("更新浏览文章列表点赞数---")
       },
       fail: err => {
         console.error('[云函数]调用失败', err)
@@ -370,8 +465,9 @@ Page({
         dbName: 'comment',
         pageIndex: 1,
         pageSize: 100,
+        orderBy: 'read_count',
         filter: {
-          article_id: _this.data.articleDetail._id
+          article_id: _this.data.articleDetail.article_id
         },
       },
       success: res => {

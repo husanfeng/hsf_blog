@@ -1,7 +1,9 @@
 //index.js
 const util = require("../../utils/util.js")
 const app = getApp()
-const db = wx.cloud.database()
+const db = wx.cloud.database({
+  env: app.env
+})
 Page({
   data: {
     classficationList: [],
@@ -57,6 +59,7 @@ Page({
       }
     })
   },
+  
   initArticleList(callback) {
     var _this = this;
     // 调用云函数

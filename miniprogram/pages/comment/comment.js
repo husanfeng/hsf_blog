@@ -9,7 +9,7 @@ Page({
     surplus: 200,
     inputData: '',
     type: '',
-    openid:''
+    openid: ''
   },
   /**
    * 生命周期函数--监听页面加载
@@ -52,27 +52,28 @@ Page({
       var type = this.data.type;
       if (type == 1) { // 1是评论别人的评论===》二级评论
         this.replyComment(1)
-      } else if(type==2){
+      } else if (type == 2) {
         this.replyComment(2) // 2是回复别人的评论===》三级评论
-      }
-      else if (type == 3) { // 3是评论文章===》一级评论
+      } else if (type == 3) { // 3是评论文章===》一级评论
         this.addComment();
       }
     }
   },
   /**
-  * 更新评论数
-  */
-  updateArticleListComment() {
+   * 更新评论数
+   */
+  updateArticleListComments() {
     var _this = this;
     var comment_count = _this.data.articleDetail.comment_count;
     var a = comment_count + 1
+    //---------------------------
     // 调用云函数
     wx.cloud.callFunction({
       name: 'updateArticleListComment',
       data: {
-        _id: _this.data.articleDetail._id,
+        article_id: _this.data.articleDetail.article_id,
         comment_count: a,
+        dbName: 'article'
       },
       success: res => {
         // res.data 包含该记录的数据
@@ -81,7 +82,40 @@ Page({
       fail: err => {
         console.error('[云函数]调用失败', err)
       },
-      complete: res => { }
+      complete: res => {}
+    })
+    wx.cloud.callFunction({
+      name: 'updateArticleListComment',
+      data: {
+        article_id: _this.data.articleDetail.article_id,
+        comment_count: a,
+        dbName: 'poll'
+      },
+      success: res => {
+        // res.data 包含该记录的数据
+        console.log("更新评论数---")
+
+      },
+      fail: err => {
+        console.error('[云函数]调用失败', err)
+      },
+      complete: res => {}
+    })
+    wx.cloud.callFunction({
+      name: 'updateArticleListComment',
+      data: {
+        article_id: _this.data.articleDetail.article_id,
+        comment_count: a,
+        dbName: 'browsing_volume'
+      },
+      success: res => {
+        // res.data 包含该记录的数据
+        console.log("更新评论数---")
+      },
+      fail: err => {
+        console.error('[云函数]调用失败', err)
+      },
+      complete: res => {}
     })
   },
 
@@ -115,7 +149,7 @@ Page({
       success: res => {
         // res.data 包含该记录的数据
         console.log("回复评论成功---")
-        _this.updateArticleListComment();
+        _this.updateArticleListComments();
         wx.navigateBack({
           delta: 1
         })
@@ -153,14 +187,14 @@ Page({
         comment: _this.data.inputData,
         create_date: create_date,
         flag: 0,
-        article_id: _this.data.articleDetail._id,
+        article_id: _this.data.articleDetail.article_id,
         timestamp: timestamp,
         childComment: [],
       },
       success: res => {
         // res.data 包含该记录的数据
         console.log("新增评论成功---")
-        _this.updateArticleListComment();
+        _this.updateArticleListComments();
         wx.navigateBack({
           delta: 1
         })

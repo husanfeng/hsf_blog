@@ -1,7 +1,7 @@
 //index.js
 const util = require("../../utils/util.js")
 const app = getApp()
-const db = wx.cloud.database()
+// const db = wx.cloud.database()
 Page({
   data: {
     avatarUrl: 'https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/resources/user-unlogin.png?sign=e437bd460ffd19092f4b08b006e7afe9&t=1563595564',

@@ -1,6 +1,8 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
-cloud.init()
+cloud.init({
+  env: 'hsf-blog-product-jqt54'
+})
 const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
@@ -8,9 +10,10 @@ exports.main = async (event, context) => {
     return await db.collection('poll').add({
       data: {
         _id: event._id,
-        _openid: event._openid,
+        openid: event.openid,
         avatarUrl: event.avatarUrl,
         nickName: event.nickName,
+  
   
         article_id: event.article_id,
         class_img_url: event.class_img_url,

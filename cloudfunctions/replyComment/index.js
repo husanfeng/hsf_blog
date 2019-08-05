@@ -5,7 +5,9 @@ const cloud = require('wx-server-sdk')
 //   data: {
 //     childComment: _.push(data)
 //   }
-cloud.init()
+cloud.init({
+  env: 'hsf-blog-product-jqt54'
+})
 const db = cloud.database()
 // 云函数入口函数
 exports.main = async(event, context) => {
