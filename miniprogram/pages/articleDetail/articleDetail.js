@@ -51,11 +51,14 @@ Page({
       openid: openid
     })
     this.recordBrowsingVolume(); //记录访问次数
-    this.getIsPoll() // 是否点赞
-    this.getPollList() // 获取点赞列表
+    // this.getIsPoll() // 是否点赞
+    // this.getPollList() // 获取点赞列表
   },
   getPollList() {
     var _this = this;
+    // wx.showLoading({
+    //   title: '正在加载...',
+    // })
     // 调用云函数
     wx.cloud.callFunction({
       name: 'getArticleListData',
@@ -79,7 +82,7 @@ Page({
         console.error('[云函数]调用失败', err)
       },
       complete: res => {
-
+        // wx.hideLoading()
       }
     })
   },
@@ -281,7 +284,7 @@ Page({
     })
 
   },
-  
+
   /**
    * 查询评论列表
    */
@@ -304,7 +307,6 @@ Page({
       },
       success: res => {
         // res.data 包含该记录的数据
-
         var commentList = res.result.data;
         commentList.map((item) => {
           //var date = new Date(item.create_date);
@@ -426,7 +428,8 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+    this.getIsPoll() // 是否点赞
+    this.getPollList() // 获取点赞列表
   },
 
   /**
