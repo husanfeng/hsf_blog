@@ -60,7 +60,8 @@ page {
   margin-left: 20rpx;
 }
 
-.me .function .function-item .img {
+.me .function .function-item image{
   height: 60rpx;
   width: 60rpx;
+  margin: 0 0
 }

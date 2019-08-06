@@ -22,22 +22,10 @@ Page({
       name: 'getArticleDetail',
       data: {
         dbName: 'content',
-        pageIndex: 1,
-        pageSize: 10,
-        orderBy: 'article_id'
+        id:"1"
       },
       success: res => {
         console.log(res)
-        // var data = res.result.data[0].main_content
-        // res.result.data[0].main_content.map((item) => {
-        //   data += item
-        // })
-        // let articleData = app.towxml.toJson(res.result, 'markdown');
-        // articleData = app.towxml.initData(articleData, {
-        //   base: 'https://www.vvadd.com/',
-        //   app: _this
-        // });
-
         _this.setData({
           article: res.result,
           isloading: false

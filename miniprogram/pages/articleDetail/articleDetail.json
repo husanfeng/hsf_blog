@@ -1,3 +1,6 @@
 {
-  "usingComponents": {"add-person": "/pages/components/modal/add-person"}
+  "usingComponents": {
+    "add-person": "/pages/components/modal/add-person",
+    "towxml-component": "../components/towxml-component/towxml-component"
+  }
 }

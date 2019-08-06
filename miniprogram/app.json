@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/towxmltest/towxmltest",
     "pages/home/home",
+    "pages/towxmltest/towxmltest",
     "pages/my/my",
     "pages/me/me",
     "pages/about-me/about-me",
@@ -33,13 +33,13 @@
     "backgroundColor": "#ffffff",
     "list": [
       {
-        "pagePath": "pages/towxmltest/towxmltest",
+        "pagePath": "pages/home/home",
         "iconPath": "images/home.png",
         "selectedIconPath": "images/home-select.png",
         "text": "首页"
       },
       {
-        "pagePath": "pages/special/special",
+        "pagePath": "pages/towxmltest/towxmltest",
         "iconPath": "images/special.png",
         "selectedIconPath": "images/special-select.png",
         "text": "专题"

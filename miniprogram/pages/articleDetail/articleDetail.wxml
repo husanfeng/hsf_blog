@@ -20,7 +20,8 @@
         <text class=''>{{articleDetail.poll_count}}</text>
       </view>
     </view>
-    <view class="content">
+    <towxml-component id="{{articleDetail._id}}"></towxml-component>
+    <!-- <view class="content">
       <block wx:for='{{contentList}}' wx:key='*this'>
         <view class='article-item'>
           <view style="{{item.title==''?'height:0px':''}}" class='title'>
@@ -32,7 +33,7 @@
           <view class="content-text">{{item.content}}</view>
         </view>
       </block>
-    </view>
+    </view> -->
     <view class="poll" wx:if="{{pollList.length>0}}">
       <view class="poll-line">
         <text class="poll-text">点赞</text>

@@ -4,17 +4,23 @@ cloud.init({
   env: 'hsf-blog-product-jqt54'
 })
 const db = cloud.database()
+const _ = db.command
 // 云函数入口函数
-exports.main = async (event, context) => {
+exports.main = async(event, context) => {
   try {
+    db.collection('article').doc(event.id).update({
+      data: {
+        poll_count: _.inc(1)
+      }
+    })
     return await db.collection('poll').add({
       data: {
         _id: event._id,
         openid: event.openid,
         avatarUrl: event.avatarUrl,
         nickName: event.nickName,
-  
-  
+
+
         article_id: event.article_id,
         class_img_url: event.class_img_url,
         title: event.title,
@@ -28,7 +34,7 @@ exports.main = async (event, context) => {
         class_name: event.class_name,
         image_url: event.image_url,
 
-        
+
       }
     }).then(res => {
       res._id = event._id;

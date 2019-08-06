@@ -1,5 +1,6 @@
 /* pages/articleDetail/articleDetail.wxss */
-
+/**主题配色**/
+@import '/towxml/style/theme/light.wxss';
 .article .top-title {
   margin: 10rpx 0 10rpx 30rpx;
 }

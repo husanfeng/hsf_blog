@@ -409,7 +409,7 @@
 image,
 video {
     width: 100%;
-    margin: 10rpx auto;
+    /* margin: 10rpx auto; */
 }
 
 image {
