@@ -9,10 +9,15 @@ cloud.init({
   env: 'hsf-blog-product-jqt54'
 })
 const db = cloud.database()
+const _ = db.command
 // 云函数入口函数
 exports.main = async(event, context) => {
   try {
-    const _ = db.command
+    await db.collection('article').doc(event.id).update({
+      data: {
+        comment_count: _.inc(1)
+      }
+    })
     return await db.collection('comment').doc(event._id).update({
       data: {
         childComment: _.push({

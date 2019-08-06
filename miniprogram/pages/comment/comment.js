@@ -62,62 +62,62 @@ Page({
   /**
    * 更新评论数
    */
-  updateArticleListComments() {
-    var _this = this;
-    var comment_count = _this.data.articleDetail.comment_count;
-    var a = comment_count + 1
-    //---------------------------
-    // 调用云函数
-    wx.cloud.callFunction({
-      name: 'updateArticleListComment',
-      data: {
-        article_id: _this.data.articleDetail.article_id,
-        comment_count: a,
-        dbName: 'article'
-      },
-      success: res => {
-        // res.data 包含该记录的数据
-        console.log("更新评论数---")
-      },
-      fail: err => {
-        console.error('[云函数]调用失败', err)
-      },
-      complete: res => {}
-    })
-    wx.cloud.callFunction({
-      name: 'updateArticleListComment',
-      data: {
-        article_id: _this.data.articleDetail.article_id,
-        comment_count: a,
-        dbName: 'poll'
-      },
-      success: res => {
-        // res.data 包含该记录的数据
-        console.log("更新评论数---")
+  // updateArticleListComments() {
+  //   var _this = this;
+  //   var comment_count = _this.data.articleDetail.comment_count;
+  //   var a = comment_count + 1
+  //   //---------------------------
+  //   // 调用云函数
+  //   wx.cloud.callFunction({
+  //     name: 'updateArticleListComment',
+  //     data: {
+  //       article_id: _this.data.articleDetail.article_id,
+  //       comment_count: a,
+  //       dbName: 'article'
+  //     },
+  //     success: res => {
+  //       // res.data 包含该记录的数据
+  //       console.log("更新评论数---")
+  //     },
+  //     fail: err => {
+  //       console.error('[云函数]调用失败', err)
+  //     },
+  //     complete: res => {}
+  //   })
+  //   wx.cloud.callFunction({
+  //     name: 'updateArticleListComment',
+  //     data: {
+  //       article_id: _this.data.articleDetail.article_id,
+  //       comment_count: a,
+  //       dbName: 'poll'
+  //     },
+  //     success: res => {
+  //       // res.data 包含该记录的数据
+  //       console.log("更新评论数---")
 
-      },
-      fail: err => {
-        console.error('[云函数]调用失败', err)
-      },
-      complete: res => {}
-    })
-    wx.cloud.callFunction({
-      name: 'updateArticleListComment',
-      data: {
-        article_id: _this.data.articleDetail.article_id,
-        comment_count: a,
-        dbName: 'browsing_volume'
-      },
-      success: res => {
-        // res.data 包含该记录的数据
-        console.log("更新评论数---")
-      },
-      fail: err => {
-        console.error('[云函数]调用失败', err)
-      },
-      complete: res => {}
-    })
-  },
+  //     },
+  //     fail: err => {
+  //       console.error('[云函数]调用失败', err)
+  //     },
+  //     complete: res => {}
+  //   })
+  //   wx.cloud.callFunction({
+  //     name: 'updateArticleListComment',
+  //     data: {
+  //       article_id: _this.data.articleDetail.article_id,
+  //       comment_count: a,
+  //       dbName: 'browsing_volume'
+  //     },
+  //     success: res => {
+  //       // res.data 包含该记录的数据
+  //       console.log("更新评论数---")
+  //     },
+  //     fail: err => {
+  //       console.error('[云函数]调用失败', err)
+  //     },
+  //     complete: res => {}
+  //   })
+  // },
 
   /**
    * 回复评论
@@ -134,6 +134,7 @@ Page({
     wx.cloud.callFunction({
       name: 'replyComment',
       data: {
+        id: _this.data.articleDetail._id,
         _id: _this.data.otherUserInfo._id,
         avatarUrl: _this.data.userInfo.avatarUrl,
         nickName: _this.data.userInfo.nickName,
@@ -149,7 +150,7 @@ Page({
       success: res => {
         // res.data 包含该记录的数据
         console.log("回复评论成功---")
-        _this.updateArticleListComments();
+
         wx.navigateBack({
           delta: 1
         })
@@ -180,6 +181,7 @@ Page({
     wx.cloud.callFunction({
       name: 'addComment',
       data: {
+        id: _this.data.articleDetail._id,
         _id: timestamp,
         _openid: openid,
         avatarUrl: _this.data.userInfo.avatarUrl,
@@ -194,7 +196,7 @@ Page({
       success: res => {
         // res.data 包含该记录的数据
         console.log("新增评论成功---")
-        _this.updateArticleListComments();
+
         wx.navigateBack({
           delta: 1
         })

@@ -51,12 +51,8 @@ Page({
       openid: openid
     })
     this.recordBrowsingVolume(); //记录访问次数
-    // this.updateRecordBrowsingVolume(); // 更新浏览次数
     this.getIsPoll() // 是否点赞
     this.getPollList() // 获取点赞列表
-  },
-  shareArticle(e) {
-    console.log(e);
   },
   getPollList() {
     var _this = this;
@@ -169,7 +165,6 @@ Page({
           _this.setData({
             isPollDone: false,
           })
-          // _this.updateArticleListPoll(false);
           console.log("取消点赞--")
           _this.getPollList();
         },
@@ -216,7 +211,6 @@ Page({
             pollId: res.result._id,
             isShowPollAnimation: true
           })
-          // _this.updateArticleListPoll(true);
           console.log("新增点赞成功---")
           _this.getPollList();
           setTimeout(() => {
@@ -287,126 +281,7 @@ Page({
     })
 
   },
-  /**
-   * 更新浏览次数
-   */
-  updateRecordBrowsingVolume() {
-    var _this = this;
-    var readCounts = _this.data.articleDetail.read_count;
-    var a = readCounts + 1
-    // 调用云函数
-    wx.cloud.callFunction({
-      name: 'updateArticleListVisit',
-      data: {
-        article_id: _this.data.articleDetail.article_id,
-        readCount: a,
-        dbName: 'article'
-      },
-      success: res => {
-        // res.data 包含该记录的数据
-        console.log("更新文章列表访问记录---")
-      },
-      fail: err => {
-        console.error('[云函数]调用失败', err)
-      },
-      complete: res => {}
-    })
-    wx.cloud.callFunction({
-      name: 'updateArticleListVisit',
-      data: {
-        article_id: _this.data.articleDetail.article_id,
-        readCount: a,
-        dbName: 'poll'
-      },
-      success: res => {
-        // res.data 包含该记录的数据
-        console.log("更新点赞文章列表访问记录---")
-      },
-      fail: err => {
-        console.error('[云函数]调用失败', err)
-      },
-      complete: res => {}
-    })
-    wx.cloud.callFunction({
-      name: 'updateArticleListVisit',
-      data: {
-        article_id: _this.data.articleDetail.article_id,
-        readCount: a,
-        dbName: 'browsing_volume'
-      },
-      success: res => {
-        // res.data 包含该记录的数据
-        console.log("更新评论文章列表访问记录---")
-      },
-      fail: err => {
-        console.error('[云函数]调用失败', err)
-      },
-      complete: res => {}
-    })
-  },
-  /**
-   * 更新点赞数
-   */
-  updateArticleListPoll(type) {
-    var _this = this;
-    var poll_count = _this.data.articleDetail.poll_count;
-    if (type) {
-      var a = poll_count + 1
-    } else {
-      var a = poll_count - 1
-    }
-
-    // 调用云函数
-    wx.cloud.callFunction({
-      name: 'updateArticleListPoll',
-      data: {
-        article_id: _this.data.articleDetail.article_id,
-        poll_count: a,
-        dbName: 'article'
-      },
-      success: res => {
-        // res.data 包含该记录的数据
-        console.log("更新点赞数---")
-      },
-      fail: err => {
-        console.error('[云函数]调用失败', err)
-      },
-      complete: res => {}
-    })
-    wx.cloud.callFunction({
-      name: 'updateArticleListPoll',
-      data: {
-        article_id: _this.data.articleDetail.article_id,
-        poll_count: a,
-        dbName: 'poll'
-      },
-      success: res => {
-        // res.data 包含该记录的数据
-        console.log("更新点赞文章列表点赞数---")
-      },
-      fail: err => {
-        console.error('[云函数]调用失败', err)
-      },
-      complete: res => {}
-    })
-    wx.cloud.callFunction({
-      name: 'updateArticleListPoll',
-      data: {
-        article_id: _this.data.articleDetail.article_id,
-        poll_count: a,
-        dbName: 'browsing_volume'
-      },
-      success: res => {
-        // res.data 包含该记录的数据
-        console.log("更新浏览文章列表点赞数---")
-      },
-      fail: err => {
-        console.error('[云函数]调用失败', err)
-      },
-      complete: res => {}
-    })
-  },
-
+  
   /**
    * 查询评论列表
    */

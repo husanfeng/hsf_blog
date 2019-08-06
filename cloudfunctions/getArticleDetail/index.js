@@ -13,14 +13,10 @@ const _ = db.command
 exports.main = async(event, context) => {
   var dbName = event.dbName; //集合
   var filter = event.filter ? event.filter : null;
-  return db.collection(dbName).doc(event.id).get().then(res => {
+  //获取文章时直接浏览量+1
+  await db.collection('article').doc(event.id).update({data: { read_count: _.inc(1) }})
+  return await db.collection(dbName).doc(event.id).get().then(res => {
     //htm转towxml数据
-    //获取文章时直接浏览量+1
-    db.collection('article').doc(event.id).update({
-      data: {
-        read_count: _.inc(1)
-      }
-    })
     let data = ""
     if (res.data.main_content) {
       data = towxml.toJson(res.data.main_content, 'html');

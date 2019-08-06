@@ -8,7 +8,7 @@ const _ = db.command
 // 云函数入口函数
 exports.main = async(event, context) => {
   try {
-    db.collection('article').doc(event.id).update({
+    await db.collection('article').doc(event.id).update({
       data: {
         poll_count: _.inc(1)
       }

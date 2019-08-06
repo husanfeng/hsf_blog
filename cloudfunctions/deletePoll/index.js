@@ -6,7 +6,7 @@ const db = cloud.database()
 const _ = db.command
 exports.main = async(event, context) => {
   try {
-    db.collection('article').doc(event.id).update({
+    await db.collection('article').doc(event.id).update({
       data: {
         poll_count: _.inc(-1)
       }
