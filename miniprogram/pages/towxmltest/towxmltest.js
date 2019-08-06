@@ -19,7 +19,7 @@ Page({
     })
     // 调用云函数
     wx.cloud.callFunction({
-      name: 'getArticleListData',
+      name: 'getArticleDetail',
       data: {
         dbName: 'content',
         pageIndex: 1,
@@ -27,18 +27,19 @@ Page({
         orderBy: 'article_id'
       },
       success: res => {
-        console.log(res.result.data[0].main_content[0])
-        var data = ''
-        res.result.data[0].main_content.map((item) => {
-          data += item
-        })
-        let articleData = app.towxml.toJson(data, 'markdown');
-        articleData = app.towxml.initData(articleData, {
-          base: 'https://www.vvadd.com/',
-          app: _this
-        });
+        console.log(res)
+        // var data = res.result.data[0].main_content
+        // res.result.data[0].main_content.map((item) => {
+        //   data += item
+        // })
+        // let articleData = app.towxml.toJson(res.result, 'markdown');
+        // articleData = app.towxml.initData(articleData, {
+        //   base: 'https://www.vvadd.com/',
+        //   app: _this
+        // });
+
         _this.setData({
-          article: articleData,
+          article: res.result,
           isloading: false
         });
       },
