@@ -39,7 +39,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/towxmltest/towxmltest",
+        "pagePath": "pages/special/special",
         "iconPath": "images/special.png",
         "selectedIconPath": "images/special-select.png",
         "text": "专题"
