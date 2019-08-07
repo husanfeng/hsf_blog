@@ -13,12 +13,7 @@ const _ = db.command
 // 云函数入口函数
 exports.main = async(event, context) => {
   try {
-    await db.collection('article').doc(event.id).update({
-      data: {
-        comment_count: _.inc(1)
-      }
-    })
-    return await db.collection('comment').doc(event._id).update({
+    let res = await db.collection('comment').doc(event._id).update({
       data: {
         childComment: _.push({
           avatarUrl: event.avatarUrl,
@@ -36,6 +31,12 @@ exports.main = async(event, context) => {
     }).then(res => {
       return res;
     })
+    await db.collection('article').doc(event.id).update({
+      data: {
+        comment_count: _.inc(1)
+      }
+    })
+    return res;
   } catch (e) {
     console.error(e)
   }

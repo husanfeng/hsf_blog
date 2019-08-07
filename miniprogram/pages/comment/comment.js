@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    surplus: 200,
+    surplus: 300,
     inputData: '',
     type: '',
     openid: ''
@@ -37,7 +37,7 @@ Page({
     let that = this;
     this.setData({
       inputData: value,
-      surplus: 200 - len
+      surplus: 300 - len
     });
   },
   submit() {
@@ -135,6 +135,7 @@ Page({
       name: 'replyComment',
       data: {
         id: _this.data.articleDetail._id,
+        _id: _this.data.otherUserInfo._id,
         avatarUrl: _this.data.userInfo.avatarUrl,
         nickName: _this.data.userInfo.nickName,
         openId: _this.data.openid,
