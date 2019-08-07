@@ -135,7 +135,6 @@ Page({
       name: 'replyComment',
       data: {
         id: _this.data.articleDetail._id,
-        _id: _this.data.otherUserInfo._id,
         avatarUrl: _this.data.userInfo.avatarUrl,
         nickName: _this.data.userInfo.nickName,
         openId: _this.data.openid,
@@ -150,7 +149,10 @@ Page({
       success: res => {
         // res.data 包含该记录的数据
         console.log("回复评论成功---")
+        wx.showToast({
+          title: '回复提交成功',
 
+        })
         wx.navigateBack({
           delta: 1
         })
@@ -181,8 +183,8 @@ Page({
     wx.cloud.callFunction({
       name: 'addComment',
       data: {
+        //_id: timestamp + _this.data.otherUserInfo._id,
         id: _this.data.articleDetail._id,
-        _id: timestamp,
         _openid: openid,
         avatarUrl: _this.data.userInfo.avatarUrl,
         nickName: _this.data.userInfo.nickName,
@@ -196,7 +198,10 @@ Page({
       success: res => {
         // res.data 包含该记录的数据
         console.log("新增评论成功---")
+        wx.showToast({
+          title: '评论提交成功',
 
+        })
         wx.navigateBack({
           delta: 1
         })

@@ -5,25 +5,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    keyword: "",
-    addBuyersId: '',
-    isShowClearIcon: false,
     loading: false, // 正在加载
     loadingHasData: true, //是否还有有数据
-    tapUrl: '/wxapp/buyers/pageBuyersForAdmin',
     size: 10,
-    page: 0,
+    page: 1,
     dataList: [],
-    erronText: "",
-    isShowAddPersonView: false,
-    isShowErronText: false,
     winWidth: 0,
     winHeight: 0,
     currentTab: 0, // tab切换
     topTapHeight: '',
-    topSearchHeight: '',
-
-    articleList: []
   },
 
   /**
@@ -31,8 +21,8 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
-    this.initArticleList("read_count")
-    //   that.fetchSearchList("", true);
+    //  this.initArticleList("read_count")
+    that.fetchSearchList("read_count", true);
     /**
      * 获取系统信息
      */
@@ -52,37 +42,64 @@ Page({
     })
     query.exec()
   },
-
-  initArticleList(type) {
+  initArticleList(type,callback) {
     var _this = this;
-    wx.showLoading({
-      title: '正在加载...',
-    })
     // 调用云函数
     wx.cloud.callFunction({
       name: 'getArticleListData',
       data: {
         dbName: 'article',
-        pageIndex: 1,
-        pageSize: 10,
+        pageIndex: _this.data.page,
+        pageSize: _this.data.size,
         orderBy: type
-        // filter: {},
       },
       success: res => {
         // res.data 包含该记录的数据
-        console.log(res.result.data)
-        _this.setData({
-          articleList: res.result.data
-        })
+        console.log(res.result)
+        callback(res.result.data);
       },
       fail: err => {
         console.error('[云函数]调用失败', err)
       },
       complete: res => {
-        wx.hideLoading()
+
       }
     })
   },
+  /**
+   * 分页函数
+   */
+  fetchSearchList: function(type,isShowLoading) {
+    if (isShowLoading) {
+      wx.showLoading({
+        title: '正在请求数据...',
+      });
+    }
+    let that = this;
+    this.initArticleList(type,function(data) {
+      if (isShowLoading) {
+        wx.hideLoading()
+      }
+      //判断是否有数据，有则取数据  
+      if (data.length != 0) {
+        let dataList = [];
+        //如果isFromSearch是true从data中取出数据，否则先从原来的数据继续添加  
+        dataList = that.data.dataList.length <= 0 ? data : that.data.dataList.concat(data)
+        that.setData({
+          dataList: dataList, //获取数据数组  
+          loadingHasData: true,
+          loading: false,
+          page: (that.data.page + 1)
+        });
+      } else {
+        that.setData({
+          loading: false,
+          loadingHasData: false
+        });
+      }
+    })
+  },
+  
   /**
    * 点击tab切换
    */
@@ -111,17 +128,17 @@ Page({
     } else {
       that.setData({
         currentTab: tapId,
-        page: 0,
+        page: 1,
         dataList: [],
       });
       if (tapId == 0) {
-        that.initArticleList("read_count")
+        that.fetchSearchList("read_count", true);
       } else if (tapId == 1) {
-        that.initArticleList("comment_count")
+        that.fetchSearchList("comment_count", true);
       } else if (tapId == 2) {
-        that.initArticleList("poll_count")
+        that.fetchSearchList("poll_count", true);
       } else if (tapId == 3) {
-        that.initArticleList("create_time")
+        that.fetchSearchList("create_time", true);
       }
     }
   },
@@ -140,25 +157,13 @@ Page({
     });
     var tapId = that.data.currentTab;
     if (tapId == 0) {
-      that.setData({
-        tapUrl: '/wxapp/buyers/pageBuyersForAdmin'
-      })
-      //  that.fetchSearchList();
+      that.fetchSearchList("read_count", false);
     } else if (tapId == 1) {
-      that.setData({
-        tapUrl: '/wxapp/member/pageBuyersOrExhibitoMember'
-      })
-      //   that.fetchSearchList("BUYERS");
+      that.fetchSearchList("comment_count", false);
     } else if (tapId == 2) {
-      that.setData({
-        tapUrl: '/wxapp/exhibitor/pageExhibitoForAdmin'
-      })
-      //  that.fetchSearchList();
+      that.fetchSearchList("poll_count", false);
     } else if (tapId == 3) {
-      that.setData({
-        tapUrl: '/wxapp/member/pageBuyersOrExhibitoMember'
-      })
-      // that.fetchSearchList("EXHIBITOR");
+      that.fetchSearchList("create_time", false);
     }
   },
   /**

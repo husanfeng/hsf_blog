@@ -11,6 +11,7 @@ exports.main = async(event, context) => {
     return await db.collection('browsing_volume').add({
       data: {
        // _id: event._id,
+        visit_time: event.visit_time,
         article_id: event.article_id,
         openid: event.openid,
         nickName: event.nickName,

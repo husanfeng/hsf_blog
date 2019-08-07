@@ -8,14 +8,10 @@ const _ = db.command
 // 云函数入口函数
 exports.main = async(event, context) => {
   try {
-    await db.collection('article').doc(event.id).update({
+
+    let res = await db.collection('poll').add({
       data: {
-        poll_count: _.inc(1)
-      }
-    })
-    return await db.collection('poll').add({
-      data: {
-        _id: event._id,
+        // _id: event._id,
         openid: event.openid,
         avatarUrl: event.avatarUrl,
         nickName: event.nickName,
@@ -33,13 +29,19 @@ exports.main = async(event, context) => {
         class_id: event.class_id,
         class_name: event.class_name,
         image_url: event.image_url,
-
+        poll_time: event.poll_time,
 
       }
     }).then(res => {
       res._id = event._id;
       return res;
     })
+    await db.collection('article').doc(event.id).update({
+      data: {
+        poll_count: _.inc(1)
+      }
+    })
+    return res;
   } catch (e) {
     console.error(e)
   }

@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    openid:'',
+    type: '',
+    openid: '',
     articleList: [],
     class_id: '',
     name: '',
@@ -35,6 +36,9 @@ Page({
     wx.setNavigationBarTitle({
       title: options.name ? options.name : options.type
     })
+    this.setData({
+      type: type
+    })
     if (type == '我的浏览') {
       // this.queryVisit()
       this.setData({
@@ -44,9 +48,7 @@ Page({
           openid: openid
         }
       })
-    
-    } 
-    else if (type == '我的点赞') {
+    } else if (type == '我的点赞') {
       // this.queryPollList()
       this.setData({
         dbName: 'poll',
@@ -55,9 +57,7 @@ Page({
           openid: openid
         }
       })
-     
-    } 
-    else {
+    } else {
       // this.initArticleList(class_id) // 分类页面过来的
       this.setData({
         dbName: 'article',
@@ -66,7 +66,6 @@ Page({
           class_id: parseInt(class_id)
         }
       })
-     
     }
     this.fetchSearchList(true);
   },

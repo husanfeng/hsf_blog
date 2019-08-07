@@ -23,7 +23,7 @@ exports.main = async(event, context) => {
   var pageSize = event.pageSize ? event.pageSize : 10;
   const counResult = await db.collection(dbName).where(filter).count;
   const total = counResult.total;
-  const totalPage = Math.ceil(total / pageSize) // 计算多少页
+  const totalPage = Math.ceil(total / pageSize); // 计算多少页
   var hasMore; // 返回前端是否还有数据
   if (pageIndex > totalPage || pageIndex == totalPage) { //如果没有数据了，就返回false
     hasMore = false;

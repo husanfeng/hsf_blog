@@ -7,16 +7,11 @@ cloud.init({
 const db = cloud.database()
 const _ = db.command
 // 云函数入口函数
-exports.main = async (event, context) => {
+exports.main = async(event, context) => {
   try {
-    await db.collection('article').doc(event.id).update({
+
+    let res = await db.collection('comment').add({
       data: {
-        comment_count: _.inc(1)
-      }
-    })
-    return await db.collection('comment').add({
-      data: {
-        _id: event._id,
         _openid: event._openid,
         avatarUrl: event.avatarUrl,
         nickName: event.nickName,
@@ -25,11 +20,19 @@ exports.main = async (event, context) => {
         flag: event.flag,
         article_id: event.article_id,
         timestamp: event.timestamp,
-        childComment:[],
+        childComment: [],
       }
     }).then(res => {
       return res;
     })
+    let task = await db.collection('article').doc(event.id).update({
+      data: {
+        comment_count: _.inc(1)
+      }
+    })
+    // await task;
+    // await res;
+    return res;
   } catch (e) {
     console.error(e)
   }

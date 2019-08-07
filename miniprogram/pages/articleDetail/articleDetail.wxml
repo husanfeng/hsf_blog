@@ -20,7 +20,7 @@
         <text class=''>{{articleDetail.poll_count}}</text>
       </view>
     </view>
-    <towxml-component id="{{articleDetail._id}}"></towxml-component>
+    <towxml-component id="{{articleDetail.article_id}}"></towxml-component>
     <!-- <view class="content">
       <block wx:for='{{contentList}}' wx:key='*this'>
         <view class='article-item'>

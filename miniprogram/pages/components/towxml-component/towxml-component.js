@@ -34,7 +34,7 @@ Component({
         name: 'getArticleDetail',
         data: {
           dbName: 'content',
-          id: articleDetail._id
+          id: articleDetail.article_id
         },
         success: res => {
           console.log(res)

@@ -12,7 +12,7 @@ exports.main = async(event, context) => {
       article_id: event.article_id
     }).update({
       data: {
-        read_count: event.readCount
+        visit_time: event.visit_time
       }
     }).then(res => {
       return res;

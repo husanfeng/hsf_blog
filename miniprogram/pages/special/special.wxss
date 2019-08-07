@@ -21,14 +21,14 @@ page {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100rpx;
-  height: 100rpx;
+  width: 90rpx;
+  height: 90rpx;
   border-radius: 50%;
 }
 
 .special .item .image-background .left {
-  height: 70rpx;
-  width: 70rpx;
+  height: 50rpx;
+  width: 50rpx;
 }
 
 .special .item .right {
@@ -40,7 +40,7 @@ page {
 
 .special .item .right .title {
   margin-bottom: 5rpx;
-  font-size: 35rpx;
+  font-size: 20rpx;
 }
 
 .special .item .right .article-num {
