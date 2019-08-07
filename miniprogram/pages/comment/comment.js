@@ -15,14 +15,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    wx.setNavigationBarTitle({
-      title: '写留言',
-    })
     var type = options.type; // 1是回复  2是评论
     var otherUserInfo = wx.getStorageSync("otherInfo")
     var userInfo = wx.getStorageSync("userInfo")
     var articleDetail = wx.getStorageSync("articleDetail")
     var openid = wx.getStorageSync("openid")
+    if (type == 1 || type == 2) {
+      wx.setNavigationBarTitle({
+        title: "回复 "+otherUserInfo.nickName,
+      })
+    } else {
+      wx.setNavigationBarTitle({
+        title: "写留言",
+      })
+    }
     this.setData({
       type: type,
       otherUserInfo: otherUserInfo,

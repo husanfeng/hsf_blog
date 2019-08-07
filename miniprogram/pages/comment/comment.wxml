@@ -5,7 +5,7 @@
     placeholder-class="comment-place-holder" 
     bindinput='input'   
     maxlength="300" 
-    placeholder="回复 风的颜色" 
+    placeholder="请注重你的措辞~~~" 
     focus="true"
     show-confirm-bar="true">
     </textarea>
