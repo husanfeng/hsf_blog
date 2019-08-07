@@ -39,7 +39,7 @@
 .article-list .article .article-text .img-title .title {
   font-size: 30rpx;
   font-weight: 600;
-  height: 45rpx;
+  height: 50rpx;
   text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
   text-overflow: ellipsis;
