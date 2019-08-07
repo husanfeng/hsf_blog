@@ -4,7 +4,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    id:{
+    article_id:{
       type:String,
       value:''
     }
@@ -25,7 +25,8 @@ Component({
   methods: {
     load() {
       var _this = this;
-      var articleDetail = wx.getStorageSync("articleDetail");
+    //  var articleDetail = wx.getStorageSync("articleDetail");
+      var article_id = _this.properties.article_id
       wx.showLoading({
         title: '正在加载...',
       })
@@ -34,7 +35,7 @@ Component({
         name: 'getArticleDetail',
         data: {
           dbName: 'content',
-          id: articleDetail.article_id
+          id: article_id
         },
         success: res => {
           console.log(res)

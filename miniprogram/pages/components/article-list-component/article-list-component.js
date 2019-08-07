@@ -43,10 +43,10 @@ Component({
   methods: {
     click(e) {
       var item = e.currentTarget.dataset.item
-      wx.setStorageSync("articleDetail", item)
+    //  wx.setStorageSync("articleDetail", item)
     //  app.globalData.articleDetail = item;
       wx.navigateTo({
-        url: '../articleDetail/articleDetail',
+        url: '../articleDetail/articleDetail?article_id=' + item.article_id,
       })
     },
   },

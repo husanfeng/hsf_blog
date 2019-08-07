@@ -20,11 +20,15 @@ Page({
     openid: '',
     isLoadingAddPoll: true,
     commentList: [],
+
+    article_id: '',
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    // var shareId = options.article_id ? options.article_id : ""
+    var article_id = options.article_id ? options.article_id : ""
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -42,33 +46,60 @@ Page({
         }
       }
     })
-    var articleDetail = wx.getStorageSync("articleDetail");
+    //  var articleDetail = wx.getStorageSync("articleDetail");
     var openid = wx.getStorageSync("openid")
     var userInfo = wx.getStorageSync("userInfo");
     this.setData({
-      articleDetail: articleDetail,
+      //  articleDetail: articleDetail,
+      article_id: article_id,
       userInfo: userInfo,
       openid: openid
     })
-    this.getArticleDetail();
+    this.getArticleDetail(article_id);
     this.recordBrowsingVolume(); //记录访问次数
-    this.getIsPoll() // 是否点赞
     this.getPollList() // 获取点赞列表
+    this.getIsPoll() // 是否点赞
+    // this.initData()
   },
-  getArticleDetail() {
+
+  onShareAppMessage: function(res) {
+    var _this = this
+    if (res.from == 'button') {
+      //按钮授权 调用share
+      //设置分享参数
+      // var article_id = _this.data.articleDetail.article_id;
+    }
+    return {
+      title: '',
+      path: '/pages/articleDetail/articleDetail?article_id=' + _this.data.articleDetail.article_id,
+      //这里的path是当前页面的path，必须是以 / 开头的完整路径，后面拼接的参数 是分享页面需要的参数  不然分享出去的页面可能会没有内容
+      //  imageUrl: "",
+      //  desc: '关公面前耍大刀',
+      success: (res) => {
+        console.log("转发成功", res);
+        console.log("成功了")
+      },
+      fail: (res) => {
+        console.log("转发失败", res);
+      }
+    }
+
+  },
+  getArticleDetail(article_id) {
     var _this = this;
-    db.collection('article').doc(_this.data.articleDetail.article_id)
+    // var id = shareId == "" ? _this.data.articleDetail.article_id : shareId
+    db.collection('article').doc(article_id)
       .get({
         success: function(res) {
           _this.setData({
-            articleDetail:res.data
+            articleDetail: res.data
           })
+          console.log("getArticleDetail 先执行完----");
         },
         fail: function(res) {
           console.log(res)
         },
-        complete: function(res) {
-        }
+        complete: function(res) {}
       })
   },
   getPollList() {
@@ -85,7 +116,7 @@ Page({
         pageSize: 200,
         orderBy: 'read_count',
         filter: {
-          article_id: _this.data.articleDetail.article_id
+          article_id: _this.data.article_id
         },
       },
       success: res => {
@@ -108,7 +139,7 @@ Page({
     _this.setData({ //
       filter: {
         openid: _this.data.openid,
-        article_id: _this.data.articleDetail.article_id
+        article_id: _this.data.article_id
       }
     })
     // wx.showLoading({
@@ -177,9 +208,9 @@ Page({
       wx.cloud.callFunction({
         name: 'deletePoll',
         data: {
-          id: _this.data.articleDetail.article_id,
+          id: _this.data.article_id,
           openid: openid,
-          article_id: _this.data.articleDetail.article_id,
+          article_id: _this.data.article_id,
         },
         success: res => {
           _this.setData({
@@ -260,7 +291,7 @@ Page({
     var _this = this;
     var openid = wx.getStorageSync("openid")
     db.collection('browsing_volume').where({
-        article_id: _this.data.articleDetail.article_id,
+        article_id: _this.data.article_id,
         openid: openid
       })
       .get({
@@ -295,7 +326,7 @@ Page({
         visit_time: visit_time
       },
       success: res => {
-        // res.data 包含该记录的数据
+        console.log("updateUserVisitActicle 后执行完----");
         console.log("更新访问时间---")
       },
       fail: err => {
@@ -322,6 +353,7 @@ Page({
       data: articleDetail,
       success: res => {
         // res.data 包含该记录的数据
+        console.log("addUserVisitActicle 后执行完----");
         console.log("新增用户访问文章列表记录---")
       },
       fail: err => {
@@ -349,7 +381,7 @@ Page({
         pageSize: 100,
         orderBy: 'read_count',
         filter: {
-          article_id: _this.data.articleDetail.article_id
+          article_id: _this.data.article_id
         },
       },
       success: res => {
@@ -478,10 +510,5 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
 
-  }
 })
