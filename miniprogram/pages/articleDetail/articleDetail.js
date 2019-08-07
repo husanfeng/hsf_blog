@@ -50,9 +50,26 @@ Page({
       userInfo: userInfo,
       openid: openid
     })
+    this.getArticleDetail();
     this.recordBrowsingVolume(); //记录访问次数
     this.getIsPoll() // 是否点赞
     this.getPollList() // 获取点赞列表
+  },
+  getArticleDetail() {
+    var _this = this;
+    db.collection('article').doc(_this.data.articleDetail.article_id)
+      .get({
+        success: function(res) {
+          _this.setData({
+            articleDetail:res.data
+          })
+        },
+        fail: function(res) {
+          console.log(res)
+        },
+        complete: function(res) {
+        }
+      })
   },
   getPollList() {
     var _this = this;
@@ -188,7 +205,7 @@ Page({
         name: 'addPoll',
         data: {
           id: _this.data.articleDetail._id,
-        //  _id: timestamp,
+          //  _id: timestamp,
           openid: openid,
           avatarUrl: _this.data.userInfo.avatarUrl,
           nickName: _this.data.userInfo.nickName,
@@ -251,7 +268,7 @@ Page({
           // 如果返回数据为空，说明之前没有保存过记录，需要调用保存接口
           if (res.data.length == 0) {
             _this.addUserVisitActicle() // 保存记录接口
-          }else{
+          } else {
             _this.updateUserVisitActicle() //更新访问时间
           }
         },
@@ -266,14 +283,14 @@ Page({
   /**
    * 更新访问时间
    */
-  updateUserVisitActicle(){
+  updateUserVisitActicle() {
     var _this = this;
     var visit_time = util.formatTime(new Date());
     // 调用云函数
     wx.cloud.callFunction({
       name: 'updateArticleListVisit',
       data: {
-        dbName:'browsing_volume',
+        dbName: 'browsing_volume',
         article_id: _this.data.articleDetail.article_id,
         visit_time: visit_time
       },
@@ -284,7 +301,7 @@ Page({
       fail: err => {
         console.error('[云函数]调用失败', err)
       },
-      complete: res => { }
+      complete: res => {}
     })
 
   },
@@ -458,7 +475,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    
+
   },
 
   /**
