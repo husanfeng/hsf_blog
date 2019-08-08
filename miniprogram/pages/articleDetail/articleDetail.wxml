@@ -1,7 +1,7 @@
 <!--pages/articleDetail/articleDetail.wxml-->
 <view class="article">
   <scroll-view scroll-y>
-    <view class="top-title">{{articleDetail.title}}</view>
+    <view class="top-title">{{articleDetail.summary}}</view>
     <view class='article-bottom'>
       <view class='time'>
         <image src='../../images/creat_time.png'></image>
