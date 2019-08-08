@@ -55,13 +55,20 @@ Page({
       userInfo: userInfo,
       openid: openid
     })
-    this.getArticleDetail(article_id);
-    this.recordBrowsingVolume(); //记录访问次数
     this.getPollList() // 获取点赞列表
     this.getIsPoll() // 是否点赞
-    // this.initData()
+    // this.initPage(() => {
+    //   console.log("執行完畢----")
+    // });
+    this.getArticleDetail(() => {
+      this.recordBrowsingVolume();
+    });
   },
-
+  // initPage: function (callback) {
+  //   this.getArticleDetail(() => {
+  //     this.recordBrowsingVolume(callback);
+  //   });
+  // },
   onShareAppMessage: function(res) {
     var _this = this
     if (res.from == 'button') {
@@ -85,16 +92,18 @@ Page({
     }
 
   },
-  getArticleDetail(article_id) {
+  getArticleDetail(callback) {
     var _this = this;
     // var id = shareId == "" ? _this.data.articleDetail.article_id : shareId
-    db.collection('article').doc(article_id)
+    db.collection('article').doc(_this.data.article_id)
       .get({
         success: function(res) {
+          wx.setStorageSync("articleDetail", res.data) // 提交評論的時候要用到
           _this.setData({
             articleDetail: res.data
           })
           console.log("getArticleDetail 先执行完----");
+          callback();
         },
         fail: function(res) {
           console.log(res)
@@ -328,6 +337,7 @@ Page({
       success: res => {
         console.log("updateUserVisitActicle 后执行完----");
         console.log("更新访问时间---")
+      //  callback();
       },
       fail: err => {
         console.error('[云函数]调用失败', err)
@@ -355,6 +365,7 @@ Page({
         // res.data 包含该记录的数据
         console.log("addUserVisitActicle 后执行完----");
         console.log("新增用户访问文章列表记录---")
+       // callback();
       },
       fail: err => {
         console.error('[云函数]调用失败', err)
