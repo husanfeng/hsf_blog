@@ -4,8 +4,10 @@
 const cloud = require('wx-server-sdk')
 
 // 初始化 cloud
+// var env = 'hsf-blog-product-jqt54';  // 正式环境
+var env = 'cfxy-mall-pxwnv'; // 测试环境
 cloud.init({
-  env: 'hsf-blog-product-jqt54'
+  env: env
 })
 
 /**

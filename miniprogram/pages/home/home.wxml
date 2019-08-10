@@ -9,7 +9,7 @@
     </swiper>
     <view class='classfication'>
       <block wx:for="{{classficationList}}" wx:key="{{item._id}}">
-        <view class='classfication-view' wx:if="{{item.id<5}}" data-id='{{item.id}}' data-name='{{item.name}}' bindtap='click'>
+        <view class='classfication-view' wx:if="{{item._id<5}}" data-id='{{item.id}}' data-name='{{item.name}}' bindtap='click'>
           <view class='image' style='background:{{item.style}}'>
             <image src="{{item.url}}" />
           </view>

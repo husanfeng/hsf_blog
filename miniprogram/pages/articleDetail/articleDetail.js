@@ -98,6 +98,9 @@ Page({
     db.collection('article').doc(_this.data.article_id)
       .get({
         success: function(res) {
+          wx.setNavigationBarTitle({
+            title: res.data.title
+          })
           wx.setStorageSync("articleDetail", res.data) // 提交評論的時候要用到
           _this.setData({
             articleDetail: res.data

@@ -39,6 +39,7 @@ Page({
   },
   getUserOpenId() {
     var _this = this;
+  
     wx.showLoading({
       title: '正在加载...',
     })
@@ -69,7 +70,7 @@ Page({
         dbName: 'article',
         pageIndex: _this.data.page,
         pageSize: _this.data.size,
-        orderBy: 'read_count'
+        orderBy: 'create_time'
       },
       success: res => {
         // res.data 包含该记录的数据
@@ -110,7 +111,7 @@ Page({
     wx.showLoading({
       title: '正在加载...',
     })
-    db.collection('top_images').get({
+    db.collection('top_images').orderBy("_id",'asc').get({
       success: function(res) {
         // res.data 包含该记录的数据
         console.log(res.data)
@@ -133,12 +134,7 @@ Page({
       url: '../articleList/articleList?id=' + id + '&name=' + name,
     })
   },
-  onShow() {
-    // this.setData({
-    //   articleList: []
-    // })
-
-  },
+  onShow() {},
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
