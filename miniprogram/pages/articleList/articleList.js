@@ -15,7 +15,7 @@ Page({
     userInfo: {},
     dbName: '',
     isShowNoData: false,
-
+    orderBy:'',
 
     loading: false, // 正在加载
     loadingHasData: true, //是否还有有数据
@@ -44,6 +44,7 @@ Page({
       this.setData({
         dbName: 'browsing_volume',
         userInfo: userInfo,
+        orderBy:'visit_time',
         filter: {
           openid: openid
         }
@@ -53,6 +54,7 @@ Page({
       this.setData({
         dbName: 'poll',
         userInfo: userInfo,
+        orderBy:'poll_time',
         filter: {
           openid: openid
         }
@@ -62,6 +64,7 @@ Page({
       this.setData({
         dbName: 'article',
         userInfo: userInfo,
+        orderBy: 'create_time',
         filter: {
           class_id: parseInt(class_id)
         }
@@ -122,7 +125,7 @@ Page({
         pageIndex: _this.data.page,
         pageSize: _this.data.size,
         filter: _this.data.filter,
-        orderBy: 'read_count',
+        orderBy: _this.data.orderBy,
       },
       success: res => {
         // res.data 包含该记录的数据

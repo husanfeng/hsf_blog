@@ -7,8 +7,8 @@ App({
   //声明Markdown文件目录路径
   docDir: 'https://www.vvadd.com/wxml_demo/',
   onLaunch: function() {
-    var env = 'cfxy-mall-pxwnv';
-    // var env = 'hsf-blog-product-jqt54'
+    // var env = 'cfxy-mall-pxwnv';
+    var env = 'hsf-blog-product-jqt54'
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
