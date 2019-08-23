@@ -1,13 +1,26 @@
-# 云开发 quickstart
-
-这是云开发的快速启动指引，其中演示了如何上手使用云开发的三大基础能力：
-
-- 数据库：一个既可在小程序前端操作，也能在云函数中读写的 JSON 文档型数据库
-- 文件存储：在小程序前端直接上传/下载云端文件，在云开发控制台可视化管理
-- 云函数：在云端运行的代码，微信私有协议天然鉴权，开发者只需编写业务逻辑代码
-
-## 参考文档
-
-- [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
-
-"# hsf_blog" 
+<p align="center">
+  <img width="200" src="https://6873-hsf-blog-product-jqt54-1256640731.tcb.qcloud.la/github.md/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%A0%81.jpg?sign=f4cad9f1d9332de97807ceb5a7e53d5f&t=1566538869">
+</p>
+## 当前版本:v1.0.0
+## 简介
+此小程序使用的是腾讯的云开发技术，没有繁琐的后台配置，只需操作云数据库就可以对数据进行增删改查。
+这个小程序主要为了总结和记录前端一些比较前沿的技术，纯属个人爱好。。。
+## 功能
+- 文章点赞
+- 文章分类展示
+- 文章品论及回复
+- 查询自己的浏览的文章及点赞的文章
+- 记录用户的浏览量及点赞量，品论记录
+- 文章详情富文本编辑，只需在后台添加文章即可
+## 效果展示
+#### 首页
+<img src="https://6873-hsf-blog-product-jqt54-1256640731.tcb.qcloud.la/github.md/%E9%A6%96%E9%A1%B5.png?sign=cf8dd69a61e95842104534eb276ff01e&t=1566539614" width="365" height="619"/>  
+#### 专题
+<img src="https://6873-hsf-blog-product-jqt54-1256640731.tcb.qcloud.la/github.md/%E5%88%86%E7%B1%BB.png?sign=e87741c9a66f0dd2edffae12f4909ffa&t=1566539648" width="365" height="619"/> 
+####  排行榜
+![image](https://6873-hsf-blog-product-jqt54-1256640731.tcb.qcloud.la/github.md/%E6%8E%92%E8%A1%8C%E6%A6%9C.png?sign=885d0db97f89edb5e77b6fcc61cfed20&t=1566539676)
+####  我的页面
+<img src="https://6873-hsf-blog-product-jqt54-1256640731.tcb.qcloud.la/github.md/%E6%88%91%E7%9A%84.png?sign=e3c703885506e6fa2a529e5a0eca390a&t=1566539710" width="365" height="619"/> 
+####  文章详情页面
+<img src="https://6873-hsf-blog-product-jqt54-1256640731.tcb.qcloud.la/github.md/%E8%AF%A6%E6%83%85%E9%A1%B5%E9%9D%A21.png?sign=9eb592beda04cda2bad2d1d9c2f45020&t=1566539731" width="365" height="619"/> <img src="https://6873-hsf-blog-product-jqt54-1256640731.tcb.qcloud.la/github.md/%E8%AF%A6%E6%83%85%E9%A1%B5%E9%9D%A22.png?sign=3e5e70708b9b40308b5e4d02932736ff&t=1566539750" width="365" height="619"/>
+- 后期持续更新功能页面
