@@ -9,12 +9,14 @@
     <view class='function'>
       <block wx:for="{{functionList}}" wx:key="*this">
         <view class='function-item' data-name='{{item}}' bindtap='click'>
-          <view class='name'>{{item}}</view>
+          <button class="me-feedback" open-type="feedback" wx:if="{{item == '意见反馈'}}">意见反馈</button>
+          <view class='name' wx:else>{{item}}</view>
           <image class='img' src="../../images/right-arrow.png" />
         </view>
       </block>
     </view>
   </view>
+
   <view wx:if="{{isShowAddPersonView}}">
     <add-person showText="{{showText}}" bind:confirm='confirm' bind:cancel='cancel' />
   </view>
