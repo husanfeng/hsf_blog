@@ -17,7 +17,8 @@
     "pages/addFunction/addFunction",
     "pages/deployFunctions/deployFunctions",
     "pages/chooseLib/chooseLib",
-    "pages/openapi/openapi"
+    "pages/openapi/openapi",
+    "pages/updateLogs/updateLogs"
   ],
   "window": {
     "backgroundColor": "#f6f6f6",

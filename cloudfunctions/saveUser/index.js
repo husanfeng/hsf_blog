@@ -14,6 +14,7 @@ exports.main = async(event, context) => {
       data: {
         _id: event.openid,
         loginTime: event.loginTime,
+        lastLoginTime: event.lastLoginTime,
         avatarUrl: event.avatarUrl,
         city: event.city,
         country: event.country,

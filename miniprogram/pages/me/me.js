@@ -49,10 +49,10 @@ Page({
       wx.navigateTo({
         url: '../about-me/about-me'
       })
-    } else {
-      wx.showToast({
-        title: '正在开发中...',
-        icon: 'none'
+    } 
+    else if (type == "更新日志"){
+      wx.navigateTo({
+        url: '../updateLogs/updateLogs'
       })
     }
   },
