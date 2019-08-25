@@ -65,6 +65,8 @@ Page({
               this.queryUser(openid, (isLoad) => {
                 if (isLoad) {
                   this.saveUser(res.userInfo);
+                }else{
+                  this.updateUser();
                 }
               })
             }
@@ -340,10 +342,30 @@ Page({
       complete: function(res) {}
     })
   },
+  updateUser(){
+    // 调用云函数
+    var openid = this.data.openid;
+    var loginTime = util.formatTime(new Date());
+    wx.cloud.callFunction({
+      name: 'updateUser',
+      data: {
+        _id: openid,
+        lastLoginTime: lastLoginTime
+      },
+      success: res => {
+        // console.log("=" + res.result.openid)
+      },
+      fail: err => {
+        console.error('[云函数]调用失败', err)
+      },
+      complete: res => { }
+    })
+  },
   saveUser(data) {
     // 调用云函数
     var openid = this.data.openid;
     var loginTime = util.formatTime(new Date());
+    data.lastLoginTime = loginTime;
     data.loginTime = loginTime;
     data.openid = openid;
     wx.cloud.callFunction({
@@ -780,9 +802,11 @@ Page({
       this.getArticleDetail(() => {
         this.recordBrowsingVolume();
       });
-      this.queryUser(this.data.openid, (isLoad) => {
+      this.queryUser(openid, (isLoad) => {
         if (isLoad) {
-          this.saveUser(e.detail.userInfo);
+          this.saveUser(res.userInfo);
+        } else {
+          this.updateUser();
         }
       })
     }

@@ -111,7 +111,7 @@
         <label>点赞</label>
       </view>
        <view class='poll' bindtap="onCreatePoster">
-        <image src="../../images/poll-dones.png"></image>
+        <image src="../../images/poster.png"></image>
         <label>生成海报</label>
       </view>
       <view class='' bindtap="clickComment">
