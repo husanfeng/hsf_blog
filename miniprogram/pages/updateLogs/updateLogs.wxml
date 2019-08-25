@@ -1,0 +1,23 @@
+<!--pages/updateLogs/updateLogs.wxml-->
+<view class="update-logs">
+  <view class="list">
+    <view class="item" wx:for="{{dataList}}" wx:for-item="father" wx:key="{{item.id}}">
+      <view class="left" wx:if="{{father.flag == 'left'}}">
+        <text class="time">{{father.time}}</text>
+        <view class="child-item" wx:for="{{father.content}}" wx:for-item="child" wx:key="{{child}}">
+          <text>{{child}}</text>
+        </view>
+      </view>
+      <view class="left-space" wx:if="{{father.flag == 'right'}}"></view>
+      <view class="center"></view>
+       <view class="right-space" wx:if="{{father.flag == 'left'}}">
+      </view>
+      <view class="right" wx:if="{{father.flag == 'right'}}">
+        <text class="time">{{father.time}}</text>
+        <view class="child-item" wx:for="{{father.content}}" wx:for-item="child" wx:key="{{child}}">
+          <text>{{child}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
