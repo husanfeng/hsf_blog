@@ -8,7 +8,7 @@ page {
   height: 80rpx;
   text-align: center;
   line-height: 80rpx;
-  border-bottom: 2rpx solid #e6e6e6;
+  box-shadow: 1rpx 5rpx 5rpx #E6E6E6;
   background-color: #fff;
   display: flex;
   justify-content: space-around;
