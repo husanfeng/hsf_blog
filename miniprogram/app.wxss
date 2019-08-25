@@ -1,5 +1,6 @@
 /**app.wxss**/
 /**基础风格样式**/
+/* @import "colorui.wxss"; */
 @import '/towxml/style/main.wxss';
 .load-done {
   display: flex;

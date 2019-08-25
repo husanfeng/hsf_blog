@@ -1,5 +1,7 @@
 // pages/articleDetail/articleDetail.js
 const util = require("../../utils/util.js")
+// import Poster from '../../utils/poster';
+import Poster from 'wxa-plugin-canvas/poster/poster.js';
 const app = getApp()
 const db = wx.cloud.database({
   env: app.env
@@ -9,6 +11,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isShow: false,
+    isShowPosterModal:"",
+    posterImageUrl:"",
+
+
+    leftButtonText: '返回首页',
+    rightButtonText: "登录",
     isShowPollAnimation: false,
     isPollDone: false,
     isShowAddPersonView: false,
@@ -20,15 +29,21 @@ Page({
     openid: '',
     isLoadingAddPoll: true,
     commentList: [],
-
+    isLoad: false,
     article_id: '',
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // var shareId = options.article_id ? options.article_id : ""
     var article_id = options.article_id ? options.article_id : ""
+    var openid = wx.getStorageSync("openid")
+    var userInfo = wx.getStorageSync("userInfo");
+    this.setData({
+      article_id: article_id,
+      userInfo: userInfo,
+      openid: openid
+    })
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -37,57 +52,345 @@ Page({
           wx.getUserInfo({
             success: res => {
               this.setData({
-                userInfo: res.userInfo
+                userInfo: res.userInfo,
+                isLoad: true
               })
               wx.setStorageSync("userInfo", res.userInfo)
-              // app.globalData.userInfo = res.userInfo
+              this.getPollList() // 获取点赞列表
+              this.getIsPoll() // 是否点赞
+              this.queryComment(); // 查询评论列表
+              this.getArticleDetail(() => {
+                this.recordBrowsingVolume();
+              });
+              this.queryUser(openid, (isLoad) => {
+                if (isLoad) {
+                  this.saveUser(res.userInfo);
+                }
+              })
+            }
+          })
+        } else {
+          this.setData({
+            isLoad: false,
+            showText: '登录获取更多权限',
+            isShowAddPersonView: true
+          });
+        }
+      }
+    })
+  },
+  /**
+   * 新增文章二维码并返回临时url
+   * @param {*} id 
+   * @param {*} postId 
+   * @param {*} comments 
+   */
+  addPostQrCode(article_id, timestamp) {
+    return wx.cloud.callFunction({
+      name: 'addPostQrCode',
+      data: {
+        timestamp: timestamp,
+        article_id: article_id
+      }
+    })
+  },
+  /**
+   * 获取海报的文章二维码url
+   * @param {*} id 
+   */
+   getReportQrCodeUrl(id) {
+    return wx.cloud.getTempFileURL({
+      fileList: [{
+        fileID: id,
+        maxAge: 60 * 60, // one hour
+      }]
+    })
+  },
+  /**
+    * 生成海报成功-回调
+    * @param {} e 
+    */
+  onPosterSuccess(e) {
+    const { detail } = e;
+    this.setData({
+      posterImageUrl: detail,
+      isShowPosterModal: true
+    })
+    console.info(detail)
+  },
+  /**
+   * 生成海报失败-回调
+   * @param {*} err 
+   */
+  onPosterFail(err) {
+    console.info(err)
+  },
+  /**
+   * 生成海报
+   */
+  onCreatePoster: async function () {
+    let that = this;
+    if (that.data.posterImageUrl !== "") {
+      that.setData({
+        isShowPosterModal: true
+      })
+      return;
+    }
+    let posterConfig = {
+      width: 750,
+      height: 1200,
+      backgroundColor: '#fff',
+      debug: false
+    }
+    var blocks = [
+      {
+        width: 690,
+        height: 808,
+        x: 30,
+        y: 183,
+        borderWidth: 2,
+        borderColor: '#f0c2a0',
+        borderRadius: 20,
+      },
+      {
+        width: 634,
+        height: 74,
+        x: 59,
+        y: 680,
+        backgroundColor: '#fff',
+        opacity: 0.5,
+        zIndex: 100,
+      }
+    ]
+    var texts = [];
+    texts = [
+      {
+        x: 113,
+        y: 61,
+        baseLine: 'middle',
+        text: that.data.userInfo.nickName,
+        fontSize: 32,
+        color: '#8d8d8d',
+        width: 570,
+        lineNum: 1
+      },
+      {
+        x: 32,
+        y: 113,
+        baseLine: 'top',
+        text: '发现一篇很有意思的文章',
+        fontSize: 38,
+        color: '#080808',
+      },
+      {
+        x: 59,
+        y: 770,
+        baseLine: 'middle',
+        text: that.data.articleDetail.title,
+        fontSize: 38,
+        color: '#080808',
+        marginLeft: 30,
+        width: 570,
+        lineNum: 2,
+        lineHeight: 50
+      },
+      {
+        x: 59,
+        y: 875,
+        baseLine: 'middle',
+        text: that.data.articleDetail.summary,
+        fontSize: 28,
+        color: '#929292',
+        width: 560,
+        lineNum: 2,
+        lineHeight: 50
+      },
+      {
+        x: 315,
+        y: 1100,
+        baseLine: 'top',
+        text: '长按识别小程序码,立即阅读',
+        fontSize: 28,
+        color: '#929292',
+      }
+    ];
+
+    let imageUrl = that.data.articleDetail.image_url
+    // imageUrl = imageUrl.replace('http://', 'https://')
+    let qrCode = await that.getReportQrCodeUrl(that.data.articleDetail.article_id);
+    let qrCodeUrl = qrCode.fileList[0].tempFileURL
+    if (qrCodeUrl == "") {
+      let addReult = await that.addPostQrCode(that.data.articleDetail.article_id, that.data.articleDetail.article_id)
+      qrCodeUrl = addReult.result[0].tempFileURL||""
+    }
+    console.info(qrCodeUrl)
+    var images = [
+      {
+        width: 62,
+        height: 62,
+        x: 32,
+        y: 30,
+        borderRadius: 62,
+        url: that.data.userInfo.avatarUrl, //用户头像
+      },
+      {
+        width: 634,
+        height: 475,
+        x: 59,
+        y: 210,
+        url: imageUrl,//海报主图
+      },
+      {
+        width: 220,
+        height: 220,
+        x: 70,
+        y: 1000,
+        url: qrCodeUrl,//二维码的图
+      }
+    ];
+
+    posterConfig.blocks = blocks;//海报内图片的外框
+    posterConfig.texts = texts; //海报的文字
+    posterConfig.images = images;
+
+    that.setData({ posterConfig: posterConfig }, () => {
+      Poster.create(true);    //生成海报图片
+    });
+
+  },
+  /**
+  * 隐藏海报弹窗
+  * @param {*} e 
+  */
+  hideModal(e) {
+    this.setData({
+      isShowPosterModal: false
+    })
+  },
+  /**
+  * 保存海报图片
+  */
+  savePosterImage: function () {
+    let that = this
+    wx.saveImageToPhotosAlbum({
+      filePath: that.data.posterImageUrl,
+      success(result) {
+        console.log(result)
+        wx.showModal({
+          title: '提示',
+          content: '二维码海报已存入手机相册，赶快分享到朋友圈吧',
+          showCancel: false,
+          success: function (res) {
+            that.setData({
+              isShowPosterModal: false,
+              isShow: false
+            })
+          }
+        })
+      },
+      fail: function (err) {
+        console.log(err);
+        if (err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
+          console.log("再次发起授权");
+          wx.showModal({
+            title: '用户未授权',
+            content: '如需保存海报图片到相册，需获取授权.是否在授权管理中选中“保存到相册”?',
+            showCancel: true,
+            success: function (res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+                wx.openSetting({
+                  success: function success(res) {
+                    console.log('打开设置', res.authSetting);
+                    wx.openSetting({
+                      success(settingdata) {
+                        console.log(settingdata)
+                        if (settingdata.authSetting['scope.writePhotosAlbum']) {
+                          console.log('获取保存到相册权限成功');
+                        } else {
+                          console.log('获取保存到相册权限失败');
+                        }
+                      }
+                    })
+                  }
+                });
+              }
             }
           })
         }
       }
-    })
-    //  var articleDetail = wx.getStorageSync("articleDetail");
-    var openid = wx.getStorageSync("openid")
-    var userInfo = wx.getStorageSync("userInfo");
-    this.setData({
-      //  articleDetail: articleDetail,
-      article_id: article_id,
-      userInfo: userInfo,
-      openid: openid
-    })
-    this.getPollList() // 获取点赞列表
-    this.getIsPoll() // 是否点赞
-    // this.initPage(() => {
-    //   console.log("執行完畢----")
-    // });
-    this.getArticleDetail(() => {
-      this.recordBrowsingVolume();
     });
   },
-  // initPage: function (callback) {
-  //   this.getArticleDetail(() => {
-  //     this.recordBrowsingVolume(callback);
-  //   });
-  // },
+  queryUser(openid, callback) {
+    var _this = this;
+    db.collection('user').where({
+      _id: openid
+    }).get({
+      success: function(res) {
+        if (res.data.length > 0) {
+          callback(false);
+        } else {
+          callback(true);
+        }
+
+      },
+      fail: function(res) {
+
+      },
+      complete: function(res) {}
+    })
+  },
+  saveUser(data) {
+    // 调用云函数
+    var openid = this.data.openid;
+    var loginTime = util.formatTime(new Date());
+    data.loginTime = loginTime;
+    data.openid = openid;
+    wx.cloud.callFunction({
+      name: 'saveUser',
+      data: data,
+      success: res => {
+        // console.log("=" + res.result.openid)
+      },
+      fail: err => {
+        console.error('[云函数]调用失败', err)
+      },
+      complete: res => {}
+    })
+  },
   onShareAppMessage: function(res) {
     var _this = this
-    if (res.from == 'button') {
-      //按钮授权 调用share
-      //设置分享参数
-      // var article_id = _this.data.articleDetail.article_id;
-    }
     return {
       title: '',
-      path: '/pages/articleDetail/articleDetail?article_id=' + _this.data.articleDetail.article_id,
+      path: '/pages/home/home?article_id=' + _this.data.articleDetail.article_id,
       //这里的path是当前页面的path，必须是以 / 开头的完整路径，后面拼接的参数 是分享页面需要的参数  不然分享出去的页面可能会没有内容
       //  imageUrl: "",
       //  desc: '关公面前耍大刀',
       success: (res) => {
         console.log("转发成功", res);
-        console.log("成功了")
+        wx.showToast({
+          title: '转发成功',
+          icon: 'success',
+          image: '',
+          duration: 1000,
+          mask: true,
+          success: function(res) {},
+          fail: function(res) {},
+          complete: function(res) {},
+        })
       },
       fail: (res) => {
         console.log("转发失败", res);
+        wx.showToast({
+          title: '转发失败',
+          icon: 'fail',
+          image: '',
+          duration: 1000,
+          mask: true,
+          success: function(res) {},
+          fail: function(res) {},
+          complete: function(res) {},
+        })
       }
     }
 
@@ -340,7 +643,7 @@ Page({
       success: res => {
         console.log("updateUserVisitActicle 后执行完----");
         console.log("更新访问时间---")
-      //  callback();
+        //  callback();
       },
       fail: err => {
         console.error('[云函数]调用失败', err)
@@ -368,16 +671,14 @@ Page({
         // res.data 包含该记录的数据
         console.log("addUserVisitActicle 后执行完----");
         console.log("新增用户访问文章列表记录---")
-       // callback();
+        // callback();
       },
       fail: err => {
         console.error('[云函数]调用失败', err)
       },
       complete: res => {}
     })
-
   },
-
   /**
    * 查询评论列表
    */
@@ -432,13 +733,11 @@ Page({
     }
     this.toCommentPage(3)
   },
-
   toCommentPage(type) {
     wx.navigateTo({
       url: '../comment/comment?type=' + type,
     })
   },
-
   clickFatherConter(e) {
     if (this.data.userInfo.nickName == null || this.data.userInfo.nickName == undefined) {
       this.setData({
@@ -468,18 +767,33 @@ Page({
     this.toCommentPage(2)
   },
   confirm(e) {
-    // console.log(e.detail.userInfo)
-    this.setData({
-      isShowAddPersonView: false,
-      userInfo: e.detail.userInfo
-    })
-    wx.setStorageSync("userInfo", e.detail.userInfo)
-    //app.globalData.userInfo = e.detail.userInfo
+    if (e.detail.userInfo) {
+      this.setData({
+        isLoad: true,
+        isShowAddPersonView: false,
+        userInfo: e.detail.userInfo
+      })
+      wx.setStorageSync("userInfo", e.detail.userInfo)
+      this.getPollList() // 获取点赞列表
+      this.getIsPoll() // 是否点赞
+      this.queryComment(); // 查询评论列表
+      this.getArticleDetail(() => {
+        this.recordBrowsingVolume();
+      });
+      this.queryUser(this.data.openid, (isLoad) => {
+        if (isLoad) {
+          this.saveUser(e.detail.userInfo);
+        }
+      })
+    }
   },
   cancel(e) {
     //console.log(e)
     this.setData({
       isShowAddPersonView: false
+    })
+    wx.reLaunch({
+      url: '../home/home',
     })
   },
   /**
@@ -493,7 +807,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.queryComment(); // 查询评论列表
+    if (this.data.isLoad) {
+      this.queryComment(); // 查询评论列表
+    }
   },
 
   /**
