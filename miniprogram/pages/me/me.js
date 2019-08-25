@@ -10,8 +10,8 @@ Page({
     takeSession: false,
     requestResult: '',
     functionList: ["我的浏览", "我的点赞", "意见反馈", "更新日志", "关于我"],
-    isShowAddPersonView:false,
-    showText: '登录后可使用更多功能',
+    isShowAddPersonView: false,
+    showText: '登录获取更多权限',
   },
   onLoad: function() {
     if (!wx.cloud) {
@@ -29,10 +29,9 @@ Page({
                 userInfo: res.userInfo
               })
               wx.setStorageSync("userInfo", res.userInfo)
-              //  app.globalData.userInfo = res.userInfo
             }
           })
-        }else{
+        } else {
           this.setData({
             isShowAddPersonView: true
           });
@@ -68,18 +67,21 @@ Page({
     }
   },
   confirm(e) {
-    // console.log(e.detail.userInfo)
-    this.setData({
-      isShowAddPersonView: false,
-      userInfo: e.detail.userInfo
-    })
     wx.setStorageSync("userInfo", e.detail.userInfo)
-    //app.globalData.userInfo = e.detail.userInfo
+    if (e.detail.userInfo){
+      this.setData({
+        isShowAddPersonView: false,
+        userInfo: e.detail.userInfo
+      })
+    }
   },
   cancel(e) {
     //console.log(e)
     this.setData({
       isShowAddPersonView: false
     })
+  },
+  onShow() {
+   
   },
 })

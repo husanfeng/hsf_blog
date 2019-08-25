@@ -17,7 +17,7 @@
         </view>
       </block>
     </view>
-    <article-list-component articleList='{{dataList}}'></article-list-component>
+    <article-list-component articleList='{{dataList}}' navigateToParam='{{navigateToParam}}'></article-list-component>
     <view class="loading" hidden="{{!loading}}">
       <image src="../../images/load-more.gif"></image>
     </view>

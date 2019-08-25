@@ -1,12 +1,21 @@
-
 Component({
   /**
    * 组件的属性列表
+   * leftButtonText
+   * rightButtonText
    */
   properties: {
     showText: {
       type: String,//类型
       value: ''//默认值
+    },
+     leftButtonText: {
+      type: String,//类型
+      value: '暂不登录'//默认值
+    },
+     rightButtonText: {
+      type: String,//类型
+      value: '登录'//默认值
     }
   },
 

@@ -6,6 +6,7 @@ const db = wx.cloud.database({
 })
 Page({
   data: {
+    navigateToParam: "",
     classficationList: [],
     articleList: [],
     imgUrls: [],
@@ -20,26 +21,58 @@ Page({
     page: 1,
     dataList: [],
   },
-  onLoad: function() {
+  onLoad: function(option) {
+    console.log([]===![])
+    // wx.showToast({
+    //   title: decodeURIComponent(option.scene),
+    //   icon: 'success',
+    //   image: '',
+    //   duration: 5000,
+    //   mask: true,
+    //   success: function(res) {},
+    //   fail: function(res) {},
+    //   complete: function(res) {},
+    // })
+    if (option.scene) {
+      var blogId = decodeURIComponent(option.scene);
+      this.setData({
+        navigateToParam: blogId
+      })
+    }
+    if (option.article_id) {
+      this.setData({
+        navigateToParam: option.article_id
+      })
+    }
     this.getUserOpenId()
     this.initSwiper();
     this.initClassfication();
     this.fetchSearchList(true);
-    var date = new Date('2019-07-27 08:25:40');
-    // 有三种方式获取
-    var time1 = date.getTime();
-    var time2 = date.valueOf();
-    var time3 = Date.parse(date);
-    time3 = time3 / 1000;
+
+
+
+
+    // var date = new Date('2019-07-27 08:25:40');
+    // // 有三种方式获取
+    // var time1 = date.getTime();
+    // var time2 = date.valueOf();
+    // var time3 = Date.parse(date);
+    // time3 = time3 / 1000;
     // console.log(time1);//1398250549123
     // console.log(time2);//1398250549123
     // console.log(time3);//1398250549000
-    var timedes = util.getDiffTime(time3);
-    console.log("时间=" + timedes);
+    // var timedes = util.getDiffTime(time3);
+    // console.log("时间=" + timedes);
+  },
+  scanCode() {
+    wx.scanCode({
+      success(res) {
+        console.log(res)
+      }
+    })
   },
   getUserOpenId() {
     var _this = this;
-  
     wx.showLoading({
       title: '正在加载...',
     })
@@ -60,7 +93,7 @@ Page({
       }
     })
   },
-  
+
   initArticleList(callback) {
     var _this = this;
     // 调用云函数
@@ -111,7 +144,7 @@ Page({
     wx.showLoading({
       title: '正在加载...',
     })
-    db.collection('top_images').orderBy("_id",'asc').get({
+    db.collection('top_images').orderBy("_id", 'asc').get({
       success: function(res) {
         // res.data 包含该记录的数据
         console.log(res.data)
