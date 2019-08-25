@@ -48,10 +48,6 @@ Page({
     this.initSwiper();
     this.initClassfication();
     this.fetchSearchList(true);
-
-
-
-
     // var date = new Date('2019-07-27 08:25:40');
     // // 有三种方式获取
     // var time1 = date.getTime();
@@ -179,6 +175,8 @@ Page({
       page: 1,
       dataList: [],
     });
+    this.initSwiper();
+    this.initClassfication();
     this.fetchSearchList(true);
   },
   /**
