@@ -62,7 +62,7 @@ Component({
             })
         },
         onCreate(reset = false) {
-            !this.data.hideLoading && wx.showLoading({ mask: true, title: '生成中' });
+            !this.data.hideLoading && wx.showLoading({ mask: true, title: '生成中...' });
             return this.downloadResource(typeof reset === 'boolean' && reset).then(() => {
                 !this.data.hideLoading && wx.hideLoading();
                 const poster = this.selectComponent('#poster');

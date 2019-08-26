@@ -15,10 +15,10 @@ exports.main = async(event, context) => {
     console.log(result)
     if (result.errCode === 0) {
       let upload = await cloud.uploadFile({
-        cloudPath: event.article_id + '.png',
+        cloudPath: "article/poster/"+event.article_id + '.png',
         fileContent: result.buffer,
       })
-      // await db.collection("mini_posts").doc(event.postId).update({
+      // await db.collection("poster").doc(event.article_id).update({
       //   data: {
       //     qrCode: upload.fileID
       //   }

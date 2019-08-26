@@ -131,11 +131,15 @@ Page({
    * 生成海报
    */
   onCreatePoster: async function () {
+    wx.showLoading({
+      title: '生成中...',
+    })
     let that = this;
     if (that.data.posterImageUrl !== "") {
       that.setData({
         isShowPosterModal: true
       })
+      wx.hideLoading();
       return;
     }
     let posterConfig = {
@@ -257,6 +261,7 @@ Page({
 
     that.setData({ posterConfig: posterConfig }, () => {
       Poster.create(true);    //生成海报图片
+      wx.hideLoading();
     });
 
   },
@@ -345,20 +350,22 @@ Page({
   updateUser(){
     // 调用云函数
     var openid = this.data.openid;
-    var loginTime = util.formatTime(new Date());
+    var lastLoginTime = util.formatTime(new Date());
     wx.cloud.callFunction({
-      name: 'updateUser',
+      name: 'updateUsers',
       data: {
         _id: openid,
         lastLoginTime: lastLoginTime
       },
       success: res => {
-        // console.log("=" + res.result.openid)
+        console.log("=" + res)
       },
       fail: err => {
         console.error('[云函数]调用失败', err)
       },
-      complete: res => { }
+      complete: res => {
+        console.log("=" + res)
+       }
     })
   },
   saveUser(data) {
