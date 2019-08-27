@@ -24,6 +24,7 @@ page {
   width: 90rpx;
   height: 90rpx;
   border-radius: 50%;
+  border: 1rpx #fef2ce solid;
 }
 
 .special .item .image-background .left {
@@ -34,13 +35,12 @@ page {
 .special .item .right {
   display: flex;
   flex-direction: column;
-  font-size: 18rpx;
   margin-top: 20rpx;
 }
 
 .special .item .right .title {
   margin-bottom: 5rpx;
-  font-size: 20rpx;
+  font-size: 30rpx;
 }
 
 .special .item .right .article-num {
