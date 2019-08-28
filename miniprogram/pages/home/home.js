@@ -44,7 +44,7 @@ Page({
         navigateToParam: option.article_id
       })
     }
-    this.getUserOpenId()
+   // this.getUserOpenId()
     this.initSwiper();
     this.initClassfication();
     this.fetchSearchList(true);
