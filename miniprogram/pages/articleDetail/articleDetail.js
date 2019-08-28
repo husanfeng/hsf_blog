@@ -12,8 +12,8 @@ Page({
    */
   data: {
     isShow: false,
-    isShowPosterModal:"",
-    posterImageUrl:"",
+    isShowPosterModal: "",
+    posterImageUrl: "",
 
 
     leftButtonText: '返回首页',
@@ -56,19 +56,13 @@ Page({
                 isLoad: true
               })
               wx.setStorageSync("userInfo", res.userInfo)
-              this.getPollList() // 获取点赞列表
-              this.getIsPoll() // 是否点赞
-              this.queryComment(); // 查询评论列表
-              this.getArticleDetail(() => {
-                this.recordBrowsingVolume();
-              });
-              this.queryUser(openid, (isLoad) => {
-                if (isLoad) {
-                  this.saveUser(res.userInfo);
-                }else{
-                  this.updateUser();
-                }
-              })
+              if (this.data.openid && this.data.openid != "") {
+                this.initData(res.userInfo);
+              } else {
+                this.getUserOpenId(() => {
+                  this.initData(res.userInfo);
+                })
+              }
             }
           })
         } else {
@@ -78,6 +72,47 @@ Page({
             isShowAddPersonView: true
           });
         }
+      }
+    })
+  },
+  initData(userInfo) {
+    var openid = wx.getStorageSync("openid")
+    this.getPollList() // 获取点赞列表
+    this.getIsPoll() // 是否点赞
+    this.queryComment(); // 查询评论列表
+    this.getArticleDetail(() => {
+      this.recordBrowsingVolume();
+    });
+    this.queryUser(openid, (isLoad) => {
+      if (isLoad) {
+        this.saveUser(userInfo);
+      } else {
+        this.updateUser();
+      }
+    })
+  },
+  getUserOpenId(callback) {
+    var _this = this;
+    wx.showLoading({
+      title: '正在加载...',
+    })
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'getUserOpenId',
+      data: {},
+      success: res => {
+        console.log("用户的openID=" + res.result.openid)
+        wx.setStorageSync("openid", res.result.openid)
+        this.setData({
+          openid: res.result.openid
+        })
+        callback();
+      },
+      fail: err => {
+        console.error('[云函数]调用失败', err)
+      },
+      complete: res => {
+        wx.hideLoading()
       }
     })
   },
@@ -100,7 +135,7 @@ Page({
    * 获取海报的文章二维码url
    * @param {*} id 
    */
-   getReportQrCodeUrl(id) {
+  getReportQrCodeUrl(id) {
     return wx.cloud.getTempFileURL({
       fileList: [{
         fileID: id,
@@ -109,11 +144,13 @@ Page({
     })
   },
   /**
-    * 生成海报成功-回调
-    * @param {} e 
-    */
+   * 生成海报成功-回调
+   * @param {} e 
+   */
   onPosterSuccess(e) {
-    const { detail } = e;
+    const {
+      detail
+    } = e;
     this.setData({
       posterImageUrl: detail,
       isShowPosterModal: true
@@ -130,7 +167,7 @@ Page({
   /**
    * 生成海报
    */
-  onCreatePoster: async function () {
+  onCreatePoster: async function() {
     wx.showLoading({
       title: '生成中...',
     })
@@ -148,8 +185,7 @@ Page({
       backgroundColor: '#fff',
       debug: false
     }
-    var blocks = [
-      {
+    var blocks = [{
         width: 690,
         height: 808,
         x: 30,
@@ -169,8 +205,7 @@ Page({
       }
     ]
     var texts = [];
-    texts = [
-      {
+    texts = [{
         x: 113,
         y: 61,
         baseLine: 'middle',
@@ -227,11 +262,10 @@ Page({
     let qrCodeUrl = qrCode.fileList[0].tempFileURL
     if (qrCodeUrl == "") {
       let addReult = await that.addPostQrCode(that.data.articleDetail.article_id, that.data.articleDetail.article_id)
-      qrCodeUrl = addReult.result[0].tempFileURL||""
+      qrCodeUrl = addReult.result[0].tempFileURL || ""
     }
     console.info(qrCodeUrl)
-    var images = [
-      {
+    var images = [{
         width: 62,
         height: 62,
         x: 32,
@@ -244,40 +278,42 @@ Page({
         height: 475,
         x: 59,
         y: 210,
-        url: imageUrl,//海报主图
+        url: imageUrl, //海报主图
       },
       {
         width: 220,
         height: 220,
         x: 70,
         y: 1000,
-        url: qrCodeUrl,//二维码的图
+        url: qrCodeUrl, //二维码的图
       }
     ];
 
-    posterConfig.blocks = blocks;//海报内图片的外框
+    posterConfig.blocks = blocks; //海报内图片的外框
     posterConfig.texts = texts; //海报的文字
     posterConfig.images = images;
 
-    that.setData({ posterConfig: posterConfig }, () => {
-      Poster.create(true);    //生成海报图片
+    that.setData({
+      posterConfig: posterConfig
+    }, () => {
+      Poster.create(true); //生成海报图片
       wx.hideLoading();
     });
 
   },
   /**
-  * 隐藏海报弹窗
-  * @param {*} e 
-  */
+   * 隐藏海报弹窗
+   * @param {*} e 
+   */
   hideModal(e) {
     this.setData({
       isShowPosterModal: false
     })
   },
   /**
-  * 保存海报图片
-  */
-  savePosterImage: function () {
+   * 保存海报图片
+   */
+  savePosterImage: function() {
     let that = this
     wx.saveImageToPhotosAlbum({
       filePath: that.data.posterImageUrl,
@@ -287,7 +323,7 @@ Page({
           title: '提示',
           content: '二维码海报已存入手机相册，赶快分享到朋友圈吧',
           showCancel: false,
-          success: function (res) {
+          success: function(res) {
             that.setData({
               isShowPosterModal: false,
               isShow: false
@@ -295,7 +331,7 @@ Page({
           }
         })
       },
-      fail: function (err) {
+      fail: function(err) {
         console.log(err);
         if (err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
           console.log("再次发起授权");
@@ -303,7 +339,7 @@ Page({
             title: '用户未授权',
             content: '如需保存海报图片到相册，需获取授权.是否在授权管理中选中“保存到相册”?',
             showCancel: true,
-            success: function (res) {
+            success: function(res) {
               if (res.confirm) {
                 console.log('用户点击确定')
                 wx.openSetting({
@@ -347,7 +383,7 @@ Page({
       complete: function(res) {}
     })
   },
-  updateUser(){
+  updateUser() {
     // 调用云函数
     var openid = this.data.openid;
     var lastLoginTime = util.formatTime(new Date());
@@ -365,7 +401,7 @@ Page({
       },
       complete: res => {
         console.log("=" + res)
-       }
+      }
     })
   },
   saveUser(data) {
@@ -803,19 +839,22 @@ Page({
         userInfo: e.detail.userInfo
       })
       wx.setStorageSync("userInfo", e.detail.userInfo)
-      this.getPollList() // 获取点赞列表
-      this.getIsPoll() // 是否点赞
-      this.queryComment(); // 查询评论列表
-      this.getArticleDetail(() => {
-        this.recordBrowsingVolume();
-      });
-      this.queryUser(openid, (isLoad) => {
-        if (isLoad) {
-          this.saveUser(res.userInfo);
-        } else {
-          this.updateUser();
-        }
+      this.getUserOpenId(() => {
+        this.initData(e.detail.userInfo);
       })
+      // this.getPollList() // 获取点赞列表
+      // this.getIsPoll() // 是否点赞
+      // this.queryComment(); // 查询评论列表
+      // this.getArticleDetail(() => {
+      //   this.recordBrowsingVolume();
+      // });
+      // this.queryUser(this.data.openid, (isLoad) => {
+      //   if (isLoad) {
+      //     this.saveUser(res.userInfo);
+      //   } else {
+      //     this.updateUser();
+      //   }
+      // })
     }
   },
   cancel(e) {
