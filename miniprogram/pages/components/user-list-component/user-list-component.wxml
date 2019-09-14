@@ -1,0 +1,19 @@
+<view class="article-list">
+  <scroll-view scroll-y bindscrolltolower="bindscrolltolower">
+    <view style='border-top:1rpx solid #f5f5f5;'>
+      <block wx:for="{{userList}}" wx:key="*this">
+        <view class='article' data-item='{{item}}' bindtap='click'>
+          <view class='article-img'>
+            <image src='{{item.avatarUrl}}'></image>
+          </view>
+          <view class='article-text'>
+            <view class='title'>{{item.nickName}}</view>
+            <view class='text-style'>城市：{{item.province}}-{{item.city}}</view>
+            <view class='text-style'>第一次登陆时间：{{item.loginTime}}</view>
+            <view class='text-style'>最近登陆时间：{{item.lastLoginTime}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+</view>

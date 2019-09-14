@@ -18,7 +18,9 @@
     "pages/deployFunctions/deployFunctions",
     "pages/chooseLib/chooseLib",
     "pages/openapi/openapi",
-    "pages/updateLogs/updateLogs"
+    "pages/updateLogs/updateLogs",
+    "pages/admin/admin",
+    "pages/userList/userList"
   ],
   "window": {
     "backgroundColor": "#f6f6f6",

@@ -12,11 +12,17 @@ Page({
     functionList: ["我的浏览", "我的点赞", "意见反馈", "更新日志", "关于我"],
     isShowAddPersonView: false,
     showText: '登录获取更多权限',
+    openid:'',
   },
   onLoad: function() {
     if (!wx.cloud) {
       return
     }
+    var openid = wx.getStorageSync("openid");
+    console.log("openid========"+openid);
+    this.setData({
+      openid: openid
+    })
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -37,6 +43,11 @@ Page({
           });
         }
       }
+    })
+  },
+  clickAdmin(){
+    wx.navigateTo({
+      url: '../admin/admin'
     })
   },
   click(e) {

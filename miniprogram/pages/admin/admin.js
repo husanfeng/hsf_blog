@@ -1,11 +1,11 @@
-// pages/about-me/about-me.js
+// pages/admin/admin.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    imgUrl: 'https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/resources/aboutme.jpg?sign=8c7a5adbf2acf6b7b45d5a261ff885d0&t=1564201835'
+    functionList: ["用户列表","文章","权限"],
   },
 
   /**
@@ -14,11 +14,13 @@ Page({
   onLoad: function(options) {
 
   },
-  clickImg() {
-    wx.previewImage({
-      current: 'https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/resources/aboutme.jpg?sign=8c7a5adbf2acf6b7b45d5a261ff885d0&t=1564201835',
-      urls: ['https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/resources/aboutme.jpg?sign=8c7a5adbf2acf6b7b45d5a261ff885d0&t=1564201835'],
-    });
+  click(e) {
+    var type = e.currentTarget.dataset.name;
+    if (type == "用户列表") {
+      wx.navigateTo({
+        url: '../userList/userList'
+      })
+    }  
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

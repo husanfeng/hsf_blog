@@ -1,0 +1,33 @@
+/* pages/admin/admin.wxss */
+
+page {
+  background: #f6f6f6;
+}
+
+.admin .function {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin .function .function-item {
+  height: 90rpx;
+  display: flex;
+  margin: 1rpx 0;
+  align-items: center;
+  /* width: 100%; */
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 10rpx;
+}
+
+.admin .function .function-item .name {
+  font-size: 30rpx;
+  color: #8a8a8a;
+  margin-left: 20rpx;
+}
+
+.admin .function .function-item image {
+  height: 60rpx;
+  width: 60rpx;
+  margin: 0 0;
+}

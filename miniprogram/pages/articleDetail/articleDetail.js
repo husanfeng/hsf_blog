@@ -80,8 +80,8 @@ Page({
     this.getPollList() // 获取点赞列表
     this.getIsPoll() // 是否点赞
     this.queryComment(); // 查询评论列表
-    this.getArticleDetail(() => {
-      this.recordBrowsingVolume();
+    this.getArticleDetail(() => { // 获取文章内容
+      this.recordBrowsingVolume(); // 查询记录访问次数
     });
     this.queryUser(openid, (isLoad) => {
       if (isLoad) {
@@ -842,19 +842,6 @@ Page({
       this.getUserOpenId(() => {
         this.initData(e.detail.userInfo);
       })
-      // this.getPollList() // 获取点赞列表
-      // this.getIsPoll() // 是否点赞
-      // this.queryComment(); // 查询评论列表
-      // this.getArticleDetail(() => {
-      //   this.recordBrowsingVolume();
-      // });
-      // this.queryUser(this.data.openid, (isLoad) => {
-      //   if (isLoad) {
-      //     this.saveUser(res.userInfo);
-      //   } else {
-      //     this.updateUser();
-      //   }
-      // })
     }
   },
   cancel(e) {

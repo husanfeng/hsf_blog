@@ -80,3 +80,16 @@ page {
 button::after {
   border: 1px solid rgba(0, 0, 0, 0);
 }
+
+.admin {
+  position: fixed;
+  bottom: 30rpx;
+  right: 30rpx;
+}
+
+.admin .img {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  border: 1rpx solid #fff;
+}

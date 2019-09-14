@@ -16,7 +16,9 @@
       </block>
     </view>
   </view>
-
+  <view class='admin' bindtap='clickAdmin' wx:if="{{openid == 'oJX0Y47QUSPd3lkaGgJYWFqfn944'}}">
+    <image class='img' src="https://wx.qlogo.cn/mmopen/vi_32/74FR1sdiaCibXDCHn9HDFc1LJZvFlcqicibggTWSiakQPDZrNMO0KeWqhlhHyCsb5icCk33LQwRunc5EWhVetCb1RqEw/132" />
+  </view>
   <view wx:if="{{isShowAddPersonView}}">
     <add-person showText="{{showText}}" bind:confirm='confirm' bind:cancel='cancel' />
   </view>

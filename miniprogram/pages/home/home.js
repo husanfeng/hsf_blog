@@ -22,17 +22,6 @@ Page({
     dataList: [],
   },
   onLoad: function(option) {
-    console.log([]===![])
-    // wx.showToast({
-    //   title: decodeURIComponent(option.scene),
-    //   icon: 'success',
-    //   image: '',
-    //   duration: 5000,
-    //   mask: true,
-    //   success: function(res) {},
-    //   fail: function(res) {},
-    //   complete: function(res) {},
-    // })
     if (option.scene) {
       var blogId = decodeURIComponent(option.scene);
       this.setData({
@@ -44,21 +33,108 @@ Page({
         navigateToParam: option.article_id
       })
     }
-   // this.getUserOpenId()
+
     this.initSwiper();
     this.initClassfication();
     this.fetchSearchList(true);
-    // var date = new Date('2019-07-27 08:25:40');
-    // // 有三种方式获取
-    // var time1 = date.getTime();
-    // var time2 = date.valueOf();
-    // var time3 = Date.parse(date);
-    // time3 = time3 / 1000;
-    // console.log(time1);//1398250549123
-    // console.log(time2);//1398250549123
-    // console.log(time3);//1398250549000
-    // var timedes = util.getDiffTime(time3);
-    // console.log("时间=" + timedes);
+    var openid = wx.getStorageSync("openid");
+    // 获取用户信息
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+          wx.getUserInfo({
+            success: res => {
+              wx.setStorageSync("userInfo", res.userInfo)
+              if (openid && openid != "") {
+                this.initData(res.userInfo);
+              } else {
+                this.getUserOpenId(() => {
+                  this.initData(res.userInfo);
+                })
+              }
+            }
+          })
+        } else {
+          if (openid === "") {
+            this.getUserOpenId(() => {})
+          }
+        }
+      }
+    })
+  },
+  initData(userInfo) {
+    var openid = wx.getStorageSync("openid")
+    this.queryUser(openid, (isLoad) => {
+      if (isLoad) {
+        // this.saveUser(userInfo);
+      } else {
+        this.updateUser();
+      }
+    })
+  },
+  queryUser(openid, callback) {
+    var _this = this;
+    db.collection('user').where({
+      _id: openid
+    }).get({
+      success: function(res) {
+        if (res.data.length > 0) {
+          callback(false);
+        } else {
+          callback(true);
+        }
+      },
+      fail: function(res) {
+      },
+      complete: function(res) {}
+    })
+  },
+  updateUser() {
+    // 调用云函数
+    var openid = this.data.openid;
+    var lastLoginTime = util.formatTime(new Date());
+    wx.cloud.callFunction({
+      name: 'updateUsers',
+      data: {
+        _id: openid,
+        lastLoginTime: lastLoginTime
+      },
+      success: res => {
+        console.log("更新用户访问记录----=" + res)
+      },
+      fail: err => {
+        console.error('[云函数]调用失败', err)
+      },
+      complete: res => {
+        console.log("=" + res)
+      }
+    })
+  },
+  getUserOpenId(callback) {
+    var _this = this;
+    // wx.showLoading({
+    //   title: '正在加载...',
+    // })
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'getUserOpenId',
+      data: {},
+      success: res => {
+        console.log("用户的openID=" + res.result.openid)
+        wx.setStorageSync("openid", res.result.openid)
+        this.setData({
+          openid: res.result.openid
+        })
+        callback();
+      },
+      fail: err => {
+        console.error('[云函数]调用失败', err)
+      },
+      complete: res => {
+        // wx.hideLoading()
+      }
+    })
   },
   scanCode() {
     wx.scanCode({
@@ -67,29 +143,6 @@ Page({
       }
     })
   },
-  getUserOpenId() {
-    var _this = this;
-    wx.showLoading({
-      title: '正在加载...',
-    })
-    // 调用云函数
-    wx.cloud.callFunction({
-      name: 'getUserOpenId',
-      data: {},
-      success: res => {
-        console.log("用户的openID=" + res.result.openid)
-        wx.setStorageSync("openid", res.result.openid)
-        // app.globalData.openid = res.result.openid
-      },
-      fail: err => {
-        console.error('[云函数]调用失败', err)
-      },
-      complete: res => {
-        wx.hideLoading()
-      }
-    })
-  },
-
   initArticleList(callback) {
     var _this = this;
     // 调用云函数
