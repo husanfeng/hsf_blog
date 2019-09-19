@@ -1,5 +1,5 @@
 <view class="article-list">
-  <scroll-view scroll-y bindscrolltolower="bindscrolltolower">
+  <scroll-view class="scroll-touch" scroll-y bindscrolltolower="bindscrolltolower">
     <view style='border-top:1rpx solid #f5f5f5;'>
       <block wx:for="{{userList}}" wx:key="*this">
         <view class='article' data-item='{{item}}' bindtap='click'>
