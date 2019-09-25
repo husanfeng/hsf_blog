@@ -46,8 +46,11 @@ Page({
     })
   },
   clickAdmin(){
+    // wx.navigateTo({
+    //   url: '../admin/admin'
+    // })
     wx.navigateTo({
-      url: '../admin/admin'
+      url: '../avatar/avatar'
     })
   },
   click(e) {

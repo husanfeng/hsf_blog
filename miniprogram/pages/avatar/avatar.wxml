@@ -3,4 +3,4 @@
 <button open-type="getUserInfo" bindgetuserinfo='getInfo' data-style='2'>风格2</button>
 <button open-type="getUserInfo" bindgetuserinfo='getInfo' data-style='3'>风格3</button>
 <button open-type="getUserInfo" bindgetuserinfo='getInfo' data-style='4'>风格4</button>
-<image wx:if="avatarUrl" src="{{avatarUrl}}" class='avatar'></image>
+<image wx:if="avatarUrl" src="{{avatarUrl}}" class='avatar' bindtap="savePosterImage"></image>

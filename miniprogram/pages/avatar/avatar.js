@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    avatarUrl:""
   },
 
   /**
@@ -26,13 +26,28 @@ Page({
         style: e.target.dataset.style // style 可以取值 1 ～ 4
       }
     }).then(res => {
+      console.log("头像地址===" + res.result.url)
       this.setData({
         avatarUrl: res.result.url
       }, res => {
         wx.hideLoading();
       })
+    },err=>{
+      console.log(err);
+      wx.hideLoading();
     })
   },
+
+  /**
+   * 保存海报图片
+   */
+  savePosterImage: function() {
+    wx.previewImage({
+      current: this.data.avatarUrl,
+      urls: [this.data.avatarUrl],
+    });
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
