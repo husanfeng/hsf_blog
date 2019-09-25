@@ -1,11 +1,16 @@
 // pages/avatar/avatar.js
+const util = require("../../utils/util.js")
+const app = getApp()
+const db = wx.cloud.database({
+  env: app.env
+})
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    avatarUrl:""
+    avatarUrl: ""
   },
 
   /**
@@ -15,6 +20,13 @@ Page({
 
   },
   getInfo: function(e) {
+    if (!e.detail.userInfo) {
+      wx.showToast({
+        title: '未获取到你的头像！',
+        icon: "none"
+      })
+      return false;
+    }
     wx.showLoading({
       title: '头像生成中',
     })
@@ -31,21 +43,120 @@ Page({
         avatarUrl: res.result.url
       }, res => {
         wx.hideLoading();
+        var openid = wx.getStorageInfoSync("openid")
+        if (openid && openid != "") {
+          this.initData(e.detail.userInfo);
+        } else {
+          this.getUserOpenId(() => {
+            this.initData(e.detail.userInfo);
+          })
+        }
       })
-    },err=>{
+    }, err => {
       console.log(err);
       wx.hideLoading();
     })
   },
 
+  initData(userInfo) {
+    var openid = wx.getStorageSync("openid")
+    this.queryUser(openid, (isLoad) => {
+      if (isLoad) {
+        this.saveUser(userInfo);
+      } else {
+        this.updateUser();
+      }
+    })
+  },
+  getUserOpenId(callback) {
+    var _this = this;
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'getUserOpenId',
+      data: {},
+      success: res => {
+        console.log("用户的openID=" + res.result.openid)
+        wx.setStorageSync("openid", res.result.openid)
+        this.setData({
+          openid: res.result.openid
+        })
+        callback();
+      },
+      fail: err => {
+        console.error('[云函数]调用失败', err)
+      },
+      complete: res => {
+
+      }
+    })
+  },
+  queryUser(openid, callback) {
+    var _this = this;
+    db.collection('user').where({
+      _id: openid
+    }).get({
+      success: function(res) {
+        if (res.data.length > 0) {
+          callback(false);
+        } else {
+          callback(true);
+        }
+      },
+      fail: function(res) {},
+      complete: function(res) {}
+    })
+  },
+  saveUser(data) {
+    // 调用云函数
+    var openid = this.data.openid;
+    var loginTime = util.formatTime(new Date());
+    data.lastLoginTime = loginTime;
+    data.loginTime = loginTime;
+    data.openid = openid;
+    wx.cloud.callFunction({
+      name: 'saveUser',
+      data: data,
+      success: res => {
+        // console.log("=" + res.result.openid)
+      },
+      fail: err => {
+        console.error('[云函数]调用失败', err)
+      },
+      complete: res => {}
+    })
+  },
+  updateUser() {
+    // 调用云函数
+    var openid = this.data.openid;
+    var lastLoginTime = util.formatTime(new Date());
+    wx.cloud.callFunction({
+      name: 'updateUsers',
+      data: {
+        _id: openid,
+        lastLoginTime: lastLoginTime
+      },
+      success: res => {
+        console.log("=" + res)
+      },
+      fail: err => {
+        console.error('[云函数]调用失败', err)
+      },
+      complete: res => {
+        console.log("=" + res)
+      }
+    })
+  },
   /**
    * 保存海报图片
    */
   savePosterImage: function() {
-    wx.previewImage({
-      current: this.data.avatarUrl,
-      urls: [this.data.avatarUrl],
-    });
+    var img = this.data.avatarUrl;
+    if (img != "") {
+      wx.previewImage({
+        current: this.data.avatarUrl,
+        urls: [this.data.avatarUrl],
+      });
+    }
   },
 
   /**

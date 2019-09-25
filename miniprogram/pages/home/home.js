@@ -211,6 +211,12 @@ Page({
   },
   click(e) {
     var id = e.currentTarget.dataset.id;
+    if(id == 11){
+      wx.navigateTo({
+        url: '../avatar/avatar',
+      })
+      return false;
+    }
     var name = e.currentTarget.dataset.name;
     wx.navigateTo({
       url: '../articleList/articleList?id=' + id + '&name=' + name,

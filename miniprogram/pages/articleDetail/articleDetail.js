@@ -14,8 +14,6 @@ Page({
     isShow: false,
     isShowPosterModal: "",
     posterImageUrl: "",
-
-
     leftButtonText: '返回首页',
     rightButtonText: "登录",
     isShowPollAnimation: false,
@@ -375,10 +373,8 @@ Page({
         } else {
           callback(true);
         }
-
       },
       fail: function(res) {
-
       },
       complete: function(res) {}
     })

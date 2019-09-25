@@ -46,12 +46,10 @@ Page({
     })
   },
   clickAdmin(){
-    // wx.navigateTo({
-    //   url: '../admin/admin'
-    // })
     wx.navigateTo({
-      url: '../avatar/avatar'
+      url: '../admin/admin'
     })
+    
   },
   click(e) {
     var type = e.currentTarget.dataset.name;
