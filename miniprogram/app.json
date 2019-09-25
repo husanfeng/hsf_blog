@@ -20,7 +20,8 @@
     "pages/openapi/openapi",
     "pages/updateLogs/updateLogs",
     "pages/admin/admin",
-    "pages/userList/userList"
+    "pages/userList/userList",
+    "pages/avatar/avatar"
   ],
   "window": {
     "backgroundColor": "#f6f6f6",
