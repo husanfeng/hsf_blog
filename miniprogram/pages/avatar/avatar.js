@@ -30,11 +30,14 @@ Page({
     wx.showLoading({
       title: '头像生成中',
     })
+    var avatar = e.detail.userInfo.avatarUrl;// https://wx.qlogo.cn/mmopen/vi_32/74FR1sdiaCibXDCHn9HDFc1LJZvFlcqicibggTWSiakQPDZrNMO0KeWqhlhHyCsb5icCk3DPmMLd3Zq9eORFOF3ib5zcw/132
+    var arr = avatar.split("/132");
+    var avatarUrl = arr[0]+"/0"
     // 调用云函数
     wx.cloud.callFunction({
       name: 'image',
       data: {
-        avatar: e.detail.userInfo.avatarUrl, // 头像获取自 userInfo
+        avatar: avatarUrl, // 头像获取自 userInfo
         style: e.target.dataset.style // style 可以取值 1 ～ 4
       }
     }).then(res => {
