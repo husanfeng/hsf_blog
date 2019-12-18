@@ -1,7 +1,7 @@
 /* pages/avatar/avatar.wxss */
 
-page {
-  background-color: #f1f1f1;
+/* page {
+  background-color: #f5f5;
 }
 
 .avatar {
@@ -66,8 +66,9 @@ page {
 }
 
 .bg {
+  display: none;
   height: 1213rpx;
   position: fixed;
   top: 0rpx;
   z-index: 1;
-}
+} */

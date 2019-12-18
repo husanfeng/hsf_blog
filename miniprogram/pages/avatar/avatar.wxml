@@ -1,6 +1,6 @@
 <!--pages/avatar/avatar.wxml-->
 <view>
-  <view class="view">
+  <!-- <view class="view">
     <button open-type="getUserInfo" bindgetuserinfo='getInfo' data-style='1'>风格1</button>
     <button open-type="getUserInfo" bindgetuserinfo='getInfo' data-style='2'>风格2</button>
     <button open-type="getUserInfo" bindgetuserinfo='getInfo' data-style='3'>风格3</button>
@@ -13,7 +13,5 @@
     <text>点击图片，长按保存</text>
   </view>
   <image class="bg" src="../../images/background.jpg"/>
-  <button open-type="share" bindgetuserinfo="shareArticle" class="share">分享</button>
-
-
+  <button open-type="share" bindgetuserinfo="shareArticle" class="share">分享</button> -->
 </view>
