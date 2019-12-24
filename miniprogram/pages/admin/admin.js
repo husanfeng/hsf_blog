@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    functionList: ["用户列表","文章","权限"],
+    functionList: ["用户列表"],
   },
 
   /**

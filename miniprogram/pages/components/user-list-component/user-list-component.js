@@ -50,14 +50,14 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    click(e) {
-      var item = e.currentTarget.dataset.item
-      //  wx.setStorageSync("articleDetail", item)
-      //  app.globalData.articleDetail = item;
-      wx.navigateTo({
-        url: '../articleDetail/articleDetail?article_id=' + item.article_id,
-      })
-    },
+    // click(e) {
+    //   var item = e.currentTarget.dataset.item
+    //   //  wx.setStorageSync("articleDetail", item)
+    //   //  app.globalData.articleDetail = item;
+    //   wx.navigateTo({
+    //     url: '../articleDetail/articleDetail?article_id=' + item.article_id,
+    //   })
+    // },
   },
 
 })

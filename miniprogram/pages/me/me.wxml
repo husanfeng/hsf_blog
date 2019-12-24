@@ -1,25 +1,25 @@
 <!--pages/me/me.wxml-->
 <view>
-  <view class="me">
-    <!-- 用户 openid -->
-    <view class="user-info">
-      <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{userInfo.avatarUrl}})"></button>
-      <view class='nickname'>{{userInfo?userInfo.nickName:"点击头像登录"}}</view>
-    </view>
-    <view class='function'>
-      <block wx:for="{{functionList}}" wx:key="*this">
-        <view class='function-item' data-name='{{item}}' bindtap='click'>
-          <button class="me-feedback" open-type="feedback" wx:if="{{item == '意见反馈'}}">意见反馈</button>
-          <view class='name' wx:else>{{item}}</view>
-          <image class='img' src="../../images/right-arrow.png" />
-        </view>
-      </block>
-    </view>
-  </view>
-  <view class='admin' bindtap='clickAdmin' wx:if="{{openid == 'oJX0Y47QUSPd3lkaGgJYWFqfn944'}}">
-    <image class='img' src="https://wx.qlogo.cn/mmopen/vi_32/74FR1sdiaCibXDCHn9HDFc1LJZvFlcqicibggTWSiakQPDZrNMO0KeWqhlhHyCsb5icCk33LQwRunc5EWhVetCb1RqEw/132" />
-  </view>
-  <view wx:if="{{isShowAddPersonView}}">
-    <add-person showText="{{showText}}" bind:confirm='confirm' bind:cancel='cancel' />
-  </view>
+	<view class="me">
+		<!-- 用户 openid -->
+		<view class="user-info">
+			<button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{userInfo.avatarUrl}})"></button>
+			<view class='nickname'>{{userInfo?userInfo.nickName:"点击头像登录"}}</view>
+		</view>
+		<view class='function'>
+			<block wx:for="{{functionList}}" wx:key="*this">
+				<view class='function-item' data-name='{{item}}' bindtap='click'>
+					<button class="me-feedback" open-type="feedback" wx:if="{{item == '意见反馈'}}">意见反馈</button>
+					<view class='name' wx:else>{{item}}</view>
+					<image class='img' src="../../images/right-arrow.png" />
+				</view>
+			</block>
+		</view>
+	</view>
+	<view class='admin' bindtap='clickAdmin' wx:if="{{openid == 'oJX0Y47QUSPd3lkaGgJYWFqfn944' || openid == 'oJX0Y4xP5Hny2v3dzt9CaDwJrZ6w'}}">
+		<image class='img' src="https://wx.qlogo.cn/mmopen/vi_32/74FR1sdiaCibXDCHn9HDFc1LJZvFlcqicibggTWSiakQPDZrNMO0KeWqhlhHyCsb5icCk33LQwRunc5EWhVetCb1RqEw/132" />
+	</view>
+	<view wx:if="{{isShowAddPersonView}}">
+		<add-person showText="{{showText}}" bind:confirm='confirm' bind:cancel='cancel' />
+	</view>
 </view>
