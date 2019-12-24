@@ -10,6 +10,7 @@
 			<block wx:for="{{functionList}}" wx:key="*this">
 				<view class='function-item' data-name='{{item}}' bindtap='click'>
 					<button class="me-feedback" open-type="feedback" wx:if="{{item == '意见反馈'}}">意见反馈</button>
+					<button class="me-feedback" open-type="contact" wx:elif="{{item == '客服'}}">联系开发者</button>
 					<view class='name' wx:else>{{item}}</view>
 					<image class='img' src="../../images/right-arrow.png" />
 				</view>

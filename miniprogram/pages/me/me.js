@@ -9,7 +9,7 @@ Page({
     logged: false,
     takeSession: false,
     requestResult: '',
-    functionList: ["我的浏览", "我的点赞", "意见反馈", "更新日志", "关于我"],
+    functionList: ["我的浏览", "我的点赞", "意见反馈", "客服","更新日志", "关于我"],
     isShowAddPersonView: false,
     showText: '登录获取更多权限',
     openid:'',
