@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgUrl: 'https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/resources/aboutme.jpg?sign=8c7a5adbf2acf6b7b45d5a261ff885d0&t=1564201835'
+    imgUrl: 'https://6873-hsf-blog-product-jqt54-1256640731.tcb.qcloud.la/github.md/concat-me.jpg?sign=35d9b474d1f19479b2f8194b00415997&t=1577171887'
   },
 
   /**
@@ -16,8 +16,8 @@ Page({
   },
   clickImg() {
     wx.previewImage({
-      current: 'https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/resources/aboutme.jpg?sign=8c7a5adbf2acf6b7b45d5a261ff885d0&t=1564201835',
-      urls: ['https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/resources/aboutme.jpg?sign=8c7a5adbf2acf6b7b45d5a261ff885d0&t=1564201835'],
+      current: 'https://6873-hsf-blog-product-jqt54-1256640731.tcb.qcloud.la/github.md/concat-me.jpg?sign=35d9b474d1f19479b2f8194b00415997&t=1577171887',
+      urls: ['https://6873-hsf-blog-product-jqt54-1256640731.tcb.qcloud.la/github.md/concat-me.jpg?sign=35d9b474d1f19479b2f8194b00415997&t=1577171887'],
     });
   },
   /**
