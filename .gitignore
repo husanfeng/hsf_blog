@@ -1,3 +1,6 @@
 cloudfunctions/getArticleDetail/node_modules
 cloudfunctions/getArticleListData/node_modules
 cloudfunctions/updateUser/node_modules
+cloudfunctions/addComment/node_modules/
+cloudfunctions/addPoll/node_modules/
+cloudfunctions/replyComment/node_modules/

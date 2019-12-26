@@ -1,8 +1,4 @@
 /* pages/updateLogs/updateLogs.wxss */
-
-.update-logs {
-}
-
 .update-logs .list {
   font-size: 28rpx;
   margin: 20rpx 0;
@@ -18,7 +14,7 @@
 .update-logs .list .center {
   height: auto;
   width: 5rpx;
-  background: #f00;
+  background: #f5f5f5;
   margin: 0 10rpx;
 }
 
@@ -50,4 +46,6 @@
 
 .child-item {
   margin: 10rpx 0;
+  color: #666;
+
 }

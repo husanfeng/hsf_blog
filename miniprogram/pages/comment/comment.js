@@ -14,7 +14,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     var type = options.type; // 1是回复  2是评论
     var otherUserInfo = wx.getStorageSync("otherInfo")
     var userInfo = wx.getStorageSync("userInfo")
@@ -22,7 +22,7 @@ Page({
     var openid = wx.getStorageSync("openid")
     if (type == 1 || type == 2) {
       wx.setNavigationBarTitle({
-        title: "回复 "+otherUserInfo.nickName,
+        title: "回复 " + otherUserInfo.nickName,
       })
     } else {
       wx.setNavigationBarTitle({
@@ -155,20 +155,39 @@ Page({
       },
       success: res => {
         // res.data 包含该记录的数据
-        console.log("回复评论成功---")
-        wx.showToast({
-          title: '回复提交成功',
-
-        })
-        wx.navigateBack({
-          delta: 1
-        })
+        wx.hideLoading()
+        if (res.result.code == "200") {
+          wx.showToast({
+            title: '回复评论成功',
+            duration: 500,
+            complete: function () {
+              setTimeout(() => {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }, 500);
+            }
+          })
+        } else {
+          wx.showToast({
+            title: '回复评论失败,内容包含敏感信息!',
+            icon: 'none',
+            duration: 2000,
+            complete: function () {
+              setTimeout(() => {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }, 2000);
+            }
+          })
+        }
       },
       fail: err => {
         console.error('[云函数]调用失败', err)
       },
       complete: res => {
-        wx.hideLoading()
+
       }
     })
   },
@@ -204,20 +223,40 @@ Page({
       },
       success: res => {
         // res.data 包含该记录的数据
-        console.log("新增评论成功---")
-        wx.showToast({
-          title: '评论提交成功',
-
-        })
-        wx.navigateBack({
-          delta: 1
-        })
+        console.log("新增评论成功---" + JSON.stringify(res))
+        wx.hideLoading()
+        if (res.result.code == "200") {
+          wx.showToast({
+            title: '评论成功',
+            duration: 500,
+            complete: function () {
+              setTimeout(() => {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }, 500);
+            }
+          })
+        } else {
+          wx.showToast({
+            title: '评论失败,内容包含敏感信息!',
+            icon: 'none',
+            duration: 2000,
+            complete: function () {
+              setTimeout(() => {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }, 2000);
+            }
+          })
+        }
       },
       fail: err => {
         console.error('[云函数]调用失败', err)
       },
       complete: res => {
-        wx.hideLoading()
+
       }
     })
 
@@ -225,49 +264,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })
