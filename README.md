@@ -9,7 +9,7 @@
   <img width="200" src="https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/resources/aboutme.jpg?sign=8c7a5adbf2acf6b7b45d5a261ff885d0&t=1564201835">
 </p>
 
-## 当前版本:v1.0.5
+## 当前版本:v1.6
 
 ## 简介
 
