@@ -4,8 +4,6 @@ const Towxml = require('/towxml/main');
 App({
   //创建一个towxml对象，供其它页面调用
   towxml: new Towxml(),
-  //声明Markdown文件目录路径
-  docDir: 'https://www.vvadd.com/wxml_demo/',
   onLaunch: function() {
     // var env = 'cfxy-mall-pxwnv';
     var env = 'hsf-blog-product-jqt54'
@@ -18,14 +16,12 @@ App({
         env: env
       })
     }
-
     this.globalData = {}
     // this.env ='cfxy-mall-pxwnv' // 测试环境
     this.env = env //生产环境
-
   },
   //声明一个数据请求方法
-     getText: (url, callback) => {
+  getText: (url, callback) => {
     wx.request({
       url: url,
       header: {

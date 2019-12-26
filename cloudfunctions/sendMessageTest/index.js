@@ -15,7 +15,7 @@ exports.main = async (event, context) => {
     touser: wxContext.OPENID,
     msgtype: 'text',
     text: {
-      content: '收到欧耶--',
+      content: '稍等,我稍后回复您',
     },
   })
 

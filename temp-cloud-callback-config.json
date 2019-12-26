@@ -1,0 +1,10 @@
+{
+  "enable": true,
+  "callbacks": [
+    {
+      "msgType": 1,
+      "functionName": "sendMessageTest",
+      "env": "hsf-blog-product-jqt54"
+    }
+  ]
+}
