@@ -693,11 +693,13 @@ Page({
   updateUserVisitActicle() {
     var _this = this;
     var visit_time = util.formatTime(new Date());
+    var openid = wx.getStorageSync("openid")
     // 调用云函数
     wx.cloud.callFunction({
       name: 'updateArticleListVisit',
       data: {
         dbName: 'browsing_volume',
+        openid:openid,
         article_id: _this.data.articleDetail.article_id,
         visit_time: visit_time
       },

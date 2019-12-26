@@ -11,7 +11,8 @@ exports.main = async(event, context) => {
   var dbName = event.dbName; //集合
   try {
     return await db.collection(dbName).where({
-      article_id: event.article_id
+      article_id: event.article_id,
+      openid:event.openid
     }).update({
       data: {
         visit_time: event.visit_time

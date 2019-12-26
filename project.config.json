@@ -2,17 +2,31 @@
 	"miniprogramRoot": "miniprogram/",
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
+		"enhance": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"nodeModules": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"bundle": true,
+		"scopeDataCheck": true
 	},
 	"appid": "wxbba6b07610fe223a",
 	"projectname": "hsf_blog",
-	"libVersion": "2.2.5",
+	"libVersion": "2.9.4",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"condition": {
 		"search": {
 			"current": -1,
