@@ -16,7 +16,7 @@
 此小程序使用的是腾讯的云开发技术，没有繁琐的后台配置，只需操作云数据库就可以对数据进行增删改查。
 这个小程序主要为了总结和记录前端一些比较前沿的技术，纯属个人爱好。。。
 
-博客小程序介绍：(https://mp.weixin.qq.com/s/CDwkuVGbavL6XqOBUAhS1w)
+博客小程序介绍：<https://mp.weixin.qq.com/s/CDwkuVGbavL6XqOBUAhS1w>
 
 ## 功能更新
 
