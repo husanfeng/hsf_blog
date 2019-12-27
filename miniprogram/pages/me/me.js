@@ -1,6 +1,7 @@
 //index.js
 const util = require("../../utils/util.js")
 const app = getApp()
+const lessonTmplId = 'ei8TI54LSrC0kMMl5yQ3A-h61bjGB4iZIH56A2-dIns';
 // const db = wx.cloud.database()
 Page({
   data: {
@@ -9,17 +10,17 @@ Page({
     logged: false,
     takeSession: false,
     requestResult: '',
-    functionList: ["我的浏览", "我的点赞", "意见反馈", "客服","更新日志", "关于我"],
+    functionList: ["我的浏览", "我的点赞", "意见反馈", "客服", "更新日志", "消息订阅", "关于我"],
     isShowAddPersonView: false,
     showText: '登录获取更多权限',
-    openid:'',
+    openid: '',
   },
-  onLoad: function() {
+  onLoad: function () {
     if (!wx.cloud) {
       return
     }
     var openid = wx.getStorageSync("openid");
-    console.log("openid========"+openid);
+    console.log("openid========" + openid);
     this.setData({
       openid: openid
     })
@@ -45,11 +46,11 @@ Page({
       }
     })
   },
-  clickAdmin(){
+  clickAdmin() {
     wx.navigateTo({
-      url: '../admin/admin'
+      url: '../openapi/openapi'
     })
-    
+
   },
   click(e) {
     var type = e.currentTarget.dataset.name;
@@ -61,14 +62,55 @@ Page({
       wx.navigateTo({
         url: '../about-me/about-me'
       })
-    } 
-    else if (type == "更新日志"){
+    } else if (type == "更新日志") {
       wx.navigateTo({
         url: '../updateLogs/updateLogs'
       })
+    } else if (type == "消息订阅") {
+      this.onSubscribe()
     }
   },
-  onGetUserInfo: function(e) {
+  onSubscribe() {
+    // 获取课程信息
+    // 调用微信 API 申请发送订阅消息
+    wx.requestSubscribeMessage({
+      // 传入订阅消息的模板id，模板 id 可在小程序管理后台申请
+      tmplIds: [lessonTmplId],
+      success(res) {
+        // 申请订阅成功
+        if (res.errMsg === 'requestSubscribeMessage:ok') {
+          wx.showToast({
+            title: '订阅成功',
+            icon: 'success',
+            duration: 2000,
+          });
+          // 这里将订阅的课程信息调用云函数存入db
+          // wx.cloud.callFunction({
+          //     name: 'subscribe',
+          //     data: {
+          //       data: item,
+          //       templateId: lessonTmplId,
+          //     },
+          //   }).then(() => {
+          //     wx.showToast({
+          //       title: '订阅成功',
+          //       icon: 'success',
+          //       duration: 2000,
+          //     });
+          //   })
+          //   .catch(() => {
+          //     wx.showToast({
+          //       title: '订阅失败',
+          //       icon: 'success',
+          //       duration: 2000,
+          //     });
+          //   });
+        }
+      },
+    });
+
+  },
+  onGetUserInfo: function (e) {
     if (!this.logged && e.detail.userInfo) {
       this.setData({
         logged: true,
@@ -80,7 +122,7 @@ Page({
   },
   confirm(e) {
     wx.setStorageSync("userInfo", e.detail.userInfo)
-    if (e.detail.userInfo){
+    if (e.detail.userInfo) {
       this.setData({
         isShowAddPersonView: false,
         userInfo: e.detail.userInfo
@@ -94,6 +136,6 @@ Page({
     })
   },
   onShow() {
-   
+
   },
 })

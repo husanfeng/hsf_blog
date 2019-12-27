@@ -38,7 +38,7 @@ page {
 .me .function {
   border-radius: 20rpx;
   background: #fff;
-  height: 570rpx;
+  height: 655rpx;
   position: absolute;
   top: 270rpx;
   right: 3%;

@@ -1,7 +1,7 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
 
-var env = 'hsf-blog-product-jqt54';  // 正式环境
+var env = 'hsf-blog-product-jqt54'; // 正式环境
 // var env = 'cfxy-mall-pxwnv'; // 测试环境
 cloud.init({
   env: env
@@ -16,14 +16,35 @@ exports.main = async (event, context) => {
     case 'getWXACode': {
       return getWXACode(event)
     }
+    case 'sendMessage': {
+      return sendMessageFunc(event)
+    }
     default: {
       return
     }
   }
 }
 
+async function sendMessageFunc(event) {
+  try {
+    // 发送订阅消息
+    let result = await cloud.openapi.subscribeMessage.send({
+      touser: event.touser,
+      page: event.page,
+      data: event.data,
+      templateId: event.templateId,
+    });
+    // 发送成功后将消息的状态改为已发送
+    return result;
+  } catch (e) {
+    return e;
+  }
+}
+
 async function sendTemplateMessage(event) {
-  const { OPENID } = cloud.getWXContext()
+  const {
+    OPENID
+  } = cloud.getWXContext()
 
   // 接下来将新增模板、发送模板消息、然后删除模板
   // 注意：新增模板然后再删除并不是建议的做法，此处只是为了演示，模板 ID 应在添加后保存起来后续使用
