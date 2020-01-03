@@ -1,4 +1,5 @@
 // pages/comment/comment.js
+const lessonTmplId = 'ei8TI54LSrC0kMMl5yQ3A-h61bjGB4iZIH56A2-dIns';
 const util = require('../../utils/util.js')
 var app = getApp();
 Page({
@@ -66,66 +67,6 @@ Page({
     }
   },
   /**
-   * 更新评论数
-   */
-  // updateArticleListComments() {
-  //   var _this = this;
-  //   var comment_count = _this.data.articleDetail.comment_count;
-  //   var a = comment_count + 1
-  //   //---------------------------
-  //   // 调用云函数
-  //   wx.cloud.callFunction({
-  //     name: 'updateArticleListComment',
-  //     data: {
-  //       article_id: _this.data.articleDetail.article_id,
-  //       comment_count: a,
-  //       dbName: 'article'
-  //     },
-  //     success: res => {
-  //       // res.data 包含该记录的数据
-  //       console.log("更新评论数---")
-  //     },
-  //     fail: err => {
-  //       console.error('[云函数]调用失败', err)
-  //     },
-  //     complete: res => {}
-  //   })
-  //   wx.cloud.callFunction({
-  //     name: 'updateArticleListComment',
-  //     data: {
-  //       article_id: _this.data.articleDetail.article_id,
-  //       comment_count: a,
-  //       dbName: 'poll'
-  //     },
-  //     success: res => {
-  //       // res.data 包含该记录的数据
-  //       console.log("更新评论数---")
-
-  //     },
-  //     fail: err => {
-  //       console.error('[云函数]调用失败', err)
-  //     },
-  //     complete: res => {}
-  //   })
-  //   wx.cloud.callFunction({
-  //     name: 'updateArticleListComment',
-  //     data: {
-  //       article_id: _this.data.articleDetail.article_id,
-  //       comment_count: a,
-  //       dbName: 'browsing_volume'
-  //     },
-  //     success: res => {
-  //       // res.data 包含该记录的数据
-  //       console.log("更新评论数---")
-  //     },
-  //     fail: err => {
-  //       console.error('[云函数]调用失败', err)
-  //     },
-  //     complete: res => {}
-  //   })
-  // },
-
-  /**
    * 回复评论
    */
   replyComment(commentType) {
@@ -168,6 +109,8 @@ Page({
               }, 500);
             }
           })
+          _this.sendMessage(_this.data.userInfo.nickName,_this.data.inputData,_this.data.articleDetail.article_id,create_date);
+
         } else {
           wx.showToast({
             title: '回复评论失败,内容包含敏感信息!',
@@ -237,6 +180,7 @@ Page({
               }, 500);
             }
           })
+          _this.sendMessage(_this.data.userInfo.nickName,_this.data.inputData,_this.data.articleDetail.article_id,create_date);
         } else {
           wx.showToast({
             title: '评论失败,内容包含敏感信息!',
@@ -260,6 +204,36 @@ Page({
       }
     })
 
+  },
+  sendMessage(nickName,inputData,article_id,create_date) {
+    var data = {
+      name3: {
+        value: nickName
+      },
+      thing1: {
+        value: inputData
+      },
+      date2: {
+        value: create_date
+      }
+    }
+    wx.cloud.callFunction({
+      name: 'openapi',
+      data: {
+        action: 'sendMessage',
+        page: "pages/articleDetail/articleDetail?article_id="+article_id,
+        data: data,
+        templateId: lessonTmplId,
+      },
+      success: function (res) {
+        console.log("留言消息订阅发送成功----")
+      },
+      fail: err => {
+        console.log("留言消息订阅发送失败----")
+      },
+      complete: res => {
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -1,7 +1,6 @@
 {
   "permissions": {
     "openapi": [
-      "subscribeMessage.send"
     ]
   }
 }

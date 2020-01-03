@@ -1,5 +1,5 @@
 {
-  "name": "openapi",
+  "name": "subscribe",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "wx-server-sdk": "^1.7.1"
+    "wx-server-sdk": "~1.7.0"
   }
 }

@@ -26,10 +26,11 @@ exports.main = async (event, context) => {
 }
 
 async function sendMessageFunc(event) {
+  const {OPENID} = cloud.getWXContext()
   try {
     // 发送订阅消息
     let result = await cloud.openapi.subscribeMessage.send({
-      touser: event.touser,
+      touser:  OPENID,
       page: event.page,
       data: event.data,
       templateId: event.templateId,

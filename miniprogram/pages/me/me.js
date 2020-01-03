@@ -1,7 +1,7 @@
 //index.js
 const util = require("../../utils/util.js")
 const app = getApp()
-const lessonTmplId = 'ei8TI54LSrC0kMMl5yQ3A-h61bjGB4iZIH56A2-dIns';
+
 // const db = wx.cloud.database()
 Page({
   data: {
@@ -48,7 +48,7 @@ Page({
   },
   clickAdmin() {
     wx.navigateTo({
-      url: '../openapi/openapi'
+      url: '../admin/admin'
     })
 
   },
@@ -71,44 +71,9 @@ Page({
     }
   },
   onSubscribe() {
-    // 获取课程信息
-    // 调用微信 API 申请发送订阅消息
-    wx.requestSubscribeMessage({
-      // 传入订阅消息的模板id，模板 id 可在小程序管理后台申请
-      tmplIds: [lessonTmplId],
-      success(res) {
-        // 申请订阅成功
-        if (res.errMsg === 'requestSubscribeMessage:ok') {
-          wx.showToast({
-            title: '订阅成功',
-            icon: 'success',
-            duration: 2000,
-          });
-          // 这里将订阅的课程信息调用云函数存入db
-          // wx.cloud.callFunction({
-          //     name: 'subscribe',
-          //     data: {
-          //       data: item,
-          //       templateId: lessonTmplId,
-          //     },
-          //   }).then(() => {
-          //     wx.showToast({
-          //       title: '订阅成功',
-          //       icon: 'success',
-          //       duration: 2000,
-          //     });
-          //   })
-          //   .catch(() => {
-          //     wx.showToast({
-          //       title: '订阅失败',
-          //       icon: 'success',
-          //       duration: 2000,
-          //     });
-          //   });
-        }
-      },
-    });
-
+    wx.navigateTo({
+      url: '../messageSelectList/messageSelectList'
+    })
   },
   onGetUserInfo: function (e) {
     if (!this.logged && e.detail.userInfo) {
