@@ -1,0 +1,5 @@
+<!--pages/test/test.wxml-->
+<view>
+	<text>1234</text>
+	<include src="../components/comi/comi.wxml" />
+</view>

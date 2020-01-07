@@ -48,7 +48,7 @@ Page({
   },
   clickAdmin() {
     wx.navigateTo({
-      url: '../admin/admin'
+      url: '../test/test'
     })
 
   },

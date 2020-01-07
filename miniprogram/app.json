@@ -21,7 +21,8 @@
     "pages/updateLogs/updateLogs",
     "pages/admin/admin",
     "pages/userList/userList",
-    "pages/messageSelectList/messageSelectList"
+    "pages/messageSelectList/messageSelectList",
+    "pages/test/test"
   ],
   "window": {
     "backgroundColor": "#f6f6f6",
