@@ -19,18 +19,31 @@ exports.main = async (event, context) => {
     case 'sendMessage': {
       return sendMessageFunc(event)
     }
+    case 'getFile': {
+      return getFile(event)
+    }
     default: {
       return
     }
   }
 }
 
+async function getFile(event) {
+  const fileID = event.fileID
+  const res = await cloud.downloadFile({
+    fileID: fileID,
+  })
+  const buffer = res.fileContent
+  return buffer.toString('utf8')
+}
 async function sendMessageFunc(event) {
-  const {OPENID} = cloud.getWXContext()
+  const {
+    OPENID
+  } = cloud.getWXContext()
   try {
     // 发送订阅消息
     let result = await cloud.openapi.subscribeMessage.send({
-      touser:  OPENID,
+      touser: OPENID,
       page: event.page,
       data: event.data,
       templateId: event.templateId,

@@ -23,17 +23,44 @@ Page({
     //   success: function (res) {
     //     var da = res.data;
     //     var aa = da[0].data
-    //     comi(aa, this)
+    //     comi(result, this)
     //     console.log('https://www.vvadd.com/wxml_demo/demo.txt?v=128'.data)
     //   },
     //   fail: function (res) {},
     //   complete: function (res) {}
     // })
+    //this.getData();
+    this.getFileData();
+  },
+  getFileData(){
+    wx.showLoading({
+      title: '请稍等...',
+    })
+    wx.cloud.callFunction({
+      name: 'openapi',
+      data: {
+        action:'getFile',
+        fileID:'cloud://hsf-blog-product-jqt54.6873-hsf-blog-product-jqt54-1256640731/article/12_article/article12.md'
+      },
+      success: res => {
+        comi(res.result, this)
+      },
+      fail: err => {
+        console.error('[云函数]调用失败', err)
+      },
+      complete: res => {
+        wx.hideLoading({
+          complete: (res) => {},
+        })
+      }
+    })
+  },
+  getData() {
     wx.showLoading({
       title: '请稍后...',
     })
     wx.request({
-      url: 'https://6873-hsf-blog-product-jqt54-1256640731.tcb.qcloud.la/content/test.md?sign=4539c898d132011cdafcf585c40c61b9&t=1578410664',
+      url: 'https://6873-hsf-blog-product-jqt54-1256640731.tcb.qcloud.la/article/12_article/article12.md?sign=c3fe4cde839c7da5e61a4e7abf839b12&t=1578488653',
       header: {
         'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
       },
@@ -43,10 +70,13 @@ Page({
         wx.hideLoading({
           complete: (res) => {},
         })
+      },fail: (err)=>{
+        wx.showToast({
+          title: err,
+        })
       }
     });
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
