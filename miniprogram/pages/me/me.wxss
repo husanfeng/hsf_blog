@@ -85,11 +85,12 @@ button::after {
   position: fixed;
   bottom: 30rpx;
   right: 30rpx;
-}
-
-.admin .img {
+  color: #fff;
   width: 100rpx;
   height: 100rpx;
-  border-radius: 50%;
-  border: 1rpx solid #fff;
+  background: #1296db;
+  line-height: 100rpx;
+  border-radius: 50rpx;
+  font-size: 27rpx;
+  text-align: center;
 }

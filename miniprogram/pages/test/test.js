@@ -40,7 +40,7 @@ Page({
       name: 'openapi',
       data: {
         action:'getFile',
-        fileID:'cloud://hsf-blog-product-jqt54.6873-hsf-blog-product-jqt54-1256640731/article/12_article/article12.md'
+        fileID:'cloud://hsf-blog-product-jqt54.6873-hsf-blog-product-jqt54-1256640731/article/12_article/article_12.md'
       },
       success: res => {
         comi(res.result, this)
