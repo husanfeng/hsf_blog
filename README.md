@@ -1,3 +1,5 @@
+> # 近期准备更新内容:消息订阅功能，现在当用户评论文章时不能及时通知作者，作者无法在第一时间做出回复，当有人回复了用户的评论，用户也无法收到回复评论的通知，所以消息订阅功能上线迫在眉睫
+
 ## 用微信扫一扫即可打开小程序
 <p align="center">
   <img width="200" src="https://6873-hsf-blog-product-jqt54-1256640731.tcb.qcloud.la/github.md/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%A0%81.jpg?sign=f4cad9f1d9332de97807ceb5a7e53d5f&t=1566538869">
