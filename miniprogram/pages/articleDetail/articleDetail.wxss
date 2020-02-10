@@ -2,7 +2,7 @@
 
 /**主题配色**/
 @import '/towxml/style/theme/light.wxss';
-
+@import "../components/comi/comi.wxss";
 .article .top-title {
   margin: 10rpx 0 10rpx 30rpx;
   font-size: 28rpx;

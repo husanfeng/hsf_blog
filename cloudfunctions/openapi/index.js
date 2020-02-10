@@ -1,12 +1,11 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
-
 var env = 'hsf-blog-product-jqt54'; // 正式环境
 // var env = 'cfxy-mall-pxwnv'; // 测试环境
 cloud.init({
   env: env
 })
-
+const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
   switch (event.action) {
@@ -29,7 +28,8 @@ exports.main = async (event, context) => {
 }
 
 async function getFile(event) {
-  const fileID = event.fileID
+  const data = await db.collection('article').doc(event.article_id).get()
+  const fileID = data.data.fileid
   const res = await cloud.downloadFile({
     fileID: fileID,
   })

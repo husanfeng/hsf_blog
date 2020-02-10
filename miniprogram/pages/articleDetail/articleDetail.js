@@ -1,4 +1,5 @@
 // pages/articleDetail/articleDetail.js
+import comi from '../components/comi/comi'
 const util = require("../../utils/util.js")
 // import Poster from '../../utils/poster';
 import Poster from 'wxa-plugin-canvas/poster/poster.js';
@@ -54,6 +55,7 @@ Page({
                 isLoad: true
               })
               wx.setStorageSync("userInfo", res.userInfo)
+              this.getArticleContent();
               if (this.data.openid && this.data.openid != "") {
                 this.initData(res.userInfo);
               } else {
@@ -70,6 +72,31 @@ Page({
             isShowAddPersonView: true
           });
         }
+      }
+    })
+  },
+  getArticleContent(){
+    var that = this;
+    wx.showLoading({
+      title: '请稍等...',
+    })
+    wx.cloud.callFunction({
+      name: 'openapi',
+      data: {
+        action: 'getFile',
+        article_id:that.data.article_id,
+       // fileID: 'cloud://hsf-blog-product-jqt54.6873-hsf-blog-product-jqt54-1256640731/content/React.txt'
+      },
+      success: res => {
+        comi(res.result, this)
+      },
+      fail: err => {
+        console.error('[云函数]调用失败', err)
+      },
+      complete: res => {
+        wx.hideLoading({
+          complete: (res) => {},
+        })
       }
     })
   },
