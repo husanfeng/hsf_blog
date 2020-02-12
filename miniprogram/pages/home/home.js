@@ -21,7 +21,7 @@ Page({
     page: 1,
     dataList: [],
   },
-  onLoad: function(option) {
+  onLoad: function (option) {
     if (option.scene) {
       var blogId = decodeURIComponent(option.scene);
       this.setData({
@@ -78,16 +78,15 @@ Page({
     db.collection('user').where({
       _id: openid
     }).get({
-      success: function(res) {
+      success: function (res) {
         if (res.data.length > 0) {
           callback(false);
         } else {
           callback(true);
         }
       },
-      fail: function(res) {
-      },
-      complete: function(res) {}
+      fail: function (res) {},
+      complete: function (res) {}
     })
   },
   updateUser() {
@@ -173,17 +172,17 @@ Page({
       title: '正在加载...',
     })
     db.collection('classfication').get({
-      success: function(res) {
+      success: function (res) {
         // res.data 包含该记录的数据
         console.log(res.data)
         _this.setData({
           classficationList: res.data
         })
       },
-      fail: function(res) {
+      fail: function (res) {
         console.log(res)
       },
-      complete: function(res) {
+      complete: function (res) {
         wx.hideLoading()
       }
     })
@@ -194,24 +193,36 @@ Page({
       title: '正在加载...',
     })
     db.collection('top_images').orderBy("_id", 'asc').get({
-      success: function(res) {
+      success: function (res) {
         // res.data 包含该记录的数据
         console.log(res.data)
         _this.setData({
           imgUrls: res.data
         })
       },
-      fail: function(res) {
+      fail: function (res) {
         console.log(res)
       },
-      complete: function(res) {
+      complete: function (res) {
         wx.hideLoading()
       }
     })
   },
+  /**
+   * 点击轮播图事件
+   */
+  click_swiper_img(e) {
+    var article_id = e.currentTarget.dataset.id
+    if (article_id && article_id != '') {
+      wx.navigateTo({
+        url: '../articleDetail/articleDetail?article_id=' + article_id,
+      })
+    }
+
+  },
   click(e) {
     var id = e.currentTarget.dataset.id;
-    if(id == 11){
+    if (id == 11) {
       wx.navigateTo({
         url: '../avatar/avatar',
       })
@@ -226,7 +237,7 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     wx.stopPullDownRefresh() //停止下拉刷新
     this.setData({
       loading: false, // 正在加载
@@ -241,14 +252,14 @@ Page({
   /**
    * 分页函数
    */
-  fetchSearchList: function(isShowLoading) {
+  fetchSearchList: function (isShowLoading) {
     if (isShowLoading) {
       wx.showLoading({
         title: '正在请求数据...',
       });
     }
     let that = this;
-    this.initArticleList(function(data) {
+    this.initArticleList(function (data) {
       if (isShowLoading) {
         wx.hideLoading()
       }
@@ -274,7 +285,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
     if (this.data.loading)
       return;
     if (!this.data.loadingHasData)

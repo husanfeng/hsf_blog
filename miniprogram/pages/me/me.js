@@ -47,10 +47,12 @@ Page({
     })
   },
   clickAdmin() {
+    // wx.navigateTo({
+    //   url: '../test/test'
+    // })
     wx.navigateTo({
-      url: '../test/test'
+      url: '../admin/admin'
     })
-
   },
   click(e) {
     var type = e.currentTarget.dataset.name;

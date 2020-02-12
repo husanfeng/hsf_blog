@@ -1,17 +1,18 @@
 <!--pages/messageSelectList/messageSelectList.wxml-->
 <view>
+	<view class="body-view" bindtap="switchChange_reply">
+		<text>文章评论回复通知</text>
+		<switch checked="{{switch3Checked}}" disabled="true" />
+	</view>
 	<view class="body-view" bindtap="switchChange_comment">
 		<text>留言评论提醒</text>
-		<switch checked="{{switch1Checked}}"/>
+		<switch checked="{{switch1Checked}}" />
 	</view>
-	<view class="body-view" bindtap="switchChange_article" >
+	<view class="body-view" bindtap="switchChange_article">
 		<text>文章更新订阅</text>
-		<switch checked="{{switch2Checked}}" disabled="true"  />
+		<switch checked="{{switch2Checked}}" disabled="true" />
 	</view>
-	<view class="body-view" bindtap="switchChange_reply">
-		<text>回复评论订阅</text>
-		<switch checked="{{switch3Checked}}" disabled="true"   />
-	</view>
+
 	<!-- <button bindtap="switchChange_comment">获取用户权限</button>
 	<button bindtap="test">订阅测试</button> -->
 </view>
