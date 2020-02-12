@@ -1,5 +1,5 @@
 // pages/messageSelectList/messageSelectList.js
-const lessonTmplId = 'ei8TI54LSrC0kMMl5yQ3A-h61bjGB4iZIH56A2-dIns';
+const lessonTmplId = 'ei8TI54LSrC0kMMl5yQ3A-h61bjGB4iZIH56A2-dIns';//留言评论提醒
 const util = require("../../utils/util.js")
 const app = getApp()
 const db = wx.cloud.database({
@@ -66,7 +66,7 @@ Page({
         console.log(res)
         // 申请订阅成功
         if (res["ei8TI54LSrC0kMMl5yQ3A-h61bjGB4iZIH56A2-dIns"] == "accept") {
-          this.saveUser();
+          that.saveUser();
         } else {
           that.setData({
             switch1Checked: false
