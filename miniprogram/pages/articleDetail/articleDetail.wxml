@@ -20,7 +20,7 @@
 				<text class=''>{{articleDetail.poll_count}}</text>
 			</view>
 		</view>
-		<view>
+		<view class="article-content">
 			<include src="../components/comi/comi.wxml" />
 		</view>
 		<!-- <towxml-component article_id="{{article_id}}" isLoad="{{isLoad}}" ></towxml-component> -->

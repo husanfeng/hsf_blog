@@ -83,9 +83,8 @@ Page({
     wx.cloud.callFunction({
       name: 'openapi',
       data: {
-        action: 'getFile',
-        article_id:that.data.article_id,
-       // fileID: 'cloud://hsf-blog-product-jqt54.6873-hsf-blog-product-jqt54-1256640731/content/React.txt'
+        article_id: that.data.article_id,
+        action: 'getFile'
       },
       success: res => {
         comi(res.result, this)
@@ -609,8 +608,9 @@ Page({
     var ispoll = _this.data.isPollDone;
     if (ispoll) {
       wx.cloud.callFunction({
-        name: 'deletePoll',
+        name: 'delete',
         data: {
+          action:'deletePoll',
           id: _this.data.article_id,
           openid: openid,
           article_id: _this.data.article_id,

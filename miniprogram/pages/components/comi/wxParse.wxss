@@ -9,9 +9,9 @@
  * detail : http://weappdev.com/t/wxparse-alpha0-1-html-markdown/184
  */
 
- page > view {
+ /* page > view {
     padding: 20rpx;
-  }
+  } */
   
   .wxParse {
     margin: 0 5px;

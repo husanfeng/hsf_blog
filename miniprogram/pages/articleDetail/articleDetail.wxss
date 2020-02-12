@@ -3,6 +3,7 @@
 /**主题配色**/
 @import '/towxml/style/theme/light.wxss';
 @import "../components/comi/comi.wxss";
+
 .article .top-title {
   margin: 10rpx 0 10rpx 30rpx;
   font-size: 28rpx;
@@ -353,7 +354,7 @@ button {
   color: #666;
   margin: 0 0;
   padding: 0 0;
-  background: #fff
+  background: #fff;
 }
 
 button::after {
@@ -934,4 +935,11 @@ button::after {
 .bg-white {
   background-color: #fff;
   color: #666;
+}
+
+.article .article-content {
+  margin: 10rpx 10rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

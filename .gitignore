@@ -15,3 +15,4 @@ cloudfunctions/saveUser/node_modules/
 cloudfunctions/getUserOpenId/node_modules/
 cloudfunctions/deletePoll/node_modules/
 cloudfunctions/openapi/node_modules/
+cloudfunctions/delete/node_modules/

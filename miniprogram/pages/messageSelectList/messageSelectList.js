@@ -1,5 +1,5 @@
 // pages/messageSelectList/messageSelectList.js
-const lessonTmplId = 'ei8TI54LSrC0kMMl5yQ3A-h61bjGB4iZIH56A2-dIns';//留言评论提醒
+const lessonTmplId = 'ei8TI54LSrC0kMMl5yQ3A-h61bjGB4iZIH56A2-dIns'; //留言评论提醒
 const util = require("../../utils/util.js")
 const app = getApp()
 const db = wx.cloud.database({
@@ -84,15 +84,24 @@ Page({
       }
     });
   },
-  deleteUser(){
+  deleteUser() {
     if (this.data.switch1Checked) {
       wx.cloud.callFunction({
-        name:'',
-        data:"",
-        success:function(){
-
+        name: 'delete',
+        data: {
+          action: 'deleteMessage',
+          tmplIds: lessonTmplId,
+          openid: wx.getStorageSync("openid"),
         },
-        fail:function(){
+        success: res => {
+          
+          console.log("取消消息订阅----")
+         
+        },
+        fail: err => {
+          console.error('[云函数]调用失败', err)
+        },
+        complete: res => {
           
         }
       })
