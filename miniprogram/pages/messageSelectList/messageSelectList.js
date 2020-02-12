@@ -76,12 +76,27 @@ Page({
             icon: 'none',
             duration: 2000,
           });
+          that.deleteUser()
         }
       },
       fail(err) {
         console.log("err=" + err)
       }
     });
+  },
+  deleteUser(){
+    if (this.data.switch1Checked) {
+      wx.cloud.callFunction({
+        name:'',
+        data:"",
+        success:function(){
+
+        },
+        fail:function(){
+          
+        }
+      })
+    }
   },
   saveUser() {
     if (!this.data.switch1Checked) {
@@ -123,7 +138,7 @@ Page({
    */
   switchChange_article() {
     wx.showToast({
-      title: '正在开发中...',
+      title: '敬请期待...',
       icon: 'none',
       duration: 2000,
     });
@@ -133,7 +148,7 @@ Page({
    */
   switchChange_reply() {
     wx.showToast({
-      title: '正在开发中...',
+      title: '敬请期待...',
       icon: 'none',
       duration: 2000,
     });

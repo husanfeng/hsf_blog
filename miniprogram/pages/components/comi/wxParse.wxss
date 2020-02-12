@@ -191,7 +191,7 @@
   
   .wxParse-blockquote {
     margin: 0;
-    padding: 10px 0 10px 5px;
+    padding: 0px 0 0px 5px;
     font-family: Courier, Calibri, "宋体";
     background: #f5f5f5;
     border-left: 3px solid #dbdbdb;
