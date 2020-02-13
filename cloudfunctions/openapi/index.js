@@ -15,15 +15,34 @@ exports.main = async (event, context) => {
     case 'getWXACode': {
       return getWXACode(event)
     }
-    case 'sendMessage': {
-      return sendMessageFunc(event)
+    case 'sendAddCommentMessage': {
+      return sendAddCommentMessage(event)
     }
     case 'getFile': {
       return getFile(event)
     }
+    case 'sendReplyCommentMessage': {
+      return sendReplyCommentMessage(event)
+    }
     default: {
       return
     }
+  }
+}
+
+async function sendReplyCommentMessage(event) {
+  try {
+    // 发送订阅消息
+    let result = await cloud.openapi.subscribeMessage.send({
+      touser: event.openid,
+      page: event.page,
+      data: event.data,
+      templateId: event.templateId,
+    });
+    // 发送成功后将消息的状态改为已发送
+    return result;
+  } catch (e) {
+    return e;
   }
 }
 
@@ -36,7 +55,7 @@ async function getFile(event) {
   const buffer = res.fileContent
   return buffer.toString('utf8')
 }
-async function sendMessageFunc(event) {
+async function sendAddCommentMessage(event) {
   const {
     OPENID
   } = cloud.getWXContext()

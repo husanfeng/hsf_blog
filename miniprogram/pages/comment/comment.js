@@ -1,5 +1,6 @@
 // pages/comment/comment.js
-const lessonTmplId = 'ei8TI54LSrC0kMMl5yQ3A-h61bjGB4iZIH56A2-dIns';
+const lessonTmplId = 'ei8TI54LSrC0kMMl5yQ3A-h61bjGB4iZIH56A2-dIns'; //留言评论提醒
+const commentReplyId = 'u2qcHMJAuxBvD0P3zyR0j-cojervsdquT1ZYWv-3N2M' // 文章评论回复通知
 const util = require('../../utils/util.js')
 var app = getApp();
 Page({
@@ -109,7 +110,7 @@ Page({
               }, 500);
             }
           })
-          _this.sendMessage(_this.data.userInfo.nickName,_this.data.inputData,_this.data.articleDetail.article_id,create_date);
+          _this.sendReplyCommentMessage(_this.data.articleDetail.title,_this.data.otherUserInfo.comment,_this.data.inputData,_this.data.articleDetail.article_id,create_date,_this.data.otherUserInfo._openid);
 
         } else {
           wx.showToast({
@@ -180,7 +181,10 @@ Page({
               }, 500);
             }
           })
-          _this.sendMessage(_this.data.userInfo.nickName,_this.data.inputData,_this.data.articleDetail.article_id,create_date);
+          if ('oJX0Y47QUSPd3lkaGgJYWFqfn944' == openid) { // 管理员获得此订阅消息通知
+            _this.sendAddCommentMessage(_this.data.userInfo.nickName,_this.data.inputData,_this.data.articleDetail.article_id,create_date);
+          }
+          
         } else {
           wx.showToast({
             title: '评论失败,内容包含敏感信息!',
@@ -205,7 +209,69 @@ Page({
     })
 
   },
-  sendMessage(nickName,inputData,article_id,create_date) {
+  /**
+   * 发送评论回复通知
+   * @param {*} nickName 
+   * @param {*} inputData 
+   * @param {*} article_id 
+   * @param {*} create_date 
+   */
+  sendReplyCommentMessage(title,comment,inputData,article_id,create_date,_openid) {
+
+    // 文章标题
+    // {{thing1.DATA}}
+    
+    // 评论内容
+    // {{thing2.DATA}}
+    
+    // 回复内容
+    // {{thing3.DATA}}
+    
+    // 回复时间
+    // {{date4.DATA}}
+
+
+    var data = {
+      thing1: {
+        value: title
+      },
+      thing2: {
+        value: comment
+      },
+      thing3: {
+        value: inputData
+      },
+      date4: {
+        value: create_date
+      }
+    }
+    wx.cloud.callFunction({
+      name: 'openapi',
+      data: {
+        action: 'sendReplyCommentMessage',
+        page: "pages/articleDetail/articleDetail?article_id="+article_id,
+        data: data,
+        openid:_openid,
+        templateId: commentReplyId,
+      },
+      success: function (res) {
+        console.log("评论回复消息发送成功----")
+      },
+      fail: err => {
+        console.log("评论回复消息发送失败----")
+      },
+      complete: res => {
+      }
+    })
+  },
+  /**
+   * 新增评论通知
+   * @param {} nickName 
+   * @param {*} inputData 
+   * @param {*} article_id 
+   * @param {*} create_date 
+   */
+  sendAddCommentMessage(nickName,inputData,article_id,create_date) {
     var data = {
       name3: {
         value: nickName
@@ -220,7 +286,7 @@ Page({
     wx.cloud.callFunction({
       name: 'openapi',
       data: {
-        action: 'sendMessage',
+        action: 'sendAddCommentMessage',
         page: "pages/articleDetail/articleDetail?article_id="+article_id,
         data: data,
         templateId: lessonTmplId,
