@@ -20,10 +20,14 @@ Page({
       return
     }
     var openid = wx.getStorageSync("openid");
-    console.log("openid========" + openid);
-    this.setData({
-      openid: openid
-    })
+    if (!openid || openid == '') {
+      this.getUserOpenId();
+    } else {
+      console.log("openid========" + openid);
+      this.setData({
+        openid: openid
+      })
+    }
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -43,6 +47,26 @@ Page({
             isShowAddPersonView: true
           });
         }
+      }
+    })
+  },
+  getUserOpenId() {
+    var _this = this;
+    wx.cloud.callFunction({
+      name: 'getUserOpenId',
+      data: {},
+      success: res => {
+        console.log("用户的openID=" + res.result.openid)
+        wx.setStorageSync("openid", res.result.openid)
+        this.setData({
+          openid: openid
+        })
+      },
+      fail: err => {
+        console.error('[云函数]调用失败', err)
+      },
+      complete: res => {
+        // wx.hideLoading()
       }
     })
   },

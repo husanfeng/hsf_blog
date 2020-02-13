@@ -1,5 +1,6 @@
 // pages/messageSelectList/messageSelectList.js
 const lessonTmplId = 'ei8TI54LSrC0kMMl5yQ3A-h61bjGB4iZIH56A2-dIns'; //留言评论提醒
+const commentReplyId = 'u2qcHMJAuxBvD0P3zyR0j-cojervsdquT1ZYWv-3N2M' // 文章评论回复通知
 const util = require("../../utils/util.js")
 const app = getApp()
 const db = wx.cloud.database({
@@ -14,6 +15,7 @@ Page({
    */
   data: {
     switch1Checked: false,
+    switch3Checked: false,
   },
 
   /**
@@ -22,6 +24,7 @@ Page({
   onLoad: function (options) {
     this.isSubscribe()
   },
+  
   isSubscribe() {
     var that = this;
     db.collection('message_subscribe').where({
@@ -38,13 +41,35 @@ Page({
         }
       }
     })
-
+    db.collection('message_subscribe').where({
+      tmplIds: commentReplyId,
+      openid: wx.getStorageSync("openid"),
+    }).get({
+      success: function (res) {
+        // res.data 是包含以上定义的两条记录的数组
+        console.log(res.data)
+        if (res.data.length > 0) {
+          that.setData({
+            switch3Checked: true,
+          })
+        }
+      }
+    })
   },
   /**
    * 订阅评论
    */
   switchChange_comment(event) {
     var that = this;
+    var openid = wx.getStorageSync("openid");
+    if ('oJX0Y47QUSPd3lkaGgJYWFqfn944' != openid) {
+      wx.showToast({
+        title: '管理员才有权限',
+        icon: 'none',
+        duration: 2000,
+      });
+      return;
+    }
     // const {
     //   value
     // } = event.detail
@@ -66,17 +91,14 @@ Page({
         console.log(res)
         // 申请订阅成功
         if (res["ei8TI54LSrC0kMMl5yQ3A-h61bjGB4iZIH56A2-dIns"] == "accept") {
-          that.saveUser();
+          that.saveUser(lessonTmplId, 1);
         } else {
-          that.setData({
-            switch1Checked: false
-          })
           wx.showToast({
             title: '订阅失败',
             icon: 'none',
             duration: 2000,
           });
-          that.deleteUser()
+          that.deleteUser(lessonTmplId, 1)
         }
       },
       fail(err) {
@@ -84,36 +106,47 @@ Page({
       }
     });
   },
-  deleteUser() {
-    if (this.data.switch1Checked) {
+  deleteUser(ID, switchId) {
+    var that = this;
+    if (this.data.switch1Checked || this.data.switch3Checked) {
       wx.cloud.callFunction({
         name: 'delete',
         data: {
           action: 'deleteMessage',
-          tmplIds: lessonTmplId,
+          tmplIds: ID,
           openid: wx.getStorageSync("openid"),
         },
         success: res => {
-          
+
           console.log("取消消息订阅----")
-         
+          if (switchId == 1) {
+            that.setData({
+              switch1Checked: false
+            })
+          } else if (switchId == 3) {
+            that.setData({
+              switch3Checked: false
+            })
+          }
         },
         fail: err => {
           console.error('[云函数]调用失败', err)
         },
         complete: res => {
-          
+
         }
       })
     }
   },
-  saveUser() {
-    if (!this.data.switch1Checked) {
+  saveUser(ID, switchId) {
+    var that = this;
+
+    if (!this.data.switch1Checked || !this.data.switch3Checked) {
       db.collection('message_subscribe').add({
         // data 字段表示需新增的 JSON 数据
         data: {
           //_id: 'todo-identifiant-aleatoire', // 可选自定义 _id，在此处场景下用数据库自动分配的就可以了
-          tmplIds: lessonTmplId,
+          tmplIds: ID,
           openid: wx.getStorageSync("openid"),
           date: util.formatTime(new Date()),
           done: false
@@ -121,9 +154,16 @@ Page({
         success: function (res) {
           // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
           console.log(res)
-          that.setData({
-            switch1Checked: true
-          })
+          if (switchId == 1) {
+            that.setData({
+              switch1Checked: true
+            })
+          } else if (switchId == 3) {
+            that.setData({
+              switch3Checked: true
+            })
+          }
+
           wx.showToast({
             title: '订阅成功',
             icon: 'success',
@@ -156,10 +196,32 @@ Page({
    * 订阅回复评论
    */
   switchChange_reply() {
-    wx.showToast({
-      title: '敬请期待...',
-      icon: 'none',
-      duration: 2000,
+    // wx.showToast({
+    //   title: '敬请期待...',
+    //   icon: 'none',
+    //   duration: 2000,
+    // });
+    var that = this;
+    wx.requestSubscribeMessage({
+      // 传入订阅消息的模板id，模板 id 可在小程序管理后台申请
+      tmplIds: [commentReplyId],
+      success(res) {
+        console.log(res)
+        // 申请订阅成功
+        if (res["u2qcHMJAuxBvD0P3zyR0j-cojervsdquT1ZYWv-3N2M"] == "accept") {
+          that.saveUser(commentReplyId, 3);
+        } else {
+          wx.showToast({
+            title: '订阅失败',
+            icon: 'none',
+            duration: 2000,
+          });
+          that.deleteUser(commentReplyId, 3)
+        }
+      },
+      fail(err) {
+        console.log("err=" + err)
+      }
     });
   },
   test() {

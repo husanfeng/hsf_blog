@@ -2,7 +2,7 @@
 <view>
 	<view class="body-view" bindtap="switchChange_reply">
 		<text>文章评论回复通知</text>
-		<switch checked="{{switch3Checked}}" disabled="true" />
+		<switch checked="{{switch3Checked}}"  />
 	</view>
 	<view class="body-view" bindtap="switchChange_comment">
 		<text>留言评论提醒</text>

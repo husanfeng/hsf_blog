@@ -9,10 +9,10 @@ const _ = db.command
 exports.main = async (event, context) => {
   switch (event.action) {
     case 'deletePoll':
-      deletePoll(event);
+      return deletePoll(event);
       break;
     case 'deleteMessage':
-      deleteMessage(event);
+      return deleteMessage(event);
       break;
     default:
       break;
