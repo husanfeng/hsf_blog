@@ -56,16 +56,13 @@ async function getFile(event) {
   return buffer.toString('utf8')
 }
 async function sendAddCommentMessage(event) {
-  const {
-    OPENID
-  } = cloud.getWXContext()
   try {
     // 发送订阅消息
     let result = await cloud.openapi.subscribeMessage.send({
-      touser: OPENID,
+      touser: 'oJX0Y47QUSPd3lkaGgJYWFqfn944',
       page: event.page,
       data: event.data,
-      templateId: event.templateId,
+      templateId: 'ei8TI54LSrC0kMMl5yQ3A-h61bjGB4iZIH56A2-dIns',
     });
     // 发送成功后将消息的状态改为已发送
     return result;
