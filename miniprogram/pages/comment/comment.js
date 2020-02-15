@@ -113,9 +113,11 @@ Page({
           var openId = _this.data.otherUserInfo.openId ? _this.data.otherUserInfo.openId : _this.data.otherUserInfo._openid;
           _this.sendReplyCommentMessage(_this.data.articleDetail.title, _this.data.otherUserInfo.comment, _this.data.inputData, _this.data.articleDetail.article_id, 
           create_date, openId);
-          // if ('oJX0Y47QUSPd3lkaGgJYWFqfn944' != openId) { // 管理员也能收到回复通知
-            _this.sendAddCommentMessage(_this.data.userInfo.nickName, _this.data.inputData, _this.data.articleDetail.article_id, create_date);
-          // }
+          if ('oJX0Y47QUSPd3lkaGgJYWFqfn944' != openId) { // 管理员也能收到回复通知
+            // _this.sendAddCommentMessage(_this.data.userInfo.nickName, _this.data.inputData, _this.data.articleDetail.article_id, create_date);
+            _this.sendReplyCommentMessage(_this.data.articleDetail.title, _this.data.otherUserInfo.comment, _this.data.inputData, _this.data.articleDetail.article_id,
+              create_date, 'oJX0Y47QUSPd3lkaGgJYWFqfn944');
+          }
         } else {
           wx.showToast({
             title: '回复评论失败,内容包含敏感信息!',
@@ -185,9 +187,9 @@ Page({
               }, 500);
             }
           })
-          // if ('oJX0Y47QUSPd3lkaGgJYWFqfn944' == openid) { // 管理员获得此订阅消息通知
+        
             _this.sendAddCommentMessage(_this.data.userInfo.nickName,_this.data.inputData,_this.data.articleDetail.article_id,create_date);
-          // }
+          
           
         } else {
           wx.showToast({
@@ -278,7 +280,7 @@ Page({
   sendAddCommentMessage(nickName,inputData,article_id,create_date) {
     var data = {
       name3: {
-        value: nickName
+        value: '虚拟名字'
       },
       thing1: {
         value: inputData
