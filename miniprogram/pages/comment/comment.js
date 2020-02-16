@@ -280,7 +280,7 @@ Page({
   sendAddCommentMessage(nickName,inputData,article_id,create_date) {
     var data = {
       name3: {
-        value: '虚拟名字'
+        value: '虚拟名字' // 这里本来是取留言者的nickName,但是如果nickName中包含特殊字符的话就会报错（例如：★那一抹笑^穿透阳光★），所以无奈之下只能取一个虚拟名字
       },
       thing1: {
         value: inputData

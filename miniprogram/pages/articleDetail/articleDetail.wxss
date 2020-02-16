@@ -938,8 +938,8 @@ button::after {
 }
 
 .article .article-content {
-  margin: 10rpx 10rpx;
+  padding: 20rpx;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
 }

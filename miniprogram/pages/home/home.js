@@ -173,8 +173,6 @@ Page({
     })
     db.collection('classfication').get({
       success: function (res) {
-        // res.data 包含该记录的数据
-        console.log(res.data)
         _this.setData({
           classficationList: res.data
         })
@@ -194,8 +192,6 @@ Page({
     })
     db.collection('top_images').orderBy("_id", 'asc').get({
       success: function (res) {
-        // res.data 包含该记录的数据
-        console.log(res.data)
         _this.setData({
           imgUrls: res.data
         })
@@ -221,13 +217,13 @@ Page({
 
   },
   click(e) {
-    var id = e.currentTarget.dataset.id;
-    if (id == 11) {
-      wx.navigateTo({
-        url: '../avatar/avatar',
-      })
-      return false;
-    }
+    // var id = e.currentTarget.dataset.id;
+    // if (id == 11) {
+    //   wx.navigateTo({
+    //     url: '../avatar/avatar',
+    //   })
+    //   return false;
+    // }
     var name = e.currentTarget.dataset.name;
     wx.navigateTo({
       url: '../articleList/articleList?id=' + id + '&name=' + name,
