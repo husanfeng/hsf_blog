@@ -1,9 +1,9 @@
 > # 近期更新内容:
-1. 消息订阅功能（留言通知，评论回复通知）
+## 1. 消息订阅功能（留言通知，评论回复通知）
 
-2. 轮播图显示某篇文章信息，可配置跳转链接，击跳转对应的文章详情。
+## 2. 轮播图显示某篇文章信息，可配置跳转链接，击跳转对应的文章详情。
 
-3. 小程序富文本解析toxml转为cmoi
+## 3. 小程序富文本解析toxml转为cmoi
 
 ## 用微信扫一扫即可打开小程序
 <p align="center">
@@ -71,7 +71,7 @@
 
 #### 首页
 
-<img src="https://6873-hsf-blog-product-jqt54-1256640731.tcb.qcloud.la/github.md/%E9%A6%96%E9%A1%B5.png?sign=cf8dd69a61e95842104534eb276ff01e&t=1566539614"  width="375" height="667"/>  
+<img src="https://6873-hsf-blog-product-jqt54-1256640731.tcb.qcloud.la/github.md/%E9%A6%96%E9%A1%B5.png?sign=f654a54d55aabf9e440e3c6682cc48a9&t=1582694753"  width="375" height="667"/>  
 
 #### 专题
 
