@@ -3,6 +3,8 @@
 
 2. 轮播图显示某篇文章信息，可配置跳转链接，击跳转对应的文章详情。
 
+3. 小程序富文本解析toxml转为cmoi
+
 ## 用微信扫一扫即可打开小程序
 <p align="center">
   <img width="200" src="https://6873-hsf-blog-product-jqt54-1256640731.tcb.qcloud.la/github.md/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%A0%81.jpg?sign=f4cad9f1d9332de97807ceb5a7e53d5f&t=1566538869">
@@ -11,7 +13,7 @@
 
 ## 扫描下方二维码回复“加群”，即可进前端交流群
 <p align="center">
-  <img width="200" src="https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/resources/aboutme.jpg?sign=8c7a5adbf2acf6b7b45d5a261ff885d0&t=1564201835">
+  <img width="200" src="https://6873-hsf-blog-product-jqt54-1256640731.tcb.qcloud.la/github.md/concat-me.jpg?sign=4ad03643a89beb8662ded7cbb0d4b0a7&t=1582686091">
 </p>
 
 ## 当前版本:v1.6
