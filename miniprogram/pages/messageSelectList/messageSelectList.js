@@ -164,7 +164,6 @@ Page({
               switch3Checked: true
             })
           }
-
           wx.showToast({
             title: '订阅成功',
             icon: 'success',
@@ -180,6 +179,12 @@ Page({
           });
         }
       })
+    } else {
+      wx.showToast({
+        title: '订阅成功',
+        icon: 'success',
+        duration: 2000,
+      });
     }
 
   },
@@ -197,21 +202,15 @@ Page({
    * 订阅回复评论
    */
   switchChange_reply() {
-    // wx.showToast({
-    //   title: '敬请期待...',
-    //   icon: 'none',
-    //   duration: 2000,
-    // });
     var that = this;
     wx.requestSubscribeMessage({
-      // 传入订阅消息的模板id，模板 id 可在小程序管理后台申请
-      tmplIds: [commentReplyId],
+      tmplIds: ['u2qcHMJAuxBvD0P3zyR0j-cojervsdquT1ZYWv-3N2M'],
       success(res) {
         console.log(res)
         // 申请订阅成功
         if (res["u2qcHMJAuxBvD0P3zyR0j-cojervsdquT1ZYWv-3N2M"] == "accept") {
           that.saveUser(commentReplyId, 3);
-        } else {
+        } else { // 申请订阅失败
           wx.showToast({
             title: '订阅失败',
             icon: 'none',

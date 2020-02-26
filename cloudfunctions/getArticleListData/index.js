@@ -6,19 +6,9 @@ cloud.init({env:env})
 const db = cloud.database()
 // 云函数入口函数
 exports.main = async(event, context) => {
-  //const wxContext = cloud.getWXContext()
-  // const {
-  //   ENV,
-  //   OPENID,
-  //   APPID
-  // } = cloud.getWXContext()
-  // // 更新默认配置，将默认访问环境设为当前云函数所在环境
-  // cloud.updateConfig({
-  //   env: ENV
-  // })
-  var orderBy = event.orderBy ? event.orderBy : "";
-  var dbName = event.dbName; //集合
-  var filter = event.filter ? event.filter : null;
+  var orderBy = event.orderBy ? event.orderBy : ""; // 根据传过来的字段进行排序
+  var dbName = event.dbName; //集合名称
+  var filter = event.filter ? event.filter : null;  // 根据传过来的字段进行查询
   var pageIndex = event.pageIndex ? event.pageIndex : 1;
   var pageSize = event.pageSize ? event.pageSize : 10;
   const counResult = await db.collection(dbName).where(filter).count;

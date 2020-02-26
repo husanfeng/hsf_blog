@@ -59,6 +59,7 @@ Page({
           openid: openid
         }
       })
+      
     } else {
       // this.initArticleList(class_id) // 分类页面过来的
       this.setData({

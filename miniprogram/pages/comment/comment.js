@@ -16,7 +16,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var type = options.type; // 1是回复  2是评论
     var otherUserInfo = wx.getStorageSync("otherInfo")
     var userInfo = wx.getStorageSync("userInfo")
@@ -102,7 +102,7 @@ Page({
           wx.showToast({
             title: '回复评论成功',
             duration: 500,
-            complete: function () {
+            complete: function() {
               setTimeout(() => {
                 wx.navigateBack({
                   delta: 1
@@ -111,8 +111,8 @@ Page({
             }
           })
           var openId = _this.data.otherUserInfo.openId ? _this.data.otherUserInfo.openId : _this.data.otherUserInfo._openid;
-          _this.sendReplyCommentMessage(_this.data.articleDetail.title, _this.data.otherUserInfo.comment, _this.data.inputData, _this.data.articleDetail.article_id, 
-          create_date, openId);
+          _this.sendReplyCommentMessage(_this.data.articleDetail.title, _this.data.otherUserInfo.comment, _this.data.inputData, _this.data.articleDetail.article_id,
+            create_date, openId);
           if ('oJX0Y47QUSPd3lkaGgJYWFqfn944' != openId) { // 管理员也能收到回复通知
             // _this.sendAddCommentMessage(_this.data.userInfo.nickName, _this.data.inputData, _this.data.articleDetail.article_id, create_date);
             _this.sendReplyCommentMessage(_this.data.articleDetail.title, _this.data.otherUserInfo.comment, _this.data.inputData, _this.data.articleDetail.article_id,
@@ -123,7 +123,7 @@ Page({
             title: '回复评论失败,内容包含敏感信息!',
             icon: 'none',
             duration: 2000,
-            complete: function () {
+            complete: function() {
               setTimeout(() => {
                 wx.navigateBack({
                   delta: 1
@@ -179,7 +179,7 @@ Page({
           wx.showToast({
             title: '评论成功',
             duration: 500,
-            complete: function () {
+            complete: function() {
               setTimeout(() => {
                 wx.navigateBack({
                   delta: 1
@@ -187,16 +187,16 @@ Page({
               }, 500);
             }
           })
-        
-            _this.sendAddCommentMessage(_this.data.userInfo.nickName,_this.data.inputData,_this.data.articleDetail.article_id,create_date);
-          
-          
+
+          _this.sendAddCommentMessage(_this.data.userInfo.nickName, _this.data.inputData, _this.data.articleDetail.article_id, create_date);
+
+
         } else {
           wx.showToast({
             title: '评论失败,内容包含敏感信息!',
             icon: 'none',
             duration: 2000,
-            complete: function () {
+            complete: function() {
               setTimeout(() => {
                 wx.navigateBack({
                   delta: 1
@@ -222,21 +222,7 @@ Page({
    * @param {*} article_id 
    * @param {*} create_date 
    */
-  sendReplyCommentMessage(title,comment,inputData,article_id,create_date,_openid) {
-
-    // 文章标题
-    // {{thing1.DATA}}
-    
-    // 评论内容
-    // {{thing2.DATA}}
-    
-    // 回复内容
-    // {{thing3.DATA}}
-    
-    // 回复时间
-    // {{date4.DATA}}
-
-
+  sendReplyCommentMessage(title, comment, inputData, article_id, create_date, _openid) {
     var data = {
       thing1: {
         value: title
@@ -255,20 +241,24 @@ Page({
       name: 'openapi',
       data: {
         action: 'sendReplyCommentMessage',
-        page: "pages/articleDetail/articleDetail?article_id="+article_id,
+        page: "pages/articleDetail/articleDetail?article_id=" + article_id,
         data: data,
-        openid:_openid,
+        openid: _openid,
         templateId: commentReplyId,
       },
-      success: function (res) {
+      success: function(res) {
         console.log("评论回复消息发送成功----")
       },
       fail: err => {
         console.log("评论回复消息发送失败----")
       },
-      complete: res => {
-      }
+      complete: res => {}
     })
+  },
+  isChinese(temp) {
+    var re = /[^\u4e00-\u9fa5]/;
+    if (re.test(temp)) return false;
+    return true;
   },
   /**
    * 新增评论通知
@@ -277,10 +267,17 @@ Page({
    * @param {*} article_id 
    * @param {*} create_date 
    */
-  sendAddCommentMessage(nickName,inputData,article_id,create_date) {
+  sendAddCommentMessage(nickName, inputData, article_id, create_date) {
+    var flag = this.isChinese(nickName);
+    var nick = '';
+    if (flag){
+      nick = nickName
+    }else{
+      nick = '虚拟名字'
+    }
     var data = {
       name3: {
-        value: '虚拟名字' // 这里本来是取留言者的nickName,但是如果nickName中包含特殊字符的话就会报错（例如：★那一抹笑^穿透阳光★），所以无奈之下只能取一个虚拟名字
+        value: nick // 这里本来是取留言者的nickName,但是如果nickName中包含特殊字符的话就会报错（例如：★那一抹笑^穿透阳光★），所以无奈之下只能取一个虚拟名字
       },
       thing1: {
         value: inputData
@@ -293,67 +290,66 @@ Page({
       name: 'openapi',
       data: {
         action: 'sendAddCommentMessage',
-        page: "pages/articleDetail/articleDetail?article_id="+article_id,
+        page: "pages/articleDetail/articleDetail?article_id=" + article_id,
         data: data,
-        openId:'oJX0Y47QUSPd3lkaGgJYWFqfn944',
+        openId: 'oJX0Y47QUSPd3lkaGgJYWFqfn944',
         templateId: lessonTmplId,
       },
-      success: function (res) {
+      success: function(res) {
         console.log("留言消息订阅发送成功----")
       },
       fail: err => {
         console.log("留言消息订阅发送失败----")
       },
-      complete: res => {
-      }
+      complete: res => {}
     })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })
