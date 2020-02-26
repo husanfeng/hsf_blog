@@ -6,6 +6,7 @@ cloud.init({
   env: env
 })
 const db = cloud.database()
+const _ = db.command
 // 云函数入口函数
 exports.main = async (event, context) => {
   switch (event.action) {
@@ -53,6 +54,14 @@ async function getFile(event) {
     fileID: fileID,
   })
   const buffer = res.fileContent
+
+  //获取文章时直接浏览量+1
+  await db.collection('article').doc(event.article_id).update({
+    data: {
+      read_count: _.inc(1)
+    }
+  })
+
   return buffer.toString('utf8')
 }
 async function sendAddCommentMessage(event) {
