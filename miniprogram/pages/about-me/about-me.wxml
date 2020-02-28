@@ -1,5 +1,0 @@
-<!--pages/about-me/about-me.wxml-->
-<view class="about-me">
-  <text class="text">扫描下方二维码，回复'加群'，可进前端交流群</text>
-  <image src="{{imgUrl}}" bindtap="clickImg"></image>
-</view>

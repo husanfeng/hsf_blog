@@ -1,4 +1,0 @@
-/* pages/components/towxml-component/towxml-component.wxss */
-/**主题配色**/
-@import "/app.wxss";
-@import '/towxml/style/theme/light.wxss';

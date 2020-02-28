@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "add-person": "/pages/components/modal/add-person",
-    "towxml-component": "../components/towxml-component/towxml-component",
-    "poster": "wxa-plugin-canvas/poster"
-  }
-}

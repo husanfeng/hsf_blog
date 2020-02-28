@@ -1,4 +1,0 @@
-<!--pages/components/towxml-component/towxml-component.wxml-->
-<!--使用towxml-->
-<import src="/towxml/entry.wxml"/>
-<template is="entry" data="{{...article}}"/>

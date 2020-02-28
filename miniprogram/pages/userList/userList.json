@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "user-list-component": "../components/user-list-component/user-list-component"
-  },
-  "enablePullDownRefresh": true,
-  "navigationBarTitleText": "用户列表"
-}
