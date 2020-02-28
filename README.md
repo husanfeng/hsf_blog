@@ -12,7 +12,7 @@
 </p>
 
 
-## 扫描下方二维码回复“加群”，即可进前端交流群
+## 扫描下方二维码回复“源码”，即可获取最新源码+数据库结构+云开发教程
 <p align="center">
   <img width="200" src="https://6873-hsf-blog-product-jqt54-1256640731.tcb.qcloud.la/github.md/concat-me.jpg?sign=4ad03643a89beb8662ded7cbb0d4b0a7&t=1582686091">
 </p>
