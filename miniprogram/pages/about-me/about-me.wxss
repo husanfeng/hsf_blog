@@ -1,0 +1,27 @@
+/* pages/about-me/about-me.wxss */
+
+.about-me {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+}
+
+.about-me image {
+  width: 669rpx;
+  height: 881rpx;
+}
+
+.text {
+  font-size: 32rpx;
+  margin: 15rpx;
+  color: #666;
+
+}
+
+
+.important{
+  font-weight: 600;
+}

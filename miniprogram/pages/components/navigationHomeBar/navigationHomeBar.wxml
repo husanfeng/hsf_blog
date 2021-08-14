@@ -1,0 +1,10 @@
+<!--pages/components/navigationHomeBar/navigationHomeBar.wxml-->
+<view class="container">
+  <view class="view-navigation-bg" style="width:{{systemInfo.windowWidth}}px;height:{{menuButtonBoundingClientRect.bottom+10}}px;opacity:{{opacity}}">
+  </view>
+  <view class="view-navigation-container" style="width:{{systemInfo.windowWidth}}px;height:{{menuButtonBoundingClientRect.bottom+10}}px;">
+    <image class="image-navigation-back" src="../../../images/home.png" style="width:{{menuButtonBoundingClientRect.height-10}}px;height:{{menuButtonBoundingClientRect.height-10}}px;padding:5px;margin-left:10px;top: {{menuButtonBoundingClientRect.top}}px;" catchtap="back2home"></image>
+  </view>
+  <view style="width:{{systemInfo.windowWidth}}px;height:{{menuButtonBoundingClientRect.bottom+10}}px;">
+  </view>
+</view>

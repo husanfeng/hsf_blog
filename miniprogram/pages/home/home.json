@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "article-list-component": "../components/article-list-component/article-list-component",
+    "navigationBar":"../components/navigationHomeBar/navigationHomeBar"
+  },
+  "navigationBarTitleText": "首页",
+  "onReachBottomDistance":100,
+  "enablePullDownRefresh": true,
+  "navigationStyle": "custom"
+}

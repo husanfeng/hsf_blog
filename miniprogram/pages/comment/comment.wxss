@@ -1,0 +1,50 @@
+/* pages/comment/comment.wxss */
+
+page {
+  background: #f1f1f1;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment .comment-content {
+  background: #fff;
+}
+
+.comment .comment-content textarea {
+  width: 100%;
+  height: 300rpx;
+  
+}
+
+.comment .comment-content label {
+  float: right;
+  margin: 20rpx;
+  font-size: 25rpx;
+  color: #8a8a8a;
+}
+
+.comment .submit {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 80rpx;
+}
+
+.comment .submit .submit-button {
+  background: #1296db;
+  width: 80%;
+  height: 80rpx;
+  border-radius: 15rpx;
+  border: 1px solid #fff;
+  text-align: center;
+  line-height: 80rpx;
+  color: #fff;
+  font-size: 30rpx;
+}
+.comment-place-holder{
+  font-size: 25rpx;
+  padding: 10rpx
+}

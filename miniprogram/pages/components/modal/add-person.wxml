@@ -1,0 +1,9 @@
+<view class='get-userinfo-modal'>
+  <view class='userinfo-modal'>
+    <text class="text">{{showText}} </text>
+    <view class='userinfo-modal-button'>
+      <button class="cancel" bindtap='cancel'>{{leftButtonText}}</button>
+      <button open-type="getUserInfo" bindgetuserinfo="confirm" class="sure">{{rightButtonText}}</button>
+    </view>
+  </view>
+</view>

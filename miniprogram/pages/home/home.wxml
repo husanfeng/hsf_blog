@@ -1,0 +1,41 @@
+<view class="home">
+	<scroll-view scroll-y>
+		<view wx:if="{{searchTop != ''}}" class="navigationHome" style="height:{{navigationHeight}}px;background:none;z-index:20">
+			<view class="border"  style="margin-top:{{searchTop}}px">
+				<icon class="icon" type="search" size="18"></icon>
+				<input type='text' confirm-type='search' bindinput='bindSearchinput' bindconfirm='submit' class="search" placeholder="搜索"></input>
+			</view>
+		</view>
+		<view wx:if="{{searchTop != ''}}" class="navigationHome" style="z-index:2;height:{{navigationHeight}}px;opacity:{{scrollTop<=0?1:opacity}};background:{{scrollTop<=0?'none':'#339CFF'}}"></view>
+		<swiper class='swiper' indicator-dots="{{indicatorDots}}" indicator-active-color="#1296db" circular="true" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+			<block wx:for="{{imgUrls}}" wx:key="_id">
+				<swiper-item>
+					<image src="{{item.url}}" class="slide-image" data-id="{{item.article_id}}" bindtap="click_swiper_img" />
+				</swiper-item>
+			</block>
+		</swiper>
+		<view class='classfication'>
+			<scroll-view class="classfication-scroll" scroll-with-animation='true' scroll-anchoring='true' scroll-x enable-flex bindscroll='bindscroll'>
+				<view class="scroll-view-item">
+					<view wx:for="{{classficationList}}" class="child" wx:key='*this'>
+						<view class='classfication-view' wx:for="{{item.item}}" wx:for-item='child' wx:key="_id" wx:if="{{child._id<50}}" data-id='{{child.id}}' data-name='{{child.name}}' bindtap='click'>
+							<view class='image' style='background:{{child.style}}'>
+								<image src="{{child.url}}" />
+							</view>
+							<view class='name'>{{child.name}}</view>
+						</view>
+					</view>
+				</view>
+			</scroll-view>
+			<view class="scroll-bar">
+				<view class="scroll-bar-move" style="margin-left:{{scrollBar}}%"></view>
+			</view>
+		</view>
+		<article-list-component fromPage='home' articleList='{{dataList}}' navigateToParam='{{navigateToParam}}'></article-list-component>
+		<view class="loading" hidden="{{!loading}}">
+			<image src="../../images/load-more.gif"></image>
+		</view>
+		<view class="loading complete" hidden="{{loadingHasData}}" wx:if="{{dataList.length>0}}">
+			没有更多了</view>
+	</scroll-view>
+</view>

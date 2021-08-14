@@ -1,0 +1,51 @@
+/* pages/updateLogs/updateLogs.wxss */
+.update-logs .list {
+  font-size: 28rpx;
+  margin: 20rpx 0;
+}
+
+.update-logs .list .left {
+  flex: 1;
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+
+.update-logs .list .center {
+  height: auto;
+  width: 5rpx;
+  background: #f5f5f5;
+  margin: 0 10rpx;
+}
+
+.update-logs .list .right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.update-logs .list .left-space {
+  flex: 1;
+}
+
+.update-logs .list .right-space {
+  flex: 1;
+}
+
+.update-logs .list .item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.time {
+  color: #1296db;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.child-item {
+  margin: 10rpx 0;
+  color: #666;
+
+}

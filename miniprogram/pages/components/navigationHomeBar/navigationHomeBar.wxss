@@ -1,0 +1,13 @@
+/* pages/components/navigationHomeBar/navigationHomeBar.wxss */
+.view-navigation-bg{
+  /* background: rgb(247, 196, 28); */
+  background: linear-gradient(45deg, #0081ff, #1cbbb4);
+  position: fixed
+}
+.view-navigation-container{
+  position: fixed
+}
+.image-navigation-back{
+  position: absolute;
+  left: 0
+}

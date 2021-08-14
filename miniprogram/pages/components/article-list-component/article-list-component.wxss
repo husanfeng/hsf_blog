@@ -1,0 +1,112 @@
+@import "/app.wxss";
+/* .article-list{
+  margin-top: 450rpx;
+
+} */
+.article-list .article {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1rpx solid #f5f5f5;
+  width: 100%;
+  height: 200rpx;
+  align-items: center;
+}
+
+.article-list .article .article-img {
+  width: 160rpx;
+  height: 160rpx;
+  margin-left: 15rpx;
+}
+
+.article-list .article .article-img image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 20rpx;
+  background-color: #f0f0f0;
+}
+
+.article-list .article .article-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 25rpx;
+  color: #515151;
+  margin-left: 20rpx;
+  width: 100%;
+}
+
+.article-list .article .article-text .img-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 80%;
+}
+
+.article-list .article .article-text .img-title .title {
+  font-size: 30rpx;
+  font-weight: 600;
+  height: 50rpx;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.article-list .article .article-text .img-title .class-img {
+  width: 35rpx;
+  height: 35rpx;
+  margin-left: 10rpx;
+  margin-bottom: 5rpx;
+}
+
+.article-list .article .article-text .summary {
+  font-size: 24rpx;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.article-list .article .article-text .article-bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 80%;
+  margin-top: 20rpx;
+  justify-content: space-between;
+}
+
+.article-list .article .article-text .article-bottom view {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.article-list .article .article-text .article-bottom image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.article-list .article .article-text .article-bottom view text {
+  font-size: 22rpx;
+  margin-bottom: 7rpx;
+}
+
+.article-list .article .article-text .article-bottom .time {
+  flex: 2.2;
+}
+
+.article-list .article .article-text .article-bottom .comment-count {
+  flex: 1;
+}
+
+.article-list .article .article-text .article-bottom .read-count {
+  flex: 1;
+}
+
+.article-list .article .article-text .article-bottom .poll-count {
+  flex: 1;
+}

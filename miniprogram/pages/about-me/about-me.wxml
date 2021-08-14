@@ -1,0 +1,5 @@
+<!--pages/about-me/about-me.wxml-->
+<view class="about-me">
+  <text class="text">扫描下方二维码，回复 '源码'，可获取 <text class="important">最新源码+数据库结构+云开发教学</text></text>
+  <image src="{{imgUrl}}" bindtap="clickImg"></image>
+</view>

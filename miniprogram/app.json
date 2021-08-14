@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/me/me",
+    "pages/about-me/about-me",
+    "pages/special/special",
+    "pages/ranking/ranking",
+    "pages/articleDetail/articleDetail",
+    "pages/articleList/articleList",
+    "pages/comment/comment",
+    "pages/updateLogs/updateLogs",
+    "pages/admin/admin",
+    "pages/userList/userList",
+    "pages/messageSelectList/messageSelectList"
+  ],
+  "window": {
+    "backgroundColor": "#f6f6f6",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#1296db",
+    "navigationBarTitleText": "我的博客",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#cdcdcd",
+    "selectedColor": "#1296db",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-select.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/special/special",
+        "iconPath": "images/special.png",
+        "selectedIconPath": "images/special-select.png",
+        "text": "专题"
+      },
+      {
+        "pagePath": "pages/ranking/ranking",
+        "iconPath": "images/ranking.png",
+        "selectedIconPath": "images/ranking-select.png",
+        "text": "排行榜"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/my-select.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

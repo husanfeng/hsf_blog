@@ -1,0 +1,44 @@
+<view class="article-list" style="margin-top:{{fromPage=='home'?'450rpx':'0rpx'}}">
+  <scroll-view class="scroll-touch" scroll-y bindscrolltolower="bindscrolltolower">
+    <view class="inner" style='border-top:1rpx solid #f5f5f5;'>
+      <block wx:for="{{articleList}}" wx:key="*this">
+        <view class='article' data-item='{{item}}' bindtap='click'>
+          <view class='article-img'>
+            <image src='{{item.image_url}}'></image>
+          </view>
+          <view class='article-text'>
+            <view class='img-title'>
+              <view class='title'>{{item.title}}</view>
+              <image class='class-img' src='{{item.class_img_url}}'></image>
+            </view>
+            <view class='summary'>{{item.summary}}</view>
+            <view class='article-bottom' wx:if='{{type == "" || type=="搜索"}}'>
+              <view class='time'>
+                <image src='../../../images/creat_time.png'></image>
+                <text class=''>{{item.create_time}}</text>
+              </view>
+              <view class='comment-count'>
+                <image src='../../../images/comment.png'></image>
+                <text class=''>{{item.comment_count}}</text>
+              </view>
+              <view class='read-count'>
+                <image src='../../../images/read_count.png'></image>
+                <text class=''>{{item.read_count}}</text>
+              </view>
+              <view class='poll-count'>
+                <image src='../../../images/poll.png'></image>
+                <text class=''>{{item.poll_count}}</text>
+              </view>
+            </view>
+            <view class='article-bottom' wx:if='{{type == "我的浏览"}}'>
+             浏览时间 {{item.visit_time}}
+            </view>
+             <view class='article-bottom' wx:if='{{type == "我的点赞"}}'>
+             点赞时间 {{item.poll_time}}
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+</view>

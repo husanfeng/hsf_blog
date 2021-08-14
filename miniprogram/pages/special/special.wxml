@@ -1,0 +1,15 @@
+<!--pages/special/special.wxml style='background:{{item.style}}'-->
+<view>
+  <view class='special'>
+    <block wx:for="{{classficationList}}" wx:key="*this">
+      <view class='item' data-id='{{item.id}}' data-name='{{item.name}}' bindtap='click'>
+        <view class="image-background" >
+          <image class='left' src="{{item.url}}"></image>
+        </view>
+        <view class='right'>
+          <view class='title'>{{item.name}} </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

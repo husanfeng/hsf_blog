@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "add-person": "/pages/components/modal/add-person",
+    "poster": "wxa-plugin-canvas/poster"
+  }
+}

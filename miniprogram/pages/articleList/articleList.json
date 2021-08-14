@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "article-list-component": "../components/article-list-component/article-list-component"
+  },
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "专题分类"
+}
