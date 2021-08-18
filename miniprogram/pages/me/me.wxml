@@ -2,8 +2,12 @@
 <view>
 	<view class="me">
 		<!-- 用户 openid -->
-		<view class="user-info">
+		<view class="user-info" wx:if="!canIUseGetUserProfile">
 			<button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{userInfo.avatarUrl}})"></button>
+			<view class='nickname'>{{userInfo?userInfo.nickName:"点击头像登录"}}</view>
+		</view>
+		<view class="user-info" wx:if="canIUseGetUserProfile">
+			<button bindtap="getUserProfile" class="userinfo-avatar" style="background-image: url({{userInfo.avatarUrl}})"></button>
 			<view class='nickname'>{{userInfo?userInfo.nickName:"点击头像登录"}}</view>
 		</view>
 		<view class='function'>
