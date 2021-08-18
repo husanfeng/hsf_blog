@@ -28,7 +28,7 @@
 				</view>
 			</scroll-view>
 			<view class="scroll-bar">
-				<view class="scroll-bar-move" style="margin-left:{{scrollBar}}%"></view>
+				<view class="scroll-bar-move" style="margin-left:{{scrollBar}}"></view>
 			</view>
 		</view>
 		<article-list-component fromPage='home' articleList='{{dataList}}' navigateToParam='{{navigateToParam}}'></article-list-component>

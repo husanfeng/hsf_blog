@@ -55,6 +55,9 @@ Page({
     this.initSwiper();
     this.initClassfication();
     this.fetchSearchList(true);
+    //------------------------
+    // this.getUserOpenId(() => {})
+    //-------------------------
     var openid = wx.getStorageSync("openid");
     // 获取用户信息
     wx.getSetting({
@@ -151,7 +154,7 @@ Page({
       }
       var move = scrollLeft / canScroll / 2 * 100;
       _this.setData({
-        scrollBar: move
+        scrollBar: move+ '%'
       })
     }, 400);
   },
@@ -202,6 +205,7 @@ Page({
       name: 'getUserOpenId',
       data: {},
       success: res => {
+        console.log('getUserOpenId===>',res.result)
         console.log("用户的openID=" + res.result.openid)
         wx.setStorageSync("openid", res.result.openid)
         this.setData({

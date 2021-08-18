@@ -14,5 +14,18 @@ exports.main = async (event, context) => {
     openid: wxContext.OPENID,
     appid: wxContext.APPID,
     unionid: wxContext.UNIONID,
+  // "openId": "OPENID",
+  // "nickName": "NICKNAME",
+  // "gender": GENDER,
+  // "city": "CITY",
+  // "province": "PROVINCE",
+  // "country": "COUNTRY",
+  // "avatarUrl": "AVATARURL",
+    nickName:wxContext.NICKNAME,
+    gender:wxContext.GENDER,
+    city:wxContext.CITY,
+    province:wxContext.PROVINCE,
+    country:wxContext.COUNTRY,
+    avatarUrl:wxContext.AVATARURL
   }
 }
