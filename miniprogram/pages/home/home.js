@@ -55,34 +55,47 @@ Page({
     this.initSwiper();
     this.initClassfication();
     this.fetchSearchList(true);
-    //------------------------
-    // this.getUserOpenId(() => {})
-    //-------------------------
+
     var openid = wx.getStorageSync("openid");
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              wx.setStorageSync("userInfo", res.userInfo)
-              if (openid && openid != "") {
-                this.initData(res.userInfo);
-              } else {
-                this.getUserOpenId(() => {
-                  this.initData(res.userInfo);
-                })
-              }
-            }
-          })
-        } else {
-          if (openid === "") {
-            this.getUserOpenId(() => {})
-          }
-        }
+    var userInfo = wx.getStorageSync('userInfo')
+    if(userInfo){
+      if (openid && openid != "") {
+        this.initData();
+      } else {
+        this.getUserOpenId(() => {
+          this.initData();
+        })
       }
-    })
+    }else{
+      if (openid === "") {
+        this.getUserOpenId(() => {})
+      }
+    }
+
+    // 获取用户信息
+    // wx.getSetting({
+    //   success: res => {
+    //     if (res.authSetting['scope.userInfo']) {
+    //       // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+    //       wx.getUserInfo({
+    //         success: res => {
+    //           wx.setStorageSync("userInfo", res.userInfo)
+    //           if (openid && openid != "") {
+    //             this.initData(res.userInfo);
+    //           } else {
+    //             this.getUserOpenId(() => {
+    //               this.initData(res.userInfo);
+    //             })
+    //           }
+    //         }
+    //       })
+    //     } else {
+    //       if (openid === "") {
+    //         this.getUserOpenId(() => {})
+    //       }
+    //     }
+    //   }
+    // })
   },
   bindSearchinput(e) {
     var word = e.detail.value;
@@ -122,14 +135,12 @@ Page({
       // console.log(this.data.scrollTop)
     })
   },
-  initData(userInfo) {
+  initData() {
     var openid = wx.getStorageSync("openid")
     this.queryUser(openid, (isLoad) => {
-      if (isLoad) {
-        // this.saveUser(userInfo);
-      } else {
+      if (!isLoad) {
         this.updateUser();
-      }
+      } 
     })
   },
   bindscroll(event) {

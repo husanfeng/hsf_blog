@@ -3,7 +3,7 @@
     <text class="text">{{showText}} </text>
     <view class='userinfo-modal-button'>
       <button class="cancel" bindtap='cancel'>{{leftButtonText}}</button>
-      <button open-type="getUserInfo" bindgetuserinfo="confirm" class="sure">{{rightButtonText}}</button>
+      <button bindtap="confirm"  class="sure">{{rightButtonText}}</button>
     </view>
   </view>
 </view>

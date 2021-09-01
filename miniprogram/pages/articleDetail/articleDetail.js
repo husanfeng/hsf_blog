@@ -43,36 +43,57 @@ Page({
       userInfo: userInfo,
       openid: openid
     })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              this.setData({
-                userInfo: res.userInfo,
-                isLoad: true
-              })
-              wx.setStorageSync("userInfo", res.userInfo)
-              if (this.data.openid && this.data.openid != "") {
-                this.initData(res.userInfo);
-              } else {
-                this.getUserOpenId(() => {
-                  this.initData(res.userInfo);
-                })
-              }
-            }
-          })
-        } else {
-          this.setData({
-            isLoad: false,
-            showText: '登录获取更多权限',
-            isShowAddPersonView: true
-          });
-        }
+
+    if(userInfo){
+      this.setData({
+        userInfo: userInfo,
+        isLoad: true
+      })
+      if (openid && openid != "") {
+        this.initData();
+      } else {
+        this.getUserOpenId(() => {
+          this.initData();
+        })
       }
-    })
+    }else{
+      this.setData({
+        isLoad: false,
+        showText: '登录获取更多权限',
+        isShowAddPersonView: true
+      });
+    }
+
+    // 获取用户信息
+    // wx.getSetting({
+    //   success: res => {
+    //     if (res.authSetting['scope.userInfo']) {
+    //       // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+    //       wx.getUserInfo({
+    //         success: res => {
+    //           this.setData({
+    //             userInfo: res.userInfo,
+    //             isLoad: true
+    //           })
+    //           wx.setStorageSync("userInfo", res.userInfo)
+    //           if (this.data.openid && this.data.openid != "") {
+    //             this.initData(res.userInfo);
+    //           } else {
+    //             this.getUserOpenId(() => {
+    //               this.initData(res.userInfo);
+    //             })
+    //           }
+    //         }
+    //       })
+    //     } else {
+    //       this.setData({
+    //         isLoad: false,
+    //         showText: '登录获取更多权限',
+    //         isShowAddPersonView: true
+    //       });
+    //     }
+    //   }
+    // })
   },
   getArticleContent(){
     var that = this;

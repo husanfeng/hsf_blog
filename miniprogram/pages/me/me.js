@@ -15,7 +15,7 @@ Page({
     showText: '登录获取更多权限',
     openid: '',
 
-    hasUserInfo: false,
+    // hasUserInfo: false,
     canIUseGetUserProfile: false,
   },
   onLoad: function () {
@@ -28,7 +28,6 @@ Page({
       })
     }
     var openid = wx.getStorageSync("openid");
-    this.getUserProfile()
     if (!openid || openid == '') {
       this.getUserOpenId();
     } else {
@@ -37,9 +36,21 @@ Page({
         openid: openid
       })
     }
+    var userInfo = wx.getStorageSync('userInfo')
+    if(userInfo){
+      this.setData({
+        userInfo: userInfo,
+        avatarUrl: userInfo.avatarUrl,
+        // hasUserInfo: true
+      })
+    }else{
+      this.setData({
+        isShowAddPersonView: true
+      })
+    }
     // 获取用户信息
-    wx.getSetting({
-      success: res => {
+    // wx.getSetting({
+    //   success: res => {
         // if (res.authSetting['scope.userInfo']) {
         //   // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
         //   // wx.getUserInfo({
@@ -57,8 +68,8 @@ Page({
         //     isShowAddPersonView: true
         //   });
         // }
-      }
-    })
+    //   }
+    // })
   },
   getUserOpenId() {
     var _this = this;
@@ -112,16 +123,16 @@ Page({
       url: '../messageSelectList/messageSelectList'
     })
   },
-  onGetUserInfo: function (e) {
-    if (!this.logged && e.detail.userInfo) {
-      this.setData({
-        logged: true,
-        avatarUrl: e.detail.userInfo.avatarUrl,
-        userInfo: e.detail.userInfo
-      })
-      wx.setStorageSync("userInfo", e.detail.userInfo)
-    }
-  },
+  // onGetUserInfo: function (e) {
+  //   if (!this.logged && e.detail.userInfo) {
+  //     this.setData({
+  //       logged: true,
+  //       avatarUrl: e.detail.userInfo.avatarUrl,
+  //       userInfo: e.detail.userInfo
+  //     })
+  //     wx.setStorageSync("userInfo", e.detail.userInfo)
+  //   }
+  // },
   getUserProfile() {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
     // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
@@ -131,13 +142,15 @@ Page({
         this.setData({
           userInfo: res.userInfo,
           avatarUrl: res.userInfo.avatarUrl,
-          hasUserInfo: true
+           
+          // hasUserInfo: true
         })
+        wx.setStorageSync("userInfo", res.userInfo)
       }
     })
   },
   confirm(e) {
-    wx.setStorageSync("userInfo", e.detail.userInfo)
+    // wx.setStorageSync("userInfo", e.detail.userInfo)
     if (e.detail.userInfo) {
       this.setData({
         isShowAddPersonView: false,

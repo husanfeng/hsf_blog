@@ -17,7 +17,7 @@
 		<view class='classfication'>
 			<scroll-view class="classfication-scroll" scroll-with-animation='true' scroll-anchoring='true' scroll-x enable-flex bindscroll='bindscroll'>
 				<view class="scroll-view-item">
-					<view wx:for="{{classficationList}}" class="child" wx:key='*this'>
+					<view wx:for="{{classficationList}}" class="child" wx:key='_id'>
 						<view class='classfication-view' wx:for="{{item.item}}" wx:for-item='child' wx:key="_id" wx:if="{{child._id<50}}" data-id='{{child.id}}' data-name='{{child.name}}' bindtap='click'>
 							<view class='image' style='background:{{child.style}}'>
 								<image src="{{child.url}}" />
