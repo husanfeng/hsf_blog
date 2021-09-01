@@ -1,8 +1,5 @@
+@import 'ranking.skeleton.wxss';
 /* pages/ranking/ranking.wxss */
-page {
-  /* background-color: #f7f7f7; */
-}
-
 .swiper-tab {
   width: 100%;
   height: 80rpx;

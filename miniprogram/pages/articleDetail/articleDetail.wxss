@@ -1,5 +1,5 @@
 /* pages/articleDetail/articleDetail.wxss */
-
+@import 'articleDetail.skeleton.wxss';
 /**主题配色**/
 @import "../components/comi/comi.wxss";
 

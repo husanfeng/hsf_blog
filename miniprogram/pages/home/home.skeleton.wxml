@@ -1,0 +1,134 @@
+<!--
+此文件为开发者工具生成，生成时间: 2020/6/19 上午9:53:26 
+使用方法：
+1. 在"pages\home\home.wxml"中使用`include`指令引入此模板，
+2. 在"pages\home\home.wxss"中使用`import`指令引入"pages\home\home.skeleton.wxss"
+3. 书写对应的逻辑，来控制骨架屏的显示与隐藏
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<view class="sk-container">
+  <view class="home">
+    <scroll-view scroll-y="true">
+      <view class="navigationHome" style="height:65px;background:none;z-index:20">
+        <view class="border" style="margin-top: 28px; border: none;">
+          <icon class="icon sk-image" size="18" type="search" color="#EFEFEF"></icon><input class="search sk-transparent sk-text-14-2857-403 sk-text" placeholder="" type="text" style="background-size: 100% 1.225rem;"></input>
+        </view>
+      </view>
+      <view class="navigationHome" style="z-index:2;height:65px;opacity:1;background:none"></view>
+      <swiper style="background: #efefef" autoplay="true" circular="true" class="swiper" duration="1000" indicator-active-color="#1296db" indicator-dots="true" interval="4000" current="3" current-item-id="true"></swiper>
+      <view class="classfication">
+        <scroll-view enable-flex="true" scroll-x="true" class="classfication-scroll" scroll-anchoring="true" scroll-with-animation="true">
+          <view class="scroll-view-item">
+            <view class="child">
+              <view class="classfication-view" data-id="7" data-name="javaScript">
+                <view class="image" style="background:#fef2ce">
+                  <image class="sk-image"></image>
+                </view>
+                <view class="name sk-transparent sk-text-14-2857-32 sk-text" style="background-size: 92.7083% 1.05rem; background-position-x: 50%;">javaScript</view>
+              </view>
+              <view class="classfication-view" data-id="2" data-name="vue">
+                <view class="image" style="background:#EB7347">
+                  <image class="sk-image"></image>
+                </view>
+                <view class="name sk-transparent sk-text-14-2857-735 sk-text" style="background-size: 34.1927% 1.05rem; background-position-x: 50%;">vue</view>
+              </view>
+            </view>
+            <view class="child">
+              <view class="classfication-view" data-id="1" data-name="小程序">
+                <view class="image" style="background:#fc9">
+                  <image class="sk-image"></image>
+                </view>
+                <view class="name sk-transparent sk-text-14-2857-744 sk-text" style="background-size: 60% 1.05rem; background-position-x: 50%;">小程序</view>
+              </view>
+              <view class="classfication-view" data-id="4" data-name="浏览器">
+                <view class="image" style="background:#00CCFF">
+                  <image class="sk-image"></image>
+                </view>
+                <view class="name sk-transparent sk-text-14-2857-320 sk-text" style="background-size: 60% 1.05rem; background-position-x: 50%;">浏览器</view>
+              </view>
+            </view>
+            <view class="child">
+              <view class="classfication-view" data-id="5" data-name="android">
+                <view class="image" style="background:#AEDD81">
+                  <image class="sk-image"></image>
+                </view>
+                <view class="name sk-transparent sk-text-14-2857-446 sk-text" style="background-size: 74.6615% 1.05rem; background-position-x: 50%;">android</view>
+              </view>
+              <view class="classfication-view" data-id="3" data-name="react">
+                <view class="image" style="background:#13227a">
+                  <image class="sk-image"></image>
+                </view>
+                <view class="name sk-transparent sk-text-14-2857-732 sk-text" style="background-size: 47.526% 1.05rem; background-position-x: 50%;">react</view>
+              </view>
+            </view>
+            <view class="child">
+              <view class="classfication-view" data-id="8" data-name="css3">
+                <view class="image" style="background:#e1d7f0">
+                  <image class="sk-image"></image>
+                </view>
+                <view class="name sk-transparent sk-text-14-2857-300 sk-text" style="background-size: 40.2865% 1.05rem; background-position-x: 50%;">css3</view>
+              </view>
+              <view class="classfication-view" data-id="6" data-name="nodeJS">
+                <view class="image" style="background:#fadbd9">
+                  <image class="sk-image"></image>
+                </view>
+                <view class="name sk-transparent sk-text-14-2857-528 sk-text" style="background-size: 68.6458% 1.05rem; background-position-x: 50%;">nodeJS</view>
+              </view>
+            </view>
+            <view class="child"></view>
+          </view>
+        </scroll-view>
+        <view class="scroll-bar">
+          <view class="scroll-bar-move" style="margin-left:%"></view>
+        </view>
+      </view>
+      <view is="pages/components/article-list-component/article-list-component">
+        <view class="component--article-list" style="margin-top:225px">
+          <scroll-view scroll-y="true" class="component--scroll-touch">
+            <view class="component--inner" style="border: none;">
+              <view class="component--article" data-item="[object Object]" style="border: none;">
+                <view class="component--article-img">
+                  <image class="sk-image"></image>
+                </view>
+                <view class="component--article-text">
+                  <view class="component--img-title">
+                    <view class="component--title sk-transparent sk-text-14-2857-26 sk-text" style="background-size: 100% 1.3125rem;">借助云开发实现小程序消息订阅功能丨实战</view>
+                    <image class="component--class-img sk-image"></image>
+                  </view>
+                  <view class="component--summary sk-transparent sk-text-14-2857-413 sk-text" style="background-size: 69.0647% 1.05rem;">使用小程序云开发实现消息订阅功能</view>
+                  <view class="component--article-bottom">
+                    <view class="component--time">
+                      <image class="sk-image"></image><text class="sk-transparent sk-text-14-2857-432 sk-text" style="background-size: 100% 0.9625rem;">2020-02-26</text></view>
+                    <view class="component--comment-count">
+                      <image class="sk-image"></image><text class="sk-transparent sk-opacity">16</text></view>
+                    <view class="component--read-count">
+                      <image class="sk-image"></image><text class="sk-transparent sk-text-14-2857-48 sk-text" style="background-size: 100% 0.9625rem;">416</text></view>
+                    <view class="component--poll-count">
+                      <image class="sk-image"></image><text class="sk-transparent sk-opacity">46</text></view>
+                  </view>
+                </view>
+              </view>
+              <view class="component--article" data-item="[object Object]" style="border: none;">
+                <view class="component--article-img">
+                  <image class="sk-image"></image>
+                </view>
+                <view class="component--article-text">
+                  <view class="component--img-title">
+                    <view class="component--title sk-transparent sk-text-14-2857-161 sk-text" style="background-size: 100% 1.3125rem;">如何发布自己的博客小程序</view>
+                    <image class="component--class-img sk-image"></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+      </view>
+      <view class="loading sk-pseudo sk-pseudo-circle" hidden="true">
+        <image class="sk-image"></image>
+      </view>
+      <view class="loading complete sk-transparent sk-opacity sk-pseudo sk-pseudo-circle" hidden="true">
+        没有更多了</view>
+    </scroll-view>
+  </view>
+</view>

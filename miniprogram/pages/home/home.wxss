@@ -1,3 +1,4 @@
+@import 'home.skeleton.wxss';
 .home .swiper {
   height: 500rpx;
 }

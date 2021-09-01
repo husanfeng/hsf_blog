@@ -1,0 +1,106 @@
+<!--
+此文件为开发者工具生成，生成时间: 2020/7/10 下午10:38:54 
+使用方法：
+1. 在"pages\articleDetail\articleDetail.wxml"中使用`include`指令引入此模板，
+2. 在"pages\articleDetail\articleDetail.wxss"中使用`import`指令引入"pages\articleDetail\articleDetail.skeleton.wxss"
+3. 书写对应的逻辑，来控制骨架屏的显示与隐藏
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<view class="sk-container">
+  <view class="article">
+    <scroll-view scroll-y="true">
+      <view class="top-title sk-transparent sk-text-14-2857-730 sk-text" style="background-size: 41.4573% 1.3125rem;">你必须懂的前端性能优化</view>
+      <view class="article-bottom">
+        <view class="time">
+          <image class="sk-image"></image><text class="sk-transparent sk-text-14-2857-542 sk-text" style="background-size: 100% 1.05rem;">2019-08-10</text></view>
+        <view class="comment-count">
+          <image class="sk-image"></image><text class="sk-transparent sk-opacity">3</text></view>
+        <view class="read-count">
+          <image class="sk-image"></image><text class="sk-transparent sk-text-14-2857-498 sk-text" style="background-size: 100% 1.05rem;">200</text></view>
+        <view class="poll-count">
+          <image class="sk-image"></image><text class="sk-transparent sk-text-14-2857-332 sk-text" style="background-size: 100% 1.05rem;">27</text></view>
+      </view>
+      <view class="article-content">
+        <view class="wxParse-p" style="true">
+          <image class="wxParse-img sk-image" data-from="article" data-idx="0" data-src="https://picsum.photos/id/575/375/200" mode="widthFix" style="width: 375px; height: 200px;"></image>
+        </view><text class="WxEmojiView wxParse-inline" style="true"></text>
+        <view class="wxParse-p" style="true"><text class="WxEmojiView wxParse-inline sk-transparent sk-text-14-2857-664 sk-text" style="background-size: 100% 1.4rem;">从输入 URL 到页面加载完成的过程：</text></view><text class="WxEmojiView wxParse-inline" style="true"></text>
+        <view class="wxParse-ul" style="true"><text class="WxEmojiView wxParse-inline" style="true"></text>
+          <view class="wxParse-li" style="true">
+            <view class="wxParse-li-inner">
+              <view class="wxParse-li-text">
+                <view class="wxParse-li-circle" style="display:none"></view>
+              </view>
+              <view class="wxParse-li-text">
+                <view class="wxParse-p" style="true"><text class="WxEmojiView wxParse-inline sk-transparent sk-text-10-0000-558 sk-text" style="true">首先做 DNS 查询，如果这一步做了智能 DNS 解析的话，会提供访问速度最快的 IP 地址回来</text></view>
+              </view>
+            </view>
+          </view><text class="WxEmojiView wxParse-inline" style="true"></text>
+          <view class="wxParse-li" style="true">
+            <view class="wxParse-li-inner">
+              <!-- <view class="wxParse-li-text">
+                <view class="wxParse-li-circle"></view>
+              </view> -->
+              <view class="wxParse-li-text">
+                <view class="wxParse-p" style="true"><text class="WxEmojiView wxParse-inline sk-transparent sk-text-10-0000-270 sk-text" style="true">接下来是 TCP 握手，应用层会下发数据给传输层，这里 TCP 协议会指明两端的端口号，然后下发给网络层。 网络层中的 IP 协议会确定 IP 地址，并且指示了数据传输中如何跳转路由器。然后包会再被封装到数据链路层的数据帧结构中， 最后就是物理层面的传输了</text></view>
+              </view>
+            </view>
+          </view><text class="WxEmojiView wxParse-inline" style="true"></text>
+          <view class="wxParse-li" style="true">
+            <view class="wxParse-li-inner">
+              <!-- <view class="wxParse-li-text">
+                <view class="wxParse-li-circle"></view>
+              </view> -->
+              <view class="wxParse-li-text">
+                <view class="wxParse-p" style="true"><text class="WxEmojiView wxParse-inline sk-transparent sk-text-10-0000-897 sk-text" style="true">TCP 握手结束后会进行 TLS 握手，然后就开始正式的传输数据</text></view>
+              </view>
+            </view>
+          </view><text class="WxEmojiView wxParse-inline" style="true"></text>
+          <view class="wxParse-li" style="true">
+            <view class="wxParse-li-inner">
+              <view class="wxParse-li-text">
+                <view class="wxParse-li-circle"  style="display: none;"></view>
+              </view>
+              <view class="wxParse-li-text">
+                <view class="wxParse-p" style="true"><text class="WxEmojiView wxParse-inline sk-transparent sk-text-10-0000-48 sk-text" style="true">数据在进入服务端之前，可能还会先经过负责负载均衡的服务器，它的作用就是将请求合理的分发到多台服务器上，这时假设服务端会响应一个 HTML 文件</text></view>
+              </view>
+            </view>
+          </view><text class="WxEmojiView wxParse-inline" style="true"></text>
+          <view class="wxParse-li" style="true"></view><text class="WxEmojiView wxParse-inline" style="true"></text>
+          <view class="wxParse-li" style="true"></view><text class="WxEmojiView wxParse-inline" style="true"></text>
+          <view class="wxParse-li" style="true"></view><text class="WxEmojiView wxParse-inline" style="true"></text>
+          <view class="wxParse-li" style="true"></view><text class="WxEmojiView wxParse-inline" style="true"></text>
+          <view class="wxParse-li" style="true"></view><text class="WxEmojiView wxParse-inline" style="true"></text>
+          <view class="wxParse-li" style="true"></view><text class="WxEmojiView wxParse-inline" style="true"></text></view><text class="WxEmojiView wxParse-inline" style="true"></text>
+        <view class="wxParse-p" style="true"></view><text class="WxEmojiView wxParse-inline" style="true"></text></view>
+    </scroll-view>
+    <view class="fixed-bottom">
+      <view class="flex">
+        <view class="poll">
+          <image class="sk-image"></image><label class="sk-transparent sk-text-14-2857-806 sk-text" style="background-size: 100% 1.1375rem;">点赞</label></view>
+        <view class="poll">
+          <image class="sk-image"></image><label class="sk-transparent sk-text-14-2857-329 sk-text" style="background-size: 100% 1.1375rem;">生成海报</label></view>
+        <view>
+          <image class="sk-image"></image><label class="sk-transparent sk-text-14-2857-498 sk-text" style="background-size: 100% 1.1375rem;">评论</label></view>
+        <view class="poll">
+          <image class="sk-image"></image><label class="sk-transparent sk-text-14-2857-286 sk-text" style="background-size: 100% 1.1375rem;">分享</label></view>
+      </view>
+    </view>
+  </view>
+  <view class="cu-modal sk-pseudo sk-pseudo-circle">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white justify-end">
+        <view class="content sk-transparent sk-text-24-2424-670 sk-text" style="background-size: 30.5234% 2.0625rem; background-position-x: 50%;">海报分享</view>
+        <view class="action"><text class="cuIcon-close text-red"></text></view>
+      </view>
+      <view>
+        <image mode="aspectFit" style="height:441px;" class="sk-image"></image>
+      </view>
+      <view class="cu-bar bg-white">
+        <view class="action margin-0 flex-sub text-green solid-left sk-transparent sk-text-14-2857-258 sk-text" style="background-size: 15.7459% 1.4rem; background-position-x: 50%;">取消</view>
+        <view class="action margin-0 flex-sub solid-left sk-transparent sk-text-14-2857-18 sk-text" style="background-size: 31.4918% 1.4rem; background-position-x: 50%;">保存本地</view>
+      </view>
+    </view>
+  </view>
+</view>

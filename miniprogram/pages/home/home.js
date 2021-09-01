@@ -55,7 +55,6 @@ Page({
     this.initSwiper();
     this.initClassfication();
     this.fetchSearchList(true);
-
     var openid = wx.getStorageSync("openid");
     var userInfo = wx.getStorageSync('userInfo')
     if(userInfo){
@@ -71,7 +70,6 @@ Page({
         this.getUserOpenId(() => {})
       }
     }
-
     // 获取用户信息
     // wx.getSetting({
     //   success: res => {
@@ -140,7 +138,7 @@ Page({
     this.queryUser(openid, (isLoad) => {
       if (!isLoad) {
         this.updateUser();
-      } 
+      }
     })
   },
   bindscroll(event) {
@@ -165,7 +163,7 @@ Page({
       }
       var move = scrollLeft / canScroll / 2 * 100;
       _this.setData({
-        scrollBar: move+ '%'
+        scrollBar: `${move}%`
       })
     }, 400);
   },
@@ -208,15 +206,12 @@ Page({
   },
   getUserOpenId(callback) {
     var _this = this;
-    // wx.showLoading({
-    //   title: '正在加载...',
-    // })
+    
     // 调用云函数
     wx.cloud.callFunction({
       name: 'getUserOpenId',
       data: {},
       success: res => {
-        console.log('getUserOpenId===>',res.result)
         console.log("用户的openID=" + res.result.openid)
         wx.setStorageSync("openid", res.result.openid)
         this.setData({
@@ -228,7 +223,7 @@ Page({
         console.error('[云函数]调用失败', err)
       },
       complete: res => {
-        // wx.hideLoading()
+       
       }
     })
   },
@@ -258,9 +253,7 @@ Page({
   },
   initClassfication() {
     var _this = this;
-    wx.showLoading({
-      title: '正在加载...',
-    })
+   
     db.collection('classfication').get({
       success: function (res) {
         // console.log(JSON.stringify(res.data))
@@ -351,15 +344,13 @@ Page({
         console.log(res)
       },
       complete: function (res) {
-        wx.hideLoading()
+       
       }
     })
   },
   initSwiper() {
     var _this = this;
-    wx.showLoading({
-      title: '正在加载...',
-    })
+   
     db.collection('top_images').orderBy("_id", 'asc').get({
       success: function (res) {
         _this.setData({
@@ -370,7 +361,7 @@ Page({
         console.log(res)
       },
       complete: function (res) {
-        wx.hideLoading()
+       
       }
     })
   },
@@ -418,16 +409,10 @@ Page({
    * 分页函数
    */
   fetchSearchList: function (isShowLoading) {
-    if (isShowLoading) {
-      wx.showLoading({
-        title: '正在请求数据...',
-      });
-    }
+    
     let that = this;
     this.initArticleList(function (data) {
-      if (isShowLoading) {
-        wx.hideLoading()
-      }
+      
       //判断是否有数据，有则取数据  
       if (data.length != 0) {
         let dataList = [];

@@ -14,18 +14,10 @@ Page({
     isShowAddPersonView: false,
     showText: '登录获取更多权限',
     openid: '',
-
-    // hasUserInfo: false,
-    canIUseGetUserProfile: false,
   },
   onLoad: function () {
     if (!wx.cloud) {
       return
-    }
-    if (wx.getUserProfile) {
-      this.setData({
-        canIUseGetUserProfile: true
-      })
     }
     var openid = wx.getStorageSync("openid");
     if (!openid || openid == '') {
@@ -36,6 +28,7 @@ Page({
         openid: openid
       })
     }
+
     var userInfo = wx.getStorageSync('userInfo')
     if(userInfo){
       this.setData({
@@ -51,23 +44,22 @@ Page({
     // 获取用户信息
     // wx.getSetting({
     //   success: res => {
-        // if (res.authSetting['scope.userInfo']) {
-        //   // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-        //   // wx.getUserInfo({
-        //   //   success: res => {
-        //   //     this.setData({
-        //   //       avatarUrl: res.userInfo.avatarUrl,
-        //   //       userInfo: res.userInfo
-        //   //     })
-        //   //     wx.setStorageSync("userInfo", res.userInfo)
-        //   //   }
-        //   // })
-        //   this.getUserProfile()
-        // } else {
-        //   this.setData({
-        //     isShowAddPersonView: true
-        //   });
-        // }
+    //     if (res.authSetting['scope.userInfo']) {
+    //       // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+    //       wx.getUserInfo({
+    //         success: res => {
+    //           this.setData({
+    //             avatarUrl: res.userInfo.avatarUrl,
+    //             userInfo: res.userInfo
+    //           })
+    //           wx.setStorageSync("userInfo", res.userInfo)
+    //         }
+    //       })
+    //     } else {
+    //       this.setData({
+    //         isShowAddPersonView: true
+    //       });
+    //     }
     //   }
     // })
   },
@@ -77,11 +69,10 @@ Page({
       name: 'getUserOpenId',
       data: {},
       success: res => {
-        console.log('getUserOpenId===>',res.result)
         console.log("用户的openID=" + res.result.openid)
         wx.setStorageSync("openid", res.result.openid)
         this.setData({
-          openid: res.result.openid
+          openid: openid
         })
       },
       fail: err => {
@@ -133,24 +124,7 @@ Page({
   //     wx.setStorageSync("userInfo", e.detail.userInfo)
   //   }
   // },
-  getUserProfile() {
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
-    // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        this.setData({
-          userInfo: res.userInfo,
-          avatarUrl: res.userInfo.avatarUrl,
-           
-          // hasUserInfo: true
-        })
-        wx.setStorageSync("userInfo", res.userInfo)
-      }
-    })
-  },
   confirm(e) {
-    // wx.setStorageSync("userInfo", e.detail.userInfo)
     if (e.detail.userInfo) {
       this.setData({
         isShowAddPersonView: false,

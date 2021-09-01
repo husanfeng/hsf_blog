@@ -54,14 +54,14 @@ Page({
    */
   fetchSearchList: function (type, isShowLoading) {
     if (isShowLoading) {
-      wx.showLoading({
-        title: '正在请求数据...',
-      });
+      // wx.showLoading({
+      //   title: '正在请求数据...',
+      // });
     }
     let that = this;
     this.initArticleList(type, function (data) {
       if (isShowLoading) {
-        wx.hideLoading()
+        // wx.hideLoading()
       }
       //判断是否有数据，有则取数据  
       if (data.length != 0) {

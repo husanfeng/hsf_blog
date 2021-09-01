@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isShowSkeleton:true,
     type: '',
     openid: '',
     articleList: [],
@@ -83,15 +84,11 @@ Page({
    * 分页函数
    */
   fetchSearchList: function(isShowLoading) {
-    if (isShowLoading) {
-      wx.showLoading({
-        title: '正在请求数据...',
-      });
-    }
+ 
     let that = this;
     this.initArticleList(function(data) {
       if (isShowLoading) {
-        wx.hideLoading()
+        that.setData({isShowSkeleton:false})
       }
       //判断是否有数据，有则取数据  
       if (data.length != 0) {

@@ -1,1 +1,2 @@
 /* pages/specialArticle/specialArticle.wxss */
+@import 'articleList.skeleton.wxss';

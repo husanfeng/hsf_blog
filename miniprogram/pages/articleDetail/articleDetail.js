@@ -12,6 +12,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isShowSkeleton:false,
     isShow: false,
     isShowPosterModal: "",
     posterImageUrl: "",
@@ -97,9 +98,9 @@ Page({
   },
   getArticleContent(){
     var that = this;
-    wx.showLoading({
-      title: '请稍等...',
-    })
+    // wx.showLoading({
+    //   title: '请稍等...',
+    // })
     wx.cloud.callFunction({
       name: 'openapi',
       data: {
@@ -107,15 +108,18 @@ Page({
         action: 'getFile'
       },
       success: res => {
+        this.setData({
+          isShowSkeleton:true
+        })
         comi(res.result, this)
       },
       fail: err => {
         console.error('[云函数]调用失败', err)
       },
       complete: res => {
-        wx.hideLoading({
-          complete: (res) => {},
-        })
+        // wx.hideLoading({
+        //   complete: (res) => {},
+        // })
       }
     })
   },
@@ -138,9 +142,6 @@ Page({
   },
   getUserOpenId(callback) {
     var _this = this;
-    wx.showLoading({
-      title: '正在加载...',
-    })
     // 调用云函数
     wx.cloud.callFunction({
       name: 'getUserOpenId',
@@ -157,10 +158,11 @@ Page({
         console.error('[云函数]调用失败', err)
       },
       complete: res => {
-        wx.hideLoading()
+      
       }
     })
   },
+ 
   /**
    * 新增文章二维码并返回临时url
    * @param {*} id 
@@ -467,6 +469,10 @@ Page({
     })
   },
   onShareAppMessage: function(res) {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline']
+    })
     var _this = this
     return {
       title: '',
@@ -501,7 +507,6 @@ Page({
         })
       }
     }
-
   },
   getArticleDetail(callback) {
     var _this = this;

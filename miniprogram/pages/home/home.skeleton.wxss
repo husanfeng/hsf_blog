@@ -1,0 +1,112 @@
+/*
+此文件为开发者工具生成，生成时间: 2020/6/19 上午9:53:26 
+使用方法：参考 "pages\home\home.skeleton.wxml"
+*/
+.sk-transparent {
+    color: transparent !important;
+  }
+.sk-text-14-2857-403 {
+    background-image: linear-gradient(transparent 14.2857%, #EEEEEE 0%, #EEEEEE 85.7143%, transparent 0%) !important;
+    background-size: 100% 1.2250rem;
+    position: relative !important;
+  }
+.sk-text {
+    background-origin: content-box !important;
+    background-clip: content-box !important;
+    background-color: transparent !important;
+    color: transparent !important;
+    background-repeat: repeat-y !important;
+  }
+.sk-text-14-2857-32 {
+    background-image: linear-gradient(transparent 14.2857%, #EEEEEE 0%, #EEEEEE 85.7143%, transparent 0%) !important;
+    background-size: 100% 1.0500rem;
+    position: relative !important;
+  }
+.sk-text-14-2857-735 {
+    background-image: linear-gradient(transparent 14.2857%, #EEEEEE 0%, #EEEEEE 85.7143%, transparent 0%) !important;
+    background-size: 100% 1.0500rem;
+    position: relative !important;
+  }
+.sk-text-14-2857-744 {
+    background-image: linear-gradient(transparent 14.2857%, #EEEEEE 0%, #EEEEEE 85.7143%, transparent 0%) !important;
+    background-size: 100% 1.0500rem;
+    position: relative !important;
+  }
+.sk-text-14-2857-320 {
+    background-image: linear-gradient(transparent 14.2857%, #EEEEEE 0%, #EEEEEE 85.7143%, transparent 0%) !important;
+    background-size: 100% 1.0500rem;
+    position: relative !important;
+  }
+.sk-text-14-2857-446 {
+    background-image: linear-gradient(transparent 14.2857%, #EEEEEE 0%, #EEEEEE 85.7143%, transparent 0%) !important;
+    background-size: 100% 1.0500rem;
+    position: relative !important;
+  }
+.sk-text-14-2857-732 {
+    background-image: linear-gradient(transparent 14.2857%, #EEEEEE 0%, #EEEEEE 85.7143%, transparent 0%) !important;
+    background-size: 100% 1.0500rem;
+    position: relative !important;
+  }
+.sk-text-14-2857-300 {
+    background-image: linear-gradient(transparent 14.2857%, #EEEEEE 0%, #EEEEEE 85.7143%, transparent 0%) !important;
+    background-size: 100% 1.0500rem;
+    position: relative !important;
+  }
+.sk-text-14-2857-528 {
+    background-image: linear-gradient(transparent 14.2857%, #EEEEEE 0%, #EEEEEE 85.7143%, transparent 0%) !important;
+    background-size: 100% 1.0500rem;
+    position: relative !important;
+  }
+.sk-text-14-2857-26 {
+    background-image: linear-gradient(transparent 14.2857%, #EEEEEE 0%, #EEEEEE 85.7143%, transparent 0%) !important;
+    background-size: 100% 1.3125rem;
+    position: relative !important;
+  }
+.sk-text-14-2857-413 {
+    background-image: linear-gradient(transparent 14.2857%, #EEEEEE 0%, #EEEEEE 85.7143%, transparent 0%) !important;
+    background-size: 100% 1.0500rem;
+    position: relative !important;
+  }
+.sk-text-14-2857-432 {
+    background-image: linear-gradient(transparent 14.2857%, #EEEEEE 0%, #EEEEEE 85.7143%, transparent 0%) !important;
+    background-size: 100% 0.9625rem;
+    position: relative !important;
+  }
+.sk-opacity {
+    opacity: 0 !important;
+  }
+.sk-text-14-2857-48 {
+    background-image: linear-gradient(transparent 14.2857%, #EEEEEE 0%, #EEEEEE 85.7143%, transparent 0%) !important;
+    background-size: 100% 0.9625rem;
+    position: relative !important;
+  }
+.sk-text-14-2857-161 {
+    background-image: linear-gradient(transparent 14.2857%, #EEEEEE 0%, #EEEEEE 85.7143%, transparent 0%) !important;
+    background-size: 100% 1.3125rem;
+    position: relative !important;
+  }
+.sk-image {
+    background: #EFEFEF !important;
+  }
+.sk-pseudo::before, .sk-pseudo::after {
+      background: #EFEFEF !important;
+      background-image: none !important;
+      color: transparent !important;
+      border-color: transparent !important;
+    }
+.sk-pseudo-rect::before, .sk-pseudo-rect::after {
+      border-radius: 0 !important;
+    }
+.sk-pseudo-circle::before, .sk-pseudo-circle::after {
+      border-radius: 50% !important;
+    }
+.sk-container {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000000;
+    background-color: transparent;
+  }

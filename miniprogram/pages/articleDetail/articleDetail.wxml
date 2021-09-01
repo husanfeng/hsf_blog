@@ -1,6 +1,6 @@
 <!--pages/articleDetail/articleDetail.wxml-->
 <view class="article">
-	<scroll-view scroll-y wx:if="{{isLoad}}">
+	<scroll-view scroll-y wx:if="{{isLoad && isShowSkeleton}}">
 		<view class="top-title">{{articleDetail.summary}}</view>
 		<view class='article-bottom'>
 			<view class='time'>
@@ -48,7 +48,6 @@
 							<image src="{{itemfather.avatarUrl}}"></image>
 							<label>{{itemfather.nickName}}</label>
 						</view>
-						<!-- <text class="create-time">{{itemfather.create_date}}</text> -->
 					</view>
 					<view class="father-content">
 						<text class="text">{{itemfather.comment}}</text>
@@ -60,15 +59,12 @@
 					<view class="children-content">
 						<block wx:for='{{itemfather.childComment}}' wx:key='*this'>
 							<view class='childComment'>
-
 								<view class="child-img-name">
 									<view class="avatar-name">
 										<image src="{{item.avatarUrl}}"></image>
 										<text class='nickName'>{{item.nickName}}</text>
 									</view>
-									<!-- <text class="child-create-time">{{item.createDate}}</text> -->
 								</view>
-
 								<view class="child-comment" wx:if="{{item.flag==2 }}">
 									<text class='huifu'>回复</text>
 									<text class='opposite-nickName'>{{item.opposite_nickName}}</text>
@@ -93,7 +89,7 @@
 			<view class='right-line'></view>
 		</view>
 	</scroll-view>
-	<view class='fixed-bottom' wx:if="{{isLoad}}">
+	<view class='fixed-bottom' wx:if="{{isLoad && isShowSkeleton}}">
 		<view class='flex'>
 			<view class='poll' bindtap="clickPoll">
 				<image src="{{isPollDone?'../../images/poll-dones.png':'../../images/poll.png'}}"></image>
@@ -107,10 +103,6 @@
 				<image src='../../images/comment.png'></image>
 				<label>评论</label>
 			</view>
-			<!-- <view class='share'>
-        <image src='../../images/share.png'></image>
-        <label>分享</label>
-      </view> -->
 			<button open-type="share" bindgetuserinfo="shareArticle" class="share-user">
 				<image src='../../images/share.png'></image>
 				<label>分享</label>
@@ -124,8 +116,6 @@
 		<image src='../../images/poll-animations.gif'></image>
 	</view>
 </view>
-
-
 <!-- 生成海报组件 -->
 <poster id="poster" hide-loading="{{false}}" preload="{{false}}" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail"></poster>
 <!-- 展示海报弹窗 -->
@@ -146,3 +136,4 @@
 		</view>
 	</view>
 </view>
+<include src='articleDetail.skeleton.wxml' wx:if="{{!isShowSkeleton}}" />

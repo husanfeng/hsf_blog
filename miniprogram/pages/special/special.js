@@ -20,9 +20,9 @@ Page({
   },
   initClassfication() {
     var _this = this;
-    wx.showLoading({
-      title: '正在加载...',
-    })
+    // wx.showLoading({
+    //   title: '正在加载...',
+    // })
     db.collection('classfication').get({
       success: function(res) {
         // res.data 包含该记录的数据
@@ -35,7 +35,7 @@ Page({
         console.log(res)
       },
       complete: function(res) {
-        wx.hideLoading()
+        // wx.hideLoading()
       }
     })
   },

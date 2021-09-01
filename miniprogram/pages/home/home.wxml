@@ -1,7 +1,7 @@
 <view class="home">
-	<scroll-view scroll-y>
+	<scroll-view scroll-y wx:if="{{dataList.length>0}}">
 		<view wx:if="{{searchTop != ''}}" class="navigationHome" style="height:{{navigationHeight}}px;background:none;z-index:20">
-			<view class="border"  style="margin-top:{{searchTop}}px">
+			<view class="border" style="margin-top:{{searchTop}}px">
 				<icon class="icon" type="search" size="18"></icon>
 				<input type='text' confirm-type='search' bindinput='bindSearchinput' bindconfirm='submit' class="search" placeholder="搜索"></input>
 			</view>
@@ -38,4 +38,5 @@
 		<view class="loading complete" hidden="{{loadingHasData}}" wx:if="{{dataList.length>0}}">
 			没有更多了</view>
 	</scroll-view>
+	<include src='home.skeleton.wxml' wx:if="{{dataList.length==0}}" />
 </view>

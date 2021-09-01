@@ -1,7 +1,4 @@
-page {
-  /* background: #f1f1f1; */
-}
-
+@import 'special.skeleton.wxss';
 .special {
   display: flex;
   flex-direction: row;

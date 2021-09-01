@@ -1,0 +1,95 @@
+<!--
+此文件为开发者工具生成，生成时间: 2020/7/10 下午10:01:53 
+使用方法：
+1. 在"pages\special\special.wxml"中使用`include`指令引入此模板，
+2. 在"pages\special\special.wxss"中使用`import`指令引入"pages\special\special.skeleton.wxss"
+3. 书写对应的逻辑，来控制骨架屏的显示与隐藏
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<view class="sk-container">
+  <view>
+    <view class="special">
+      <view class="item" data-id="9" data-name="html5">
+        <view class="image-background" style="border: none;">
+          <image class="left sk-image"></image>
+        </view>
+        <view class="right">
+          <view class="title sk-transparent sk-text-14-2857-342 sk-text" style="background-size: 100% 1.4rem;">html5 </view>
+        </view>
+      </view>
+      <view class="item" data-id="10" data-name="旅拍">
+        <view class="image-background" style="border: none;">
+          <image class="left sk-image"></image>
+        </view>
+        <view class="right">
+          <view class="title sk-transparent sk-text-14-2857-471 sk-text" style="background-size: 100% 1.4rem;">旅拍 </view>
+        </view>
+      </view>
+      <view class="item" data-id="7" data-name="javaScript">
+        <view class="image-background" style="border: none;">
+          <image class="left sk-image"></image>
+        </view>
+        <view class="right">
+          <view class="title sk-transparent sk-text-14-2857-789 sk-text" style="background-size: 100% 1.4rem;">javaScript </view>
+        </view>
+      </view>
+      <view class="item" data-id="2" data-name="vue">
+        <view class="image-background" style="border: none;">
+          <image class="left sk-image"></image>
+        </view>
+        <view class="right">
+          <view class="title sk-transparent sk-text-14-2857-569 sk-text" style="background-size: 100% 1.4rem;">vue </view>
+        </view>
+      </view>
+      <view class="item" data-id="1" data-name="小程序">
+        <view class="image-background" style="border: none;">
+          <image class="left sk-image"></image>
+        </view>
+        <view class="right">
+          <view class="title sk-transparent sk-text-14-2857-976 sk-text" style="background-size: 100% 1.4rem;">小程序 </view>
+        </view>
+      </view>
+      <view class="item" data-id="4" data-name="浏览器">
+        <view class="image-background" style="border: none;">
+          <image class="left sk-image"></image>
+        </view>
+        <view class="right">
+          <view class="title sk-transparent sk-text-14-2857-421 sk-text" style="background-size: 100% 1.4rem;">浏览器 </view>
+        </view>
+      </view>
+      <view class="item" data-id="5" data-name="android">
+        <view class="image-background" style="border: none;">
+          <image class="left sk-image"></image>
+        </view>
+        <view class="right">
+          <view class="title sk-transparent sk-text-14-2857-110 sk-text" style="background-size: 100% 1.4rem;">android </view>
+        </view>
+      </view>
+      <view class="item" data-id="3" data-name="react">
+        <view class="image-background" style="border: none;">
+          <image class="left sk-image"></image>
+        </view>
+        <view class="right">
+          <view class="title sk-transparent sk-text-14-2857-279 sk-text" style="background-size: 100% 1.4rem;">react </view>
+        </view>
+      </view>
+      <view class="item" data-id="8" data-name="css3">
+        <view class="image-background" style="border: none;">
+          <image class="left sk-image"></image>
+        </view>
+        <view class="right">
+          <view class="title sk-transparent sk-text-14-2857-304 sk-text" style="background-size: 100% 1.4rem;">css3 </view>
+        </view>
+      </view>
+      <view class="item" data-id="6" data-name="nodeJS">
+        <view class="image-background" style="border: none;">
+          <image class="left sk-image"></image>
+        </view>
+        <view class="right">
+          <view class="title sk-transparent sk-text-14-2857-675 sk-text" style="background-size: 100% 1.4rem;">nodeJS </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
