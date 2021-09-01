@@ -143,28 +143,72 @@
 								</view>
 							</view>
 						</view>
-              <view class="component--article" data-item="[object Object]" style="border: none;">
-              <view class="component--article-img">
-                <image class="sk-image"></image>
-              </view>
-              <view class="component--article-text">
-                <view class="component--img-title">
-                  <view class="component--title sk-transparent sk-text-14-2857-746 sk-text" style="background-size: 94.9945% 1.4rem;">JavaScript类型</view>
-                  <image class="component--class-img sk-image"></image>
-                </view>
-                <view class="component--summary sk-transparent sk-text-14-2857-906 sk-text" style="background-size: 100% 1.1375rem;">JavaScript类型：关于类型，有哪些你不知道的细节？</view>
-                <view class="component--article-bottom">
-                  <view class="component--time">
-                    <image class="sk-image"></image><text class="sk-transparent sk-text-14-2857-908 sk-text" style="background-size: 100% 1.05rem;">2019-08-08</text></view>
-                  <view class="component--comment-count">
-                    <image class="sk-image"></image><text class="sk-transparent sk-opacity">2</text></view>
-                  <view class="component--read-count">
-                    <image class="sk-image"></image><text class="sk-transparent sk-text-14-2857-766 sk-text" style="background-size: 100% 1.05rem;">145</text></view>
-                  <view class="component--poll-count">
-                    <image class="sk-image"></image><text class="sk-transparent sk-text-14-2857-321 sk-text" style="background-size: 100% 1.05rem;">14</text></view>
-                </view>
-              </view>
-            </view>
+						<view class="component--article" data-item="[object Object]" style="border: none;">
+							<view class="component--article-img">
+								<image class="sk-image"></image>
+							</view>
+							<view class="component--article-text">
+								<view class="component--img-title">
+								<view class="component--title sk-transparent sk-text-14-2857-746 sk-text" style="background-size: 94.9945% 1.4rem;">JavaScript类型</view>
+								<image class="component--class-img sk-image"></image>
+								</view>
+								<view class="component--summary sk-transparent sk-text-14-2857-906 sk-text" style="background-size: 100% 1.1375rem;">JavaScript类型：关于类型，有哪些你不知道的细节？</view>
+								<view class="component--article-bottom">
+								<view class="component--time">
+									<image class="sk-image"></image><text class="sk-transparent sk-text-14-2857-908 sk-text" style="background-size: 100% 1.05rem;">2019-08-08</text></view>
+								<view class="component--comment-count">
+									<image class="sk-image"></image><text class="sk-transparent sk-opacity">2</text></view>
+								<view class="component--read-count">
+									<image class="sk-image"></image><text class="sk-transparent sk-text-14-2857-766 sk-text" style="background-size: 100% 1.05rem;">145</text></view>
+								<view class="component--poll-count">
+									<image class="sk-image"></image><text class="sk-transparent sk-text-14-2857-321 sk-text" style="background-size: 100% 1.05rem;">14</text></view>
+								</view>
+							</view>
+            			</view>
+						<view class="component--article" data-item="[object Object]" style="border: none;">
+							<view class="component--article-img">
+								<image class="sk-image"></image>
+							</view>
+							<view class="component--article-text">
+								<view class="component--img-title">
+								<view class="component--title sk-transparent sk-text-14-2857-746 sk-text" style="background-size: 94.9945% 1.4rem;">JavaScript类型</view>
+								<image class="component--class-img sk-image"></image>
+								</view>
+								<view class="component--summary sk-transparent sk-text-14-2857-906 sk-text" style="background-size: 100% 1.1375rem;">JavaScript类型：关于类型，有哪些你不知道的细节？</view>
+								<view class="component--article-bottom">
+								<view class="component--time">
+									<image class="sk-image"></image><text class="sk-transparent sk-text-14-2857-908 sk-text" style="background-size: 100% 1.05rem;">2019-08-08</text></view>
+								<view class="component--comment-count">
+									<image class="sk-image"></image><text class="sk-transparent sk-opacity">2</text></view>
+								<view class="component--read-count">
+									<image class="sk-image"></image><text class="sk-transparent sk-text-14-2857-766 sk-text" style="background-size: 100% 1.05rem;">145</text></view>
+								<view class="component--poll-count">
+									<image class="sk-image"></image><text class="sk-transparent sk-text-14-2857-321 sk-text" style="background-size: 100% 1.05rem;">14</text></view>
+								</view>
+							</view>
+            			</view>
+						<view class="component--article" data-item="[object Object]" style="border: none;">
+							<view class="component--article-img">
+								<image class="sk-image"></image>
+							</view>
+							<view class="component--article-text">
+								<view class="component--img-title">
+								<view class="component--title sk-transparent sk-text-14-2857-746 sk-text" style="background-size: 94.9945% 1.4rem;">JavaScript类型</view>
+								<image class="component--class-img sk-image"></image>
+								</view>
+								<view class="component--summary sk-transparent sk-text-14-2857-906 sk-text" style="background-size: 100% 1.1375rem;">JavaScript类型：关于类型，有哪些你不知道的细节？</view>
+								<view class="component--article-bottom">
+								<view class="component--time">
+									<image class="sk-image"></image><text class="sk-transparent sk-text-14-2857-908 sk-text" style="background-size: 100% 1.05rem;">2019-08-08</text></view>
+								<view class="component--comment-count">
+									<image class="sk-image"></image><text class="sk-transparent sk-opacity">2</text></view>
+								<view class="component--read-count">
+									<image class="sk-image"></image><text class="sk-transparent sk-text-14-2857-766 sk-text" style="background-size: 100% 1.05rem;">145</text></view>
+								<view class="component--poll-count">
+									<image class="sk-image"></image><text class="sk-transparent sk-text-14-2857-321 sk-text" style="background-size: 100% 1.05rem;">14</text></view>
+								</view>
+							</view>
+            			</view>
 					</view>
 				</scroll-view>
 			</view>

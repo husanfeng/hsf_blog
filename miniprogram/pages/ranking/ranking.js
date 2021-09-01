@@ -98,6 +98,15 @@ Page({
         page: 0,
         dataList: [],
       });
+      if (tapId == 0) {
+        that.fetchSearchList("read_count", true);
+      } else if (tapId == 1) {
+        that.fetchSearchList("comment_count", true);
+      } else if (tapId == 2) {
+        that.fetchSearchList("poll_count", true);
+      } else if (tapId == 3) {
+        that.fetchSearchList("create_time", true);
+      }
     }
   },
   /**
