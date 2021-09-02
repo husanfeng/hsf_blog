@@ -136,4 +136,4 @@
 		</view>
 	</view>
 </view>
-<include src='articleDetail.skeleton.wxml' wx:if="{{!isShowSkeleton}}" />
+<include src='articleDetail.skeleton.wxml' wx:if="{{!isShowSkeleton && !isShowAddPersonView}}" />
