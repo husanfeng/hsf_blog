@@ -36,12 +36,13 @@
 				</block>
 			</view>
 		</view>
+		<!-- 评论列表 -->
 		<view class="comment" wx:if="{{commentList.length>0}}">
 			<view class="comment-line">
 				<text class="comment-text">评论交流</text>
 				<view class="bottom-line"></view>
 			</view>
-			<block wx:for='{{commentList}}' wx:key='*this' wx:for-item="itemfather">
+			<block wx:for='{{commentList}}' wx:key='_id' wx:for-item="itemfather">
 				<view class='commentList'>
 					<view class="top-info">
 						<view class='img-name'>
@@ -57,7 +58,7 @@
 						</view>
 					</view>
 					<view class="children-content">
-						<block wx:for='{{itemfather.childComment}}' wx:key='*this'>
+						<block wx:for='{{itemfather.childComment}}' wx:key='timestamp'>
 							<view class='childComment'>
 								<view class="child-img-name">
 									<view class="avatar-name">
@@ -109,6 +110,7 @@
 			</button>
 		</view>
 	</view>
+	<!-- 提示用户登录的弹窗 -->
 	<view wx:if="{{isShowAddPersonView}}">
 		<add-person leftButtonText="{{leftButtonText}}" rightButtonText="{{rightButtonText}}" showText="{{showText}}" bind:confirm='confirm' bind:cancel='cancel' />
 	</view>

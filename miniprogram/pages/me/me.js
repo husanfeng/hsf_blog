@@ -10,7 +10,7 @@ Page({
     logged: false,
     takeSession: false,
     requestResult: '',
-    functionList: ["我的浏览", "我的点赞", "意见反馈", "客服", "更新日志", "消息订阅", "获取源码"],
+    functionList: ["我的浏览", "我的点赞", "意见反馈", "客服", "更新日志", "获取源码"],
     isShowAddPersonView: false,
     showText: '登录获取更多权限',
     openid: '',
@@ -20,6 +20,12 @@ Page({
       return
     }
     var openid = wx.getStorageSync("openid");
+    // wx:if="{{openid == 'oJX0Y47QUSPd3lkaGgJYWFqfn944' || openid == 'oJX0Y4xP5Hny2v3dzt9CaDwJrZ6w'}}"
+    if(openid == 'oJX0Y47QUSPd3lkaGgJYWFqfn944' || openid == 'oJX0Y4xP5Hny2v3dzt9CaDwJrZ6w'){
+      this.setData({
+        functionList:["我的浏览", "我的点赞", "意见反馈", "客服", "更新日志", "消息订阅", "获取源码"]
+      })
+    }
     if (!openid || openid == '') {
       this.getUserOpenId();
     } else {
@@ -28,7 +34,6 @@ Page({
         openid: openid
       })
     }
-
     var userInfo = wx.getStorageSync('userInfo')
     if(userInfo){
       this.setData({
@@ -41,27 +46,6 @@ Page({
         isShowAddPersonView: true
       })
     }
-    // 获取用户信息
-    // wx.getSetting({
-    //   success: res => {
-    //     if (res.authSetting['scope.userInfo']) {
-    //       // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-    //       wx.getUserInfo({
-    //         success: res => {
-    //           this.setData({
-    //             avatarUrl: res.userInfo.avatarUrl,
-    //             userInfo: res.userInfo
-    //           })
-    //           wx.setStorageSync("userInfo", res.userInfo)
-    //         }
-    //       })
-    //     } else {
-    //       this.setData({
-    //         isShowAddPersonView: true
-    //       });
-    //     }
-    //   }
-    // })
   },
   getUserProfile() {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认

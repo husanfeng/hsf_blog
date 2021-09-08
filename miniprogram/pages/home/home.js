@@ -260,77 +260,98 @@ Page({
         // _this.setData({
         //   classficationList: res.data
         // })
-        var arr = [{
-          item: [{
-            "_id": "2",
-            "id": 7,
-            "name": "javaScript",
-            "style": "#fef2ce",
-            "url": "https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/classfication_images/java-script.png?sign=bc895f0a0344a1415b9b829713bf111c&t=1563077572"
-          }, {
-            "_id": "3",
-            "id": 2,
-            "name": "vue",
-            "style": "#EB7347",
-            "url": "https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/classfication_images/Vue.png?sign=37ba4970e938cb3419b3209d572a8013&t=1563077541"
-          }]
-        }, {
-          item: [{
-            "_id": "4",
-            "id": 1,
-            "name": "小程序",
-            "style": "#fc9",
-            "url": "https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/classfication_images/%E5%B0%8F%E7%A8%8B%E5%BA%8F.png?sign=1513baa85fdce9f0f5ee0a2d496c1613&t=1563077605"
-          }, {
-            "_id": "5",
-            "id": 4,
-            "name": "浏览器",
-            "style": "#00CCFF",
-            "url": "https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/classfication_images/%E6%B5%8F%E8%A7%88%E5%99%A8.png?sign=a315bc182fc89b7adb65a07c4da96eac&t=1565352298"
-          }]
-        }, {
-          item: [{
-            "_id": "6",
-            "id": 5,
-            "name": "android",
-            "style": "#AEDD81",
-            "url": "https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/classfication_images/Android.png?sign=3411681e3b4d3eba93566a19f8c5a297&t=1563077457"
-          }, {
-            "_id": "7",
-            "id": 3,
-            "name": "react",
-            "style": "#13227a",
-            "url": "https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/classfication_images/React.png?sign=b6466f2dbea9d0d83da78e0fa04e3b40&t=1563077529"
-          }]
-        }, {
-          item: [{
-            "_id": "8",
-            "id": 8,
-            "name": "css3",
-            "style": "#e1d7f0",
-            "url": "https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/classfication_images/CSS.png?sign=4661566c2350d00d3cd1ddd66967f96a&t=1563077493"
-          }, {
-            "_id": "9",
-            "id": 6,
-            "name": "nodeJS",
-            "style": "#fadbd9",
-            "url": "https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/classfication_images/Nodejs.png?sign=084f064382cdd700c5586a7e6ea65f30&t=1563077507"
-          }]
-        }, {
-          item: [{
-            "_id": "10",
-            "id": 9,
-            "name": "html5",
-            "style": "#D24D57",
-            "url": "https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/classfication_images/html5.png?sign=65a8c526612ceb1edc217767c3e19a2f&t=1563077559"
-          }, {
-            "_id": "1",
-            "id": 10,
-            "name": "旅拍",
-            "style": "#e8f4d9",
-            "url": "https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/classfication_images/%E6%97%85%E6%8B%8D%E7%85%A7.png?sign=3b3311d664f368e6525a7fb5e13d76b1&t=1565856664"
-          }]
-        }]
+        var arr = [
+          {
+              "item": [
+                  {
+                      "_id": "2",
+                      "id": 7,
+                      "name": "javaScript",
+                      "style": "#fef2ce",
+                      "url": "https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/classfication_images/java-script.png?sign=bc895f0a0344a1415b9b829713bf111c&t=1563077572"
+                  },
+                  {
+                      "_id": "3",
+                      "id": 2,
+                      "name": "vue",
+                      "style": "#EB7347",
+                      "url": "https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/classfication_images/Vue.png?sign=37ba4970e938cb3419b3209d572a8013&t=1563077541"
+                  }
+              ]
+          },
+          {
+              "item": [
+                  {
+                      "_id": "4",
+                      "id": 1,
+                      "name": "小程序",
+                      "style": "#fc9",
+                      "url": "https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/classfication_images/%E5%B0%8F%E7%A8%8B%E5%BA%8F.png?sign=1513baa85fdce9f0f5ee0a2d496c1613&t=1563077605"
+                  },
+                  {
+                      "_id": "5",
+                      "id": 4,
+                      "name": "浏览器",
+                      "style": "#00CCFF",
+                      "url": "https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/classfication_images/%E6%B5%8F%E8%A7%88%E5%99%A8.png?sign=a315bc182fc89b7adb65a07c4da96eac&t=1565352298"
+                  }
+              ]
+          },
+          {
+              "item": [
+                  {
+                      "_id": "6",
+                      "id": 5,
+                      "name": "android",
+                      "style": "#AEDD81",
+                      "url": "https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/classfication_images/Android.png?sign=3411681e3b4d3eba93566a19f8c5a297&t=1563077457"
+                  },
+                  {
+                      "_id": "7",
+                      "id": 3,
+                      "name": "react",
+                      "style": "#13227a",
+                      "url": "https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/classfication_images/React.png?sign=b6466f2dbea9d0d83da78e0fa04e3b40&t=1563077529"
+                  }
+              ]
+          },
+          {
+              "item": [
+                  {
+                      "_id": "8",
+                      "id": 8,
+                      "name": "css3",
+                      "style": "#e1d7f0",
+                      "url": "https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/classfication_images/CSS.png?sign=4661566c2350d00d3cd1ddd66967f96a&t=1563077493"
+                  },
+                  {
+                      "_id": "9",
+                      "id": 6,
+                      "name": "nodeJS",
+                      "style": "#fadbd9",
+                      "url": "https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/classfication_images/Nodejs.png?sign=084f064382cdd700c5586a7e6ea65f30&t=1563077507"
+                  }
+              ]
+          },
+          {
+              "item": [
+                  {
+                      "_id": "10",
+                      "id": 9,
+                      "name": "html5",
+                      "style": "#D24D57",
+                      "url": "https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/classfication_images/html5.png?sign=65a8c526612ceb1edc217767c3e19a2f&t=1563077559"
+                  },
+                  {
+                      "_id": "1",
+                      "id": 10,
+                      "name": "旅拍",
+                      "style": "#e8f4d9",
+                      "url": "https://6366-cfxy-mall-pxwnv-1256640731.tcb.qcloud.la/classfication_images/%E6%97%85%E6%8B%8D%E7%85%A7.png?sign=3b3311d664f368e6525a7fb5e13d76b1&t=1565856664"
+                  }
+              ]
+          }
+      ]
         _this.setData({
           classficationList: arr
         })

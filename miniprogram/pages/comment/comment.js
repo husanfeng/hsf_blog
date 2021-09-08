@@ -71,6 +71,9 @@ Page({
    * 回复评论
    */
   replyComment(commentType) {
+    this.replySubscribeMessage('replyComment',commentType)
+  },
+  replyCommentContent(commentType){
     var _this = this;
     wx.showLoading({
       title: '正在加载...',
@@ -145,6 +148,9 @@ Page({
    * 新增评论
    */
   addComment() {
+    this.replySubscribeMessage('addComment')
+  },
+  addCommentContent(){
     var _this = this;
     var openid = wx.getStorageSync("openid")
     wx.showLoading({
@@ -187,10 +193,8 @@ Page({
               }, 500);
             }
           })
-
+          // 向指定的用户发送消息，前提是该用户已经订阅了
           _this.sendAddCommentMessage(_this.data.userInfo.nickName, _this.data.inputData, _this.data.articleDetail.article_id, create_date);
-
-
         } else {
           wx.showToast({
             title: '评论失败,内容包含敏感信息!',
@@ -213,7 +217,54 @@ Page({
 
       }
     })
-
+  },
+    /**
+   * 订阅回复评论
+   */
+  replySubscribeMessage(flag,commentType) {
+    var that = this;
+    wx.requestSubscribeMessage({
+      // 传入订阅消息的模板id，模板 id 可在小程序管理后台申请
+      tmplIds: [commentReplyId],
+      success(res) {
+        console.log(res)
+        // 申请订阅成功
+        if (res["u2qcHMJAuxBvD0P3zyR0j-cojervsdquT1ZYWv-3N2M"] == "accept") {
+          wx.showToast({
+            title: '订阅成功，如果有人评论了你，你将收到消息通知哦',
+            icon: 'none',
+            duration: 1500,
+            complete: function() {
+              setTimeout(() => {
+                if(flag === 'addComment'){ // 新增评论
+                  that.addCommentContent()
+                }else{ // 回复评论
+                  that.replyCommentContent(commentType)
+                }
+              }, 1500);
+            }
+          })
+        } else {
+          wx.showToast({
+            title: '订阅失败，如果有人评论了你，你将不会收到消息通知哦',
+            icon: 'none',
+            duration: 1500,
+            complete: function() {
+              setTimeout(() => {
+                if(flag === 'addComment'){ // 新增评论
+                  that.addCommentContent()
+                }else{ // 回复评论
+                  that.replyCommentContent(commentType)
+                }
+              }, 1500);
+            }
+          })
+        }
+      },
+      fail(err) {
+        console.log("err=" + err)
+      }
+    });
   },
   /**
    * 发送评论回复通知
